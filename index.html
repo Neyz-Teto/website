@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -170,15 +171,6 @@ a{
   }
   50%{
     transform:translate3d(-80px,35px,0) scale(.92);
-  }
-}
-
-@keyframes loadingPulse{
-  0%,100%{
-    opacity:.55;
-  }
-  50%{
-    opacity:1;
   }
 }
 
@@ -1370,22 +1362,10 @@ footer .wrap{
   }
 }
 
-/* =========================================================
-   REVEAL
-========================================================= */
-
-.reveal{
-  opacity:0;
-  animation:riseIn .7s cubic-bezier(.16,.9,.3,1) forwards;
-}
 </style>
 </head>
 
 <body>
-
-<!-- ======================================================
-     BACKGROUND
-====================================================== -->
 
 <div class="background-effects">
   <div class="background-grid"></div>
@@ -1393,10 +1373,6 @@ footer .wrap{
   <div class="bg-orb two"></div>
   <div class="bg-orb three"></div>
 </div>
-
-<!-- ======================================================
-     LOADING
-====================================================== -->
 
 <div id="loading-overlay">
 
@@ -1423,10 +1399,6 @@ footer .wrap{
 
 </div>
 
-<!-- ======================================================
-     NAV
-====================================================== -->
-
 <nav>
 
   <div class="wrap">
@@ -1448,10 +1420,6 @@ footer .wrap{
   </div>
 
 </nav>
-
-<!-- ======================================================
-     HERO
-====================================================== -->
 
 <header class="hero">
 
@@ -1598,10 +1566,6 @@ footer .wrap{
   <div class="divider"></div>
 </div>
 
-<!-- ======================================================
-     CPU
-====================================================== -->
-
 <section id="cpu">
 
   <div class="wrap">
@@ -1680,10 +1644,6 @@ footer .wrap{
   </div>
 
 </section>
-
-<!-- ======================================================
-     GPU
-====================================================== -->
 
 <section id="gpu">
 
@@ -1768,10 +1728,6 @@ footer .wrap{
   <div class="divider"></div>
 </div>
 
-<!-- ======================================================
-     BUILD
-====================================================== -->
-
 <section id="build">
 
   <div class="wrap">
@@ -1802,10 +1758,6 @@ footer .wrap{
   </div>
 
 </section>
-
-<!-- ======================================================
-     GAMES
-====================================================== -->
 
 <section id="games">
 
@@ -1861,10 +1813,6 @@ footer .wrap{
 
 </section>
 
-<!-- ======================================================
-     FOOTER
-====================================================== -->
-
 <footer>
 
   <div class="wrap">
@@ -1897,7 +1845,7 @@ const CPUS = [
     tier:'lowest',
     name:'Pentium Dual-Core E5700',
     sub:'2C/2T · LGA775',
-    price:'Lawas',
+    price:'~Rp150.000',
     specs:{
       Cores:'2/2',
       Clock:'3.0 GHz',
@@ -1913,7 +1861,7 @@ const CPUS = [
     tier:'lowest',
     name:'Athlon II X2 250',
     sub:'2C/2T · AM3',
-    price:'Lawas',
+    price:'~Rp150.000',
     specs:{
       Cores:'2/2',
       Clock:'3.0 GHz',
@@ -1929,7 +1877,7 @@ const CPUS = [
     tier:'lowest',
     name:'Celeron G1610',
     sub:'2C/2T · LGA1155',
-    price:'Lawas',
+    price:'~Rp200.000',
     specs:{
       Cores:'2/2',
       Clock:'2.6 GHz',
@@ -1945,7 +1893,7 @@ const CPUS = [
     tier:'lowest',
     name:'AMD A6-7400K',
     sub:'2C/2T · FM2+',
-    price:'Lawas',
+    price:'~Rp200.000',
     specs:{
       Cores:'2/2',
       Clock:'3.5 GHz',
@@ -2011,7 +1959,7 @@ const CPUS = [
     tier:'entry',
     name:'Core i3-6100',
     sub:'2C/4T · LGA1151',
-    price:'Low budget',
+    price:'~Rp500.000',
     specs:{
       Cores:'2/4',
       Clock:'3.7 GHz',
@@ -2077,7 +2025,7 @@ const CPUS = [
     tier:'budget',
     name:'Ryzen 5 3600',
     sub:'6C/12T · AM4',
-    price:'Budget',
+    price:'~Rp900.000',
     specs:{
       Cores:'6/12',
       Clock:'3.6–4.2 GHz',
@@ -2223,7 +2171,7 @@ const CPUS = [
     tier:'mid',
     name:'Ryzen 7 7700',
     sub:'8C/16T · AM5',
-    price:'Mid',
+    price:'~Rp3.800.000',
     specs:{
       Cores:'8/16',
       Clock:'3.8–5.3 GHz',
@@ -2289,7 +2237,7 @@ const CPUS = [
     tier:'high',
     name:'Ryzen 7 9800X3D',
     sub:'8C/16T · AM5 · 3D V-Cache',
-    price:'Flagship gaming',
+    price:'~Rp6.500.000',
     specs:{
       Cores:'8/16',
       Clock:'hingga 5.2 GHz',
@@ -2307,7 +2255,7 @@ const CPUS = [
     tier:'flagship',
     name:'Ryzen 9 7950X3D',
     sub:'16C/32T · AM5 · 3D V-Cache',
-    price:'High-end',
+    price:'~Rp10.500.000',
     specs:{
       Cores:'16/32',
       Clock:'4.2–5.7 GHz',
@@ -2339,7 +2287,7 @@ const CPUS = [
     tier:'flagship',
     name:'Core Ultra 9 285K',
     sub:'24C/24T · LGA1851',
-    price:'Flagship',
+    price:'~Rp9.500.000',
     specs:{
       Cores:'24/24',
       Clock:'hingga 5.7 GHz',
@@ -2355,7 +2303,7 @@ const CPUS = [
     tier:'flagship',
     name:'Core i9-14900KS',
     sub:'24C/32T · LGA1700',
-    price:'Extreme',
+    price:'~Rp11.000.000',
     specs:{
       Cores:'24/32',
       Clock:'hingga 6.2 GHz',
@@ -2382,7 +2330,7 @@ const GPUS = [
     tier:'lowest',
     name:'Radeon HD 5450',
     sub:'1GB DDR3',
-    price:'Lawas',
+    price:'~Rp100.000',
     specs:{
       VRAM:'1GB',
       Bus:'64-bit',
@@ -2398,7 +2346,7 @@ const GPUS = [
     tier:'lowest',
     name:'GeForce GT 710',
     sub:'2GB DDR3',
-    price:'Office GPU',
+    price:'~Rp150.000',
     specs:{
       VRAM:'2GB',
       Bus:'64-bit',
@@ -2414,7 +2362,7 @@ const GPUS = [
     tier:'lowest',
     name:'Radeon R5 230',
     sub:'2GB DDR3',
-    price:'Lawas',
+    price:'~Rp150.000',
     specs:{
       VRAM:'2GB',
       Bus:'64-bit',
@@ -2448,7 +2396,7 @@ const GPUS = [
     tier:'entry',
     name:'GeForce GTX 750 Ti',
     sub:'2GB GDDR5',
-    price:'Entry lama',
+    price:'~Rp700.000',
     specs:{
       VRAM:'2GB',
       Bus:'128-bit',
@@ -2464,7 +2412,7 @@ const GPUS = [
     tier:'entry',
     name:'Radeon RX 550',
     sub:'4GB GDDR5',
-    price:'Entry',
+    price:'~Rp700.000',
     specs:{
       VRAM:'4GB',
       Bus:'128-bit',
@@ -2594,7 +2542,7 @@ const GPUS = [
     tier:'budget',
     name:'GeForce RTX 2060',
     sub:'6GB GDDR6',
-    price:'Budget lama',
+    price:'~Rp2.500.000',
     specs:{
       VRAM:'6GB',
       Bus:'192-bit',
@@ -2628,7 +2576,7 @@ const GPUS = [
     tier:'mid',
     name:'GeForce RTX 3060 Ti',
     sub:'8GB GDDR6',
-    price:'Mid',
+    price:'~Rp3.800.000',
     specs:{
       VRAM:'8GB',
       Bus:'256-bit',
@@ -2692,7 +2640,7 @@ const GPUS = [
     tier:'mid',
     name:'GeForce RTX 3070',
     sub:'8GB GDDR6',
-    price:'Mid',
+    price:'~Rp4.500.000',
     specs:{
       VRAM:'8GB',
       Bus:'256-bit',
@@ -2742,7 +2690,7 @@ const GPUS = [
     tier:'high',
     name:'Radeon RX 7900 XT',
     sub:'20GB GDDR6',
-    price:'High-end',
+    price:'~Rp11.000.000',
     specs:{
       VRAM:'20GB',
       Bus:'320-bit',
@@ -2808,7 +2756,7 @@ const GPUS = [
     tier:'flagship',
     name:'Radeon RX 9070 XT',
     sub:'16GB GDDR6',
-    price:'Flagship modern',
+    price:'~Rp9.000.000',
     specs:{
       VRAM:'16GB',
       Bus:'256-bit',
@@ -2824,7 +2772,7 @@ const GPUS = [
     tier:'flagship',
     name:'GeForce RTX 5090',
     sub:'32GB GDDR7 · Blackwell',
-    price:'Ultra Flagship',
+    price:'~Rp40.000.000',
     specs:{
       VRAM:'32GB',
       Bus:'512-bit',
@@ -3010,7 +2958,7 @@ const GAMES = [
     gpuWeight:.55,
     cpuWeight:.45,
     base:85,
-    reason:'Kota dan pertempuran besar dapat meningkatkan penggunaan CPU.'
+    reason:'Kota dan pertempuran besar dapat meningkatkan beban CPU.'
   },
 
   {
@@ -3831,12 +3779,6 @@ function calcFPS(
       fps
     );
 
-  /*
-    Simulasi sederhana:
-    CPU/GPU kuat dapat menaikkan FPS,
-    tetapi tidak dibuat linear sempurna.
-  */
-
   return fps;
 
 }
@@ -4146,39 +4088,8 @@ window.addEventListener(
   }
 );
 
-
-/* =========================================================
-   NAV CLICK
-========================================================= */
-
-document
-  .querySelectorAll(
-    '.nav-links a'
-  )
-  .forEach(link => {
-
-    link.addEventListener(
-      'click',
-      () => {
-
-        document.body.classList.add(
-          'nav-click'
-        );
-
-        setTimeout(() => {
-
-          document.body.classList.remove(
-            'nav-click'
-          );
-
-        },250);
-
-      }
-    );
-
-  });
-
 </script>
 
 </body>
 </html>
+```
