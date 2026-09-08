@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -13,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
   --bg:#080c12;
   --bg-raised:#111720;
@@ -78,6 +78,7 @@ a{
 }
 
 @media (prefers-reduced-motion:reduce){
+
   *,
   *::before,
   *::after{
@@ -86,6 +87,7 @@ a{
     transition-duration:.01ms !important;
     scroll-behavior:auto !important;
   }
+
 }
 
 /* =========================================================
@@ -93,101 +95,145 @@ a{
 ========================================================= */
 
 @keyframes riseIn{
+
   from{
     opacity:0;
     transform:translateY(14px);
   }
+
   to{
     opacity:1;
     transform:translateY(0);
   }
+
 }
 
 @keyframes cardIn{
+
   from{
     opacity:0;
     transform:translateY(14px) scale(.985);
   }
+
   to{
     opacity:1;
     transform:translateY(0) scale(1);
   }
+
 }
 
 @keyframes pulseGlow{
+
   0%,100%{
     text-shadow:0 0 30px rgba(0,255,157,.08);
   }
+
   50%{
     text-shadow:0 0 46px rgba(0,255,157,.38);
   }
+
 }
 
 @keyframes blink{
+
   0%,100%{
     opacity:1;
   }
+
   50%{
     opacity:.35;
   }
+
 }
 
 @keyframes spin{
+
   to{
     transform:rotate(360deg);
   }
+
 }
 
 @keyframes scanline{
+
   0%{
     transform:translateX(-120%);
   }
+
   100%{
     transform:translateX(230%);
   }
+
 }
 
 @keyframes gridMove{
+
   from{
     transform:translate3d(0,0,0);
   }
+
   to{
     transform:translate3d(0,70px,0);
   }
+
 }
 
 @keyframes orbFloatA{
+
   0%,100%{
     transform:translate3d(0,0,0) scale(1);
   }
+
   50%{
     transform:translate3d(70px,45px,0) scale(1.08);
   }
+
 }
 
 @keyframes orbFloatB{
+
   0%,100%{
     transform:translate3d(0,0,0) scale(1);
   }
+
   50%{
     transform:translate3d(-80px,35px,0) scale(.92);
   }
+
 }
 
 @keyframes pop{
+
   0%{
     transform:scale(1);
   }
+
   40%{
     transform:scale(1.025);
   }
+
   100%{
     transform:scale(1);
   }
+
+}
+
+@keyframes gamePageEnter{
+
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
 }
 
 /* =========================================================
-   MOVING BACKGROUND
+   BACKGROUND
 ========================================================= */
 
 .background-effects{
@@ -214,14 +260,17 @@ a{
 
 .background-grid::after{
   content:"";
+
   position:absolute;
   inset:0;
 
   background:
-    radial-gradient(circle at center,
+    radial-gradient(
+      circle at center,
       transparent 20%,
       rgba(8,12,18,.72) 78%,
-      rgba(8,12,18,1) 100%);
+      rgba(8,12,18,1) 100%
+    );
 }
 
 .bg-orb{
@@ -233,37 +282,51 @@ a{
 .bg-orb.one{
   width:420px;
   height:420px;
+
   left:-120px;
   top:150px;
+
   background:rgba(0,255,157,.07);
-  animation:orbFloatA 11s ease-in-out infinite;
+
+  animation:
+    orbFloatA 11s ease-in-out infinite;
 }
 
 .bg-orb.two{
   width:500px;
   height:500px;
+
   right:-150px;
   top:480px;
+
   background:rgba(94,177,255,.07);
-  animation:orbFloatB 14s ease-in-out infinite;
+
+  animation:
+    orbFloatB 14s ease-in-out infinite;
 }
 
 .bg-orb.three{
   width:340px;
   height:340px;
+
   left:45%;
   bottom:-180px;
+
   background:rgba(167,139,250,.05);
-  animation:orbFloatA 17s ease-in-out infinite reverse;
+
+  animation:
+    orbFloatA 17s ease-in-out infinite reverse;
 }
 
 /* =========================================================
-   LOADING OVERLAY
+   LOADING
 ========================================================= */
 
 #loading-overlay{
+
   position:fixed;
   inset:0;
+
   z-index:9999;
 
   display:flex;
@@ -271,6 +334,7 @@ a{
   justify-content:center;
 
   background:rgba(5,8,12,.82);
+
   backdrop-filter:blur(12px);
 
   opacity:0;
@@ -282,11 +346,13 @@ a{
 }
 
 #loading-overlay.active{
+
   opacity:1;
   visibility:visible;
 }
 
 .loading-box{
+
   width:min(420px,calc(100% - 40px));
 
   padding:30px;
@@ -294,6 +360,7 @@ a{
   background:rgba(17,23,32,.96);
 
   border:1px solid var(--line);
+
   border-radius:16px;
 
   box-shadow:
@@ -304,12 +371,14 @@ a{
 }
 
 .loading-icon{
+
   width:42px;
   height:42px;
 
   margin:0 auto 18px;
 
   border:3px solid rgba(255,255,255,.08);
+
   border-top-color:var(--neon);
 
   border-radius:50%;
@@ -318,33 +387,49 @@ a{
 }
 
 .loading-title{
+
   font-family:'Space Grotesk';
+
   font-size:18px;
+
   font-weight:600;
+
   margin-bottom:6px;
 }
 
 .loading-text{
+
   color:var(--text-faint);
+
   font-size:13px;
+
   margin-bottom:20px;
 }
 
 .loading-bar{
+
   height:5px;
+
   background:var(--bg-inset);
+
   border-radius:4px;
+
   overflow:hidden;
 }
 
 .loading-bar-fill{
+
   height:100%;
+
   width:0;
-  background:linear-gradient(
-    90deg,
-    var(--blue),
-    var(--neon)
-  );
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--blue),
+      var(--neon)
+    );
+
   transition:width .08s linear;
 }
 
@@ -353,8 +438,11 @@ a{
 ========================================================= */
 
 .ripple{
+
   position:absolute;
+
   border-radius:50%;
+
   pointer-events:none;
 
   width:20px;
@@ -362,16 +450,25 @@ a{
 
   background:rgba(0,255,157,.22);
 
-  transform:translate(-50%,-50%) scale(0);
+  transform:
+    translate(-50%,-50%)
+    scale(0);
 
-  animation:rippleAnim .55s ease-out forwards;
+  animation:
+    rippleAnim .55s ease-out forwards;
 }
 
 @keyframes rippleAnim{
+
   to{
-    transform:translate(-50%,-50%) scale(11);
+
+    transform:
+      translate(-50%,-50%)
+      scale(11);
+
     opacity:0;
   }
+
 }
 
 /* =========================================================
@@ -379,15 +476,20 @@ a{
 ========================================================= */
 
 .wrap{
+
   max-width:1180px;
+
   margin:0 auto;
+
   padding:0 32px;
 }
 
 @media(max-width:640px){
+
   .wrap{
     padding:0 20px;
   }
+
 }
 
 /* =========================================================
@@ -395,83 +497,113 @@ a{
 ========================================================= */
 
 nav{
+
   position:sticky;
+
   top:0;
+
   z-index:50;
 
   background:rgba(8,12,18,.82);
+
   backdrop-filter:blur(14px);
 
   border-bottom:1px solid var(--line);
 }
 
 nav .wrap{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   min-height:64px;
 }
 
 .logo{
+
   display:flex;
+
   align-items:center;
+
   gap:9px;
 
   font-weight:600;
+
   font-size:17px;
 }
 
 .logo-mark{
+
   width:9px;
+
   height:22px;
 
   background:var(--neon);
+
   border-radius:1px;
 
-  box-shadow:0 0 14px var(--neon);
+  box-shadow:
+    0 0 14px var(--neon);
 }
 
 .nav-links{
+
   display:flex;
+
   gap:28px;
 
   color:var(--text-dim);
+
   font-size:14px;
 }
 
 .nav-links a{
+
   position:relative;
-  transition:color .2s ease;
+
+  transition:
+    color .2s ease;
 }
 
 .nav-links a::after{
+
   content:"";
 
   position:absolute;
+
   left:0;
+
   bottom:-5px;
 
   width:0;
+
   height:1px;
 
   background:var(--neon);
 
-  transition:width .2s ease;
+  transition:
+    width .2s ease;
 }
 
 .nav-links a:hover{
+
   color:var(--text);
 }
 
 .nav-links a:hover::after{
+
   width:100%;
 }
 
 @media(max-width:640px){
+
   .nav-links{
     display:none;
   }
+
 }
 
 /* =========================================================
@@ -479,12 +611,16 @@ nav .wrap{
 ========================================================= */
 
 .hero{
+
   padding:88px 0 64px;
+
   position:relative;
+
   overflow:hidden;
 }
 
 .hero::before{
+
   content:"";
 
   position:absolute;
@@ -495,44 +631,55 @@ nav .wrap{
   right:-220px;
   top:-180px;
 
-  background:radial-gradient(
-    circle,
-    rgba(0,255,157,.12) 0%,
-    transparent 70%
-  );
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,255,157,.12) 0%,
+      transparent 70%
+    );
 
   pointer-events:none;
 }
 
 .hero-grid{
+
   display:grid;
+
   grid-template-columns:1.1fr .9fr;
 
   gap:56px;
 
   align-items:center;
+
   position:relative;
 }
 
 @media(max-width:900px){
+
   .hero-grid{
     grid-template-columns:1fr;
     gap:40px;
   }
+
 }
 
 .hero h1{
+
   font-size:clamp(34px,5vw,52px);
+
   font-weight:600;
 
   line-height:1.08;
+
   letter-spacing:-.03em;
 
   margin-bottom:20px;
 }
 
 .hero p{
+
   font-size:16.5px;
+
   color:var(--text-dim);
 
   max-width:50ch;
@@ -541,8 +688,11 @@ nav .wrap{
 }
 
 .hero-actions{
+
   display:flex;
+
   gap:12px;
+
   flex-wrap:wrap;
 }
 
@@ -551,11 +701,15 @@ nav .wrap{
 ========================================================= */
 
 .btn{
+
   position:relative;
+
   overflow:hidden;
 
   display:inline-flex;
+
   align-items:center;
+
   gap:8px;
 
   padding:12px 22px;
@@ -563,7 +717,9 @@ nav .wrap{
   border-radius:8px;
 
   font-family:'Inter';
+
   font-size:14.5px;
+
   font-weight:600;
 
   border:1px solid transparent;
@@ -577,29 +733,40 @@ nav .wrap{
 }
 
 .btn:hover{
+
   transform:translateY(-2px);
 }
 
 .btn:active{
-  transform:translateY(1px) scale(.985);
+
+  transform:
+    translateY(1px)
+    scale(.985);
 }
 
 .btn-primary{
+
   background:var(--neon);
+
   color:#04140d;
 }
 
 .btn-primary:hover{
+
   background:#35ffb5;
 }
 
 .btn-ghost{
+
   background:transparent;
+
   border-color:var(--line);
+
   color:var(--text);
 }
 
 .btn-ghost:hover{
+
   border-color:var(--text-faint);
 }
 
@@ -608,6 +775,7 @@ nav .wrap{
 ========================================================= */
 
 .readout{
+
   background:rgba(17,23,32,.88);
 
   border:1px solid var(--line);
@@ -617,6 +785,7 @@ nav .wrap{
   padding:26px;
 
   position:relative;
+
   overflow:hidden;
 
   box-shadow:
@@ -625,6 +794,7 @@ nav .wrap{
 }
 
 .readout::before{
+
   content:"";
 
   position:absolute;
@@ -635,21 +805,26 @@ nav .wrap{
   width:40%;
   height:100%;
 
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(0,255,157,.055),
-    transparent
-  );
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0,255,157,.055),
+      transparent
+    );
 
-  animation:scanline 5s linear infinite;
+  animation:
+    scanline 5s linear infinite;
 
   pointer-events:none;
 }
 
 .readout-top{
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
 
   gap:20px;
@@ -658,18 +833,24 @@ nav .wrap{
 }
 
 .readout-label{
+
   display:flex;
+
   align-items:center;
+
   gap:6px;
 
   color:var(--text-faint);
 
   font-size:12px;
+
   text-transform:uppercase;
+
   letter-spacing:.06em;
 }
 
 .live-dot{
+
   width:6px;
   height:6px;
 
@@ -677,55 +858,74 @@ nav .wrap{
 
   background:var(--neon);
 
-  box-shadow:0 0 8px var(--neon);
+  box-shadow:
+    0 0 8px var(--neon);
 
-  animation:blink 1.6s ease-in-out infinite;
+  animation:
+    blink 1.6s ease-in-out infinite;
 }
 
 .readout-pair{
+
   color:var(--text-dim);
+
   font-size:13px;
+
   text-align:right;
 }
 
 .readout-pair b{
+
   color:var(--text);
 }
 
 .fps-display{
+
   display:flex;
+
   align-items:baseline;
+
   gap:10px;
 
   margin:8px 0 20px;
 }
 
 .fps-num{
+
   font-family:'Space Grotesk';
 
   font-size:64px;
+
   font-weight:700;
 
   line-height:1;
 
   color:var(--neon);
 
-  animation:pulseGlow 3.2s ease-in-out infinite;
+  animation:
+    pulseGlow 3.2s ease-in-out infinite;
 }
 
 .fps-unit{
+
   color:var(--text-dim);
+
   font-size:15px;
 }
 
 .readout-bars{
+
   display:flex;
+
   flex-direction:column;
+
   gap:10px;
 }
 
 .rbar-row{
+
   display:flex;
+
   align-items:center;
 
   gap:12px;
@@ -734,12 +934,16 @@ nav .wrap{
 }
 
 .rbar-label{
+
   width:64px;
+
   flex-shrink:0;
+
   color:var(--text-dim);
 }
 
 .rbar-track{
+
   flex:1;
 
   height:6px;
@@ -747,10 +951,12 @@ nav .wrap{
   background:var(--bg-inset);
 
   border-radius:3px;
+
   overflow:hidden;
 }
 
 .rbar-fill{
+
   height:100%;
 
   width:0;
@@ -762,8 +968,11 @@ nav .wrap{
 }
 
 .rbar-val{
+
   width:40px;
+
   text-align:right;
+
   color:var(--text-faint);
 }
 
@@ -772,15 +981,19 @@ nav .wrap{
 ========================================================= */
 
 section{
+
   padding:56px 0;
 }
 
 .section-head{
+
   margin-bottom:32px;
 }
 
 .section-head h2{
+
   font-size:26px;
+
   font-weight:600;
 
   letter-spacing:-.01em;
@@ -789,12 +1002,16 @@ section{
 }
 
 .section-head p{
+
   color:var(--text-dim);
+
   font-size:14.5px;
 }
 
 .divider{
+
   height:1px;
+
   background:var(--line);
 }
 
@@ -803,7 +1020,9 @@ section{
 ========================================================= */
 
 .filter-bar{
+
   display:flex;
+
   align-items:center;
 
   flex-wrap:wrap;
@@ -814,7 +1033,9 @@ section{
 }
 
 .filter-btn{
+
   position:relative;
+
   overflow:hidden;
 
   padding:8px 16px;
@@ -822,9 +1043,11 @@ section{
   border-radius:20px;
 
   font-size:13.5px;
+
   font-weight:500;
 
   background:rgba(17,23,32,.82);
+
   border:1px solid var(--line);
 
   color:var(--text-dim);
@@ -839,18 +1062,25 @@ section{
 }
 
 .filter-btn:hover{
+
   border-color:var(--text-faint);
+
   color:var(--text);
+
   transform:translateY(-1px);
 }
 
 .filter-btn:active{
+
   transform:scale(.95);
 }
 
 .filter-btn.active{
+
   background:var(--neon);
+
   border-color:var(--neon);
+
   color:#04140d;
 
   box-shadow:
@@ -858,7 +1088,9 @@ section{
 }
 
 .filter-count{
+
   color:var(--text-faint);
+
   font-size:12.5px;
 
   margin-bottom:20px;
@@ -869,16 +1101,22 @@ section{
 ========================================================= */
 
 .comp-grid{
+
   display:grid;
 
   grid-template-columns:
-    repeat(auto-fill,minmax(310px,1fr));
+    repeat(
+      auto-fill,
+      minmax(310px,1fr)
+    );
 
   gap:16px;
 }
 
 .comp-card{
+
   position:relative;
+
   overflow:hidden;
 
   background:rgba(17,23,32,.88);
@@ -893,7 +1131,10 @@ section{
 
   opacity:0;
 
-  animation:cardIn .5s cubic-bezier(.16,.9,.3,1) forwards;
+  animation:
+    cardIn .5s
+    cubic-bezier(.16,.9,.3,1)
+    forwards;
 
   transition:
     border-color .2s ease,
@@ -902,9 +1143,11 @@ section{
 }
 
 .comp-card::after{
+
   content:"";
 
   position:absolute;
+
   inset:0;
 
   background:
@@ -917,16 +1160,19 @@ section{
 
   transform:translateX(-120%);
 
-  transition:transform .5s ease;
+  transition:
+    transform .5s ease;
 
   pointer-events:none;
 }
 
 .comp-card:hover::after{
+
   transform:translateX(120%);
 }
 
 .comp-card:hover{
+
   border-color:var(--text-faint);
 
   transform:translateY(-4px);
@@ -936,10 +1182,14 @@ section{
 }
 
 .comp-card:active{
-  transform:translateY(-1px) scale(.99);
+
+  transform:
+    translateY(-1px)
+    scale(.99);
 }
 
 .comp-card.selected{
+
   border-color:var(--neon);
 
   box-shadow:
@@ -948,14 +1198,20 @@ section{
 }
 
 .comp-card.pop{
+
   animation:
-    cardIn .5s cubic-bezier(.16,.9,.3,1) forwards,
+    cardIn .5s
+    cubic-bezier(.16,.9,.3,1)
+    forwards,
     pop .35s ease;
 }
 
 .comp-top{
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:flex-start;
 
   gap:12px;
@@ -964,9 +1220,11 @@ section{
 }
 
 .comp-tag{
+
   display:inline-flex;
 
   font-size:10.5px;
+
   font-weight:600;
 
   padding:3px 8px;
@@ -974,20 +1232,27 @@ section{
   border-radius:4px;
 
   text-transform:uppercase;
+
   letter-spacing:.04em;
 }
 
 .tag-cpu{
-  background:rgba(94,177,255,.10);
+
+  background:
+    rgba(94,177,255,.10);
+
   color:var(--blue);
 }
 
 .tag-gpu{
+
   background:var(--neon-dim);
+
   color:var(--neon);
 }
 
 .tier-pill{
+
   font-size:10px;
 
   color:var(--text-faint);
@@ -1002,13 +1267,18 @@ section{
 }
 
 .comp-price{
+
   color:var(--text-faint);
+
   font-size:12.5px;
+
   text-align:right;
 }
 
 .comp-name{
+
   font-size:17px;
+
   font-weight:600;
 
   margin-bottom:4px;
@@ -1017,13 +1287,16 @@ section{
 }
 
 .comp-sub{
+
   color:var(--text-faint);
+
   font-size:12.5px;
 
   margin-bottom:16px;
 }
 
 .comp-specs{
+
   display:grid;
 
   grid-template-columns:1fr 1fr;
@@ -1034,33 +1307,43 @@ section{
 }
 
 .spec-item{
+
   display:flex;
+
   flex-direction:column;
+
   gap:2px;
 }
 
 .spec-k{
+
   color:var(--text-faint);
 }
 
 .spec-v{
+
   color:var(--text-dim);
+
   font-weight:500;
 }
 
 .comp-score-row{
+
   display:flex;
+
   align-items:center;
 
   gap:10px;
 
   margin-top:16px;
+
   padding-top:14px;
 
   border-top:1px solid var(--line);
 }
 
 .score-track{
+
   flex:1;
 
   height:5px;
@@ -1073,6 +1356,7 @@ section{
 }
 
 .score-fill{
+
   height:100%;
 
   width:0;
@@ -1087,10 +1371,12 @@ section{
     );
 
   transition:
-    width .8s cubic-bezier(.16,.8,.3,1);
+    width .8s
+    cubic-bezier(.16,.8,.3,1);
 }
 
 .score-label{
+
   white-space:nowrap;
 
   color:var(--text-faint);
@@ -1103,8 +1389,11 @@ section{
 ========================================================= */
 
 .build-summary{
+
   display:flex;
+
   align-items:center;
+
   flex-wrap:wrap;
 
   gap:16px;
@@ -1125,23 +1414,30 @@ section{
 }
 
 .build-summary.filled{
-  border-color:rgba(0,255,157,.35);
+
+  border-color:
+    rgba(0,255,157,.35);
 
   box-shadow:
     0 0 30px rgba(0,255,157,.04);
 }
 
 .build-chip{
+
   display:flex;
+
   align-items:center;
+
   gap:10px;
 
   font-size:14px;
 
-  animation:riseIn .35s ease forwards;
+  animation:
+    riseIn .35s ease forwards;
 }
 
 .build-chip .dot{
+
   width:7px;
   height:7px;
 
@@ -1149,11 +1445,14 @@ section{
 }
 
 .build-empty{
+
   color:var(--text-faint);
+
   font-size:13.5px;
 }
 
 .build-clear{
+
   margin-left:auto;
 
   color:var(--text-faint);
@@ -1175,18 +1474,24 @@ section{
 }
 
 .build-clear:hover{
+
   border-color:var(--text-faint);
+
   color:var(--text);
+
   transform:translateY(-1px);
 }
 
 /* =========================================================
-   GAMES
+   GAME LIST
 ========================================================= */
 
 .game-list{
+
   display:flex;
+
   flex-direction:column;
+
   gap:1px;
 
   background:var(--line);
@@ -1198,7 +1503,15 @@ section{
   overflow:hidden;
 }
 
+.game-list.game-page-enter{
+
+  animation:
+    gamePageEnter .35s
+    cubic-bezier(.16,.9,.3,1);
+}
+
 .game-row{
+
   display:grid;
 
   grid-template-columns:
@@ -1221,50 +1534,69 @@ section{
 }
 
 .game-row:hover{
+
   background:#151c25;
+
   transform:translateX(2px);
 }
 
 .game-info{
+
   display:flex;
+
   flex-direction:column;
+
   gap:3px;
 }
 
 .game-name{
+
   font-size:14.5px;
+
   font-weight:600;
 }
 
 .game-genre{
+
   color:var(--text-faint);
+
   font-size:12px;
 }
 
 .game-preset{
+
   color:var(--text-dim);
+
   font-size:12px;
 }
 
 .fps-cell{
+
   display:flex;
+
   align-items:baseline;
 
   gap:5px;
 }
 
 .fps-cell .n{
+
   font-family:'Space Grotesk';
+
   font-size:22px;
+
   font-weight:700;
 }
 
 .fps-cell .u{
+
   color:var(--text-faint);
+
   font-size:11px;
 }
 
 .fps-track{
+
   height:6px;
 
   background:var(--bg-inset);
@@ -1275,6 +1607,7 @@ section{
 }
 
 .fps-fill{
+
   height:100%;
 
   width:0;
@@ -1282,21 +1615,123 @@ section{
   border-radius:3px;
 
   transition:
-    width .8s cubic-bezier(.16,.8,.3,1);
+    width .8s
+    cubic-bezier(.16,.8,.3,1);
 }
 
 .reason{
+
   color:var(--text-faint);
+
   font-size:12px;
 
   line-height:1.5;
 }
 
 @media(max-width:720px){
+
   .game-row{
+
     grid-template-columns:1fr;
+
     gap:10px;
   }
+
+}
+
+/* =========================================================
+   GAME PAGINATION
+========================================================= */
+
+.game-pagination{
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+  margin-top:22px;
+}
+
+.page-btn{
+
+  min-width:38px;
+
+  height:38px;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border:1px solid var(--line);
+
+  border-radius:8px;
+
+  background:rgba(17,23,32,.85);
+
+  color:var(--text-dim);
+
+  font-family:'Inter',sans-serif;
+
+  font-size:13px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:
+    background .18s ease,
+    color .18s ease,
+    border-color .18s ease,
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.page-btn:hover{
+
+  color:var(--text);
+
+  border-color:var(--text-faint);
+
+  transform:translateY(-2px);
+}
+
+.page-btn:active{
+
+  transform:scale(.94);
+}
+
+.page-btn.active{
+
+  background:var(--neon);
+
+  color:#04140d;
+
+  border-color:var(--neon);
+
+  box-shadow:
+    0 0 18px rgba(0,255,157,.13);
+}
+
+.page-arrow{
+
+  padding:0 13px;
+}
+
+.page-info{
+
+  color:var(--text-faint);
+
+  font-size:12px;
+
+  margin:0 8px;
 }
 
 /* =========================================================
@@ -1304,7 +1739,9 @@ section{
 ========================================================= */
 
 .legend{
+
   display:flex;
+
   flex-wrap:wrap;
 
   gap:18px;
@@ -1317,12 +1754,16 @@ section{
 }
 
 .legend span{
+
   display:inline-flex;
+
   align-items:center;
+
   gap:6px;
 }
 
 .legend .sw{
+
   width:9px;
   height:9px;
 
@@ -1334,6 +1775,7 @@ section{
 ========================================================= */
 
 footer{
+
   border-top:1px solid var(--line);
 
   padding:32px 0;
@@ -1342,8 +1784,11 @@ footer{
 }
 
 footer .wrap{
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
 
   flex-wrap:wrap;
@@ -1356,10 +1801,14 @@ footer .wrap{
 }
 
 @media(max-width:600px){
+
   footer .wrap{
+
     flex-direction:column;
+
     align-items:flex-start;
   }
+
 }
 
 </style>
@@ -1367,12 +1816,25 @@ footer .wrap{
 
 <body>
 
+<!-- ======================================================
+     BACKGROUND
+====================================================== -->
+
 <div class="background-effects">
+
   <div class="background-grid"></div>
+
   <div class="bg-orb one"></div>
+
   <div class="bg-orb two"></div>
+
   <div class="bg-orb three"></div>
+
 </div>
+
+<!-- ======================================================
+     LOADING
+====================================================== -->
 
 <div id="loading-overlay">
 
@@ -1384,35 +1846,51 @@ footer .wrap{
       Memuat Benchkit
     </div>
 
-    <div class="loading-text" id="loading-text">
+    <div
+      class="loading-text"
+      id="loading-text">
+
       Menghitung ulang performa...
+
     </div>
 
     <div class="loading-bar">
+
       <div
         class="loading-bar-fill"
         id="loading-bar-fill">
       </div>
+
     </div>
 
   </div>
 
 </div>
 
+<!-- ======================================================
+     NAV
+====================================================== -->
+
 <nav>
 
   <div class="wrap">
 
     <div class="logo">
+
       <span class="logo-mark"></span>
+
       Benchkit
+
     </div>
 
     <div class="nav-links">
 
       <a href="#cpu">CPU</a>
+
       <a href="#gpu">GPU</a>
+
       <a href="#build">Susun Build</a>
+
       <a href="#games">Hasil Game</a>
 
     </div>
@@ -1420,6 +1898,10 @@ footer .wrap{
   </div>
 
 </nav>
+
+<!-- ======================================================
+     HERO
+====================================================== -->
 
 <header class="hero">
 
@@ -1445,13 +1927,17 @@ footer .wrap{
         <a
           href="#cpu"
           class="btn btn-primary">
+
           Lihat Katalog CPU
+
         </a>
 
         <a
           href="#gpu"
           class="btn btn-ghost">
+
           Lihat Katalog GPU
+
         </a>
 
       </div>
@@ -1465,14 +1951,19 @@ footer .wrap{
       <div class="readout-top">
 
         <span class="readout-label">
+
           <span class="live-dot"></span>
+
           Contoh Pengujian
+
         </span>
 
         <span class="readout-pair">
+
           <b>Ryzen 7 7800X3D</b>
           +
           <b>RTX 4070 Ti</b>
+
         </span>
 
       </div>
@@ -1482,12 +1973,17 @@ footer .wrap{
         <span
           class="fps-num"
           id="hero-fps">
+
           0
+
         </span>
 
         <span class="fps-unit">
+
           FPS rata-rata<br>
+
           Cyberpunk 2077 · 1440p Ultra
+
         </span>
 
       </div>
@@ -1501,11 +1997,13 @@ footer .wrap{
           </span>
 
           <div class="rbar-track">
+
             <div
               class="rbar-fill"
               data-target="96"
               style="background:var(--neon)">
             </div>
+
           </div>
 
           <span class="rbar-val">
@@ -1521,11 +2019,13 @@ footer .wrap{
           </span>
 
           <div class="rbar-track">
+
             <div
               class="rbar-fill"
               data-target="54"
               style="background:var(--blue)">
             </div>
+
           </div>
 
           <span class="rbar-val">
@@ -1541,11 +2041,13 @@ footer .wrap{
           </span>
 
           <div class="rbar-track">
+
             <div
               class="rbar-fill"
               data-target="78"
               style="background:var(--amber)">
             </div>
+
           </div>
 
           <span class="rbar-val">
@@ -1566,6 +2068,10 @@ footer .wrap{
   <div class="divider"></div>
 </div>
 
+<!-- ======================================================
+     CPU
+====================================================== -->
+
 <section id="cpu">
 
   <div class="wrap">
@@ -1578,7 +2084,7 @@ footer .wrap{
 
       <p>
         Dari prosesor lawas super murah sampai
-        CPU gaming enthusiast generasi terbaru.
+        CPU gaming enthusiast.
       </p>
 
     </div>
@@ -1645,6 +2151,10 @@ footer .wrap{
 
 </section>
 
+<!-- ======================================================
+     GPU
+====================================================== -->
+
 <section id="gpu">
 
   <div class="wrap">
@@ -1656,8 +2166,8 @@ footer .wrap{
       </h2>
 
       <p>
-        Mulai dari GPU kantor lawas sampai GPU
-        kelas 4K enthusiast.
+        Mulai dari GPU super-low-end hingga
+        GPU kelas enthusiast.
       </p>
 
     </div>
@@ -1728,6 +2238,10 @@ footer .wrap{
   <div class="divider"></div>
 </div>
 
+<!-- ======================================================
+     BUILD
+====================================================== -->
+
 <section id="build">
 
   <div class="wrap">
@@ -1759,6 +2273,10 @@ footer .wrap{
 
 </section>
 
+<!-- ======================================================
+     GAMES
+====================================================== -->
+
 <section id="games">
 
   <div class="wrap">
@@ -1770,8 +2288,8 @@ footer .wrap{
       </h2>
 
       <p>
-        Angka adalah estimasi berbasis model performa relatif,
-        bukan hasil pengujian langsung setiap kombinasi hardware.
+        Database game dibagi menjadi beberapa halaman
+        agar halaman tetap ringkas dan mudah digunakan.
       </p>
 
     </div>
@@ -1781,30 +2299,44 @@ footer .wrap{
       id="game-list">
     </div>
 
+    <div
+      class="game-pagination"
+      id="game-pagination">
+    </div>
+
     <div class="legend">
 
       <span>
+
         <span
           class="sw"
           style="background:var(--neon)">
         </span>
+
         Lancar (90+ FPS)
+
       </span>
 
       <span>
+
         <span
           class="sw"
           style="background:var(--amber)">
         </span>
+
         Playable (50–89 FPS)
+
       </span>
 
       <span>
+
         <span
           class="sw"
           style="background:var(--red)">
         </span>
+
         Berat (di bawah 50 FPS)
+
       </span>
 
     </div>
@@ -1812,6 +2344,10 @@ footer .wrap{
   </div>
 
 </section>
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
 
 <footer>
 
@@ -1822,7 +2358,7 @@ footer .wrap{
     </span>
 
     <span class="mono">
-      v3.0
+      v3.1
     </span>
 
   </div>
@@ -1832,12 +2368,10 @@ footer .wrap{
 <script>
 
 /* =========================================================
-   DATA CPU
+   CPU DATA
 ========================================================= */
 
 const CPUS = [
-
-  /* ---------------- LOWEST ---------------- */
 
   {
     id:'pentium-e5700',
@@ -1902,8 +2436,6 @@ const CPUS = [
     },
     score:5
   },
-
-  /* ---------------- ENTRY ---------------- */
 
   {
     id:'ath-3000g',
@@ -2001,8 +2533,6 @@ const CPUS = [
     score:25
   },
 
-  /* ---------------- BUDGET ---------------- */
-
   {
     id:'i3-12100f',
     type:'cpu',
@@ -2099,8 +2629,6 @@ const CPUS = [
     score:56
   },
 
-  /* ---------------- MID ---------------- */
-
   {
     id:'i5-13400f',
     type:'cpu',
@@ -2181,8 +2709,6 @@ const CPUS = [
     score:80
   },
 
-  /* ---------------- HIGH ---------------- */
-
   {
     id:'r9-7900x',
     type:'cpu',
@@ -2246,8 +2772,6 @@ const CPUS = [
     },
     score:96
   },
-
-  /* ---------------- FLAGSHIP ---------------- */
 
   {
     id:'r9-7950x3d',
@@ -2315,14 +2839,11 @@ const CPUS = [
 
 ];
 
-
 /* =========================================================
-   DATA GPU
+   GPU DATA
 ========================================================= */
 
 const GPUS = [
-
-  /* ---------------- LOWEST ---------------- */
 
   {
     id:'hd5450',
@@ -2371,8 +2892,6 @@ const GPUS = [
     },
     score:2
   },
-
-  /* ---------------- ENTRY ---------------- */
 
   {
     id:'gt1030',
@@ -2470,8 +2989,6 @@ const GPUS = [
     score:18
   },
 
-  /* ---------------- BUDGET ---------------- */
-
   {
     id:'rtx3050',
     type:'gpu',
@@ -2486,6 +3003,22 @@ const GPUS = [
       RT:'Ya'
     },
     score:32
+  },
+
+  {
+    id:'rtx2060',
+    type:'gpu',
+    tier:'budget',
+    name:'GeForce RTX 2060',
+    sub:'6GB GDDR6',
+    price:'~Rp2.500.000',
+    specs:{
+      VRAM:'6GB',
+      Bus:'192-bit',
+      TGP:'160W',
+      RT:'Ya'
+    },
+    score:47
   },
 
   {
@@ -2535,24 +3068,6 @@ const GPUS = [
     },
     score:54
   },
-
-  {
-    id:'rtx2060',
-    type:'gpu',
-    tier:'budget',
-    name:'GeForce RTX 2060',
-    sub:'6GB GDDR6',
-    price:'~Rp2.500.000',
-    specs:{
-      VRAM:'6GB',
-      Bus:'192-bit',
-      TGP:'160W',
-      RT:'Ya'
-    },
-    score:47
-  },
-
-  /* ---------------- MID ---------------- */
 
   {
     id:'rtx4060',
@@ -2650,8 +3165,6 @@ const GPUS = [
     score:73
   },
 
-  /* ---------------- HIGH ---------------- */
-
   {
     id:'rtx4070super',
     type:'gpu',
@@ -2732,8 +3245,6 @@ const GPUS = [
     score:95
   },
 
-  /* ---------------- FLAGSHIP ---------------- */
-
   {
     id:'rtx4090',
     type:'gpu',
@@ -2784,32 +3295,11 @@ const GPUS = [
 
 ];
 
-
 /* =========================================================
-   GAMES
+   GAME DATABASE
 ========================================================= */
 
 const GAMES = [
-
-  {
-    name:'Valorant',
-    genre:'FPS Kompetitif',
-    preset:'1080p Rendah',
-    gpuWeight:.25,
-    cpuWeight:.75,
-    base:280,
-    reason:'Engine ringan dan frame rate tinggi sangat bergantung pada CPU.'
-  },
-
-  {
-    name:'Counter-Strike 2',
-    genre:'FPS Kompetitif',
-    preset:'1080p Tinggi',
-    gpuWeight:.35,
-    cpuWeight:.65,
-    base:240,
-    reason:'Performa CPU dan cache berpengaruh besar pada frame rate tinggi.'
-  },
 
   {
     name:'League of Legends',
@@ -2818,17 +3308,37 @@ const GAMES = [
     gpuWeight:.20,
     cpuWeight:.80,
     base:320,
-    reason:'Sangat ringan untuk GPU dan cenderung CPU-bound.'
+    reason:'Sangat ringan untuk GPU dan lebih bergantung pada CPU.'
   },
 
   {
-    name:'DOTA 2',
-    genre:'MOBA',
-    preset:'1440p Tinggi',
-    gpuWeight:.40,
-    cpuWeight:.60,
-    base:210,
-    reason:'Team fight besar meningkatkan beban CPU dan kalkulasi game.'
+    name:'Terraria',
+    genre:'Sandbox 2D',
+    preset:'1440p',
+    gpuWeight:.15,
+    cpuWeight:.85,
+    base:360,
+    reason:'Sangat ringan untuk hardware modern.'
+  },
+
+  {
+    name:'Valorant',
+    genre:'FPS Kompetitif',
+    preset:'1080p Rendah',
+    gpuWeight:.25,
+    cpuWeight:.75,
+    base:280,
+    reason:'Engine ringan dan sangat sensitif terhadap performa CPU.'
+  },
+
+  {
+    name:'Minecraft Java',
+    genre:'Sandbox',
+    preset:'1080p Vanilla',
+    gpuWeight:.30,
+    cpuWeight:.70,
+    base:220,
+    reason:'Performa vanilla cukup bergantung pada CPU dan single-core.'
   },
 
   {
@@ -2838,7 +3348,27 @@ const GAMES = [
     gpuWeight:.25,
     cpuWeight:.75,
     base:300,
-    reason:'Engine sangat ringan dan cocok untuk FPS tinggi.'
+    reason:'Engine sangat ringan dan cocok untuk frame rate tinggi.'
+  },
+
+  {
+    name:'Counter-Strike 2',
+    genre:'FPS Kompetitif',
+    preset:'1080p Tinggi',
+    gpuWeight:.35,
+    cpuWeight:.65,
+    base:240,
+    reason:'CPU sangat penting ketika mengejar frame rate tinggi.'
+  },
+
+  {
+    name:'DOTA 2',
+    genre:'MOBA',
+    preset:'1440p Tinggi',
+    gpuWeight:.40,
+    cpuWeight:.60,
+    base:210,
+    reason:'Team fight besar meningkatkan beban CPU dan GPU.'
   },
 
   {
@@ -2852,33 +3382,23 @@ const GAMES = [
   },
 
   {
-    name:'Fortnite',
-    genre:'Battle Royale',
-    preset:'1440p Epic',
-    gpuWeight:.55,
-    cpuWeight:.45,
-    base:140,
-    reason:'GPU menangani efek visual berat sementara CPU menangani simulasi dunia.'
-  },
-
-  {
-    name:'Apex Legends',
-    genre:'Battle Royale',
-    preset:'1440p Tinggi',
-    gpuWeight:.50,
-    cpuWeight:.50,
-    base:150,
-    reason:'Beban GPU dan CPU cukup seimbang.'
-  },
-
-  {
-    name:'PUBG',
-    genre:'Battle Royale',
+    name:'Rainbow Six Siege',
+    genre:'FPS Kompetitif',
     preset:'1440p Ultra',
+    gpuWeight:.45,
+    cpuWeight:.55,
+    base:210,
+    reason:'Engine cukup ringan dan dapat menghasilkan FPS sangat tinggi.'
+  },
+
+  {
+    name:'Warframe',
+    genre:'Action',
+    preset:'1440p High',
     gpuWeight:.55,
     cpuWeight:.45,
-    base:125,
-    reason:'GPU cukup berat dan area ramai meningkatkan beban CPU.'
+    base:170,
+    reason:'Banyak efek visual tetapi engine cukup efisien.'
   },
 
   {
@@ -2888,7 +3408,7 @@ const GAMES = [
     gpuWeight:.50,
     cpuWeight:.50,
     base:130,
-    reason:'Game lama yang tetap cukup berat pada CPU ketika area ramai.'
+    reason:'Game lama tetapi CPU tetap penting di area ramai.'
   },
 
   {
@@ -2898,47 +3418,107 @@ const GAMES = [
     gpuWeight:.65,
     cpuWeight:.35,
     base:95,
-    reason:'Visual dan rendering versi Enhanced meningkatkan kebutuhan GPU.'
+    reason:'Visual Enhanced meningkatkan kebutuhan GPU.'
   },
 
   {
-    name:'Red Dead Redemption 2',
-    genre:'Open World',
+    name:'Apex Legends',
+    genre:'Battle Royale',
+    preset:'1440p Tinggi',
+    gpuWeight:.50,
+    cpuWeight:.50,
+    base:150,
+    reason:'Beban CPU dan GPU relatif seimbang.'
+  },
+
+  {
+    name:'PUBG',
+    genre:'Battle Royale',
     preset:'1440p Ultra',
-    gpuWeight:.75,
-    cpuWeight:.25,
-    base:80,
-    reason:'Lingkungan detail dan efek visual sangat GPU-heavy.'
+    gpuWeight:.55,
+    cpuWeight:.45,
+    base:125,
+    reason:'Area ramai dapat memberikan beban besar pada sistem.'
   },
 
   {
-    name:'Cyberpunk 2077',
-    genre:'RPG Open World',
-    preset:'1440p Ultra + RT',
-    gpuWeight:.85,
-    cpuWeight:.15,
-    base:75,
-    reason:'Ray tracing dan kota padat membuat GPU menjadi bottleneck utama.'
+    name:'Fortnite',
+    genre:'Battle Royale',
+    preset:'1440p Epic',
+    gpuWeight:.55,
+    cpuWeight:.45,
+    base:140,
+    reason:'Setting Epic cukup berat untuk GPU.'
   },
 
   {
-    name:'Cyberpunk 2077',
-    genre:'RPG Open World',
-    preset:'4K Ultra + RT',
-    gpuWeight:.92,
-    cpuWeight:.08,
-    base:42,
-    reason:'Resolusi 4K dan ray tracing meningkatkan beban GPU secara ekstrem.'
+    name:'Forza Horizon 5',
+    genre:'Racing',
+    preset:'1440p Extreme',
+    gpuWeight:.72,
+    cpuWeight:.28,
+    base:110,
+    reason:'Dunia terbuka detail tinggi cukup berat untuk GPU.'
   },
 
   {
-    name:'Alan Wake 2',
+    name:'Forza Motorsport',
+    genre:'Racing',
+    preset:'1440p High',
+    gpuWeight:.76,
+    cpuWeight:.24,
+    base:92,
+    reason:'Rendering trek dan kendaraan memberikan beban GPU.'
+  },
+
+  {
+    name:'Euro Truck Simulator 2',
+    genre:'Simulasi',
+    preset:'1440p Ultra',
+    gpuWeight:.40,
+    cpuWeight:.60,
+    base:145,
+    reason:'CPU cukup penting ketika kota dan lalu lintas semakin ramai.'
+  },
+
+  {
+    name:'Assetto Corsa Competizione',
+    genre:'Racing Sim',
+    preset:'1440p High',
+    gpuWeight:.72,
+    cpuWeight:.28,
+    base:105,
+    reason:'Rendering sirkuit dan kendaraan cukup berat.'
+  },
+
+  {
+    name:'Doom Eternal',
+    genre:'FPS',
+    preset:'1440p Ultra',
+    gpuWeight:.65,
+    cpuWeight:.35,
+    base:180,
+    reason:'id Tech sangat optimal dan dapat menghasilkan FPS tinggi.'
+  },
+
+  {
+    name:'Resident Evil 4',
     genre:'Survival Horror',
-    preset:'1440p High + RT',
-    gpuWeight:.90,
-    cpuWeight:.10,
-    base:55,
-    reason:'Lighting modern dan ray tracing sangat berat untuk GPU.'
+    preset:'1440p High',
+    gpuWeight:.68,
+    cpuWeight:.32,
+    base:110,
+    reason:'RE Engine cukup optimal tetapi tetap scaling dengan GPU.'
+  },
+
+  {
+    name:'Resident Evil Village',
+    genre:'Survival Horror',
+    preset:'1440p High',
+    gpuWeight:.65,
+    cpuWeight:.35,
+    base:125,
+    reason:'Engine modern namun relatif efisien.'
   },
 
   {
@@ -2948,7 +3528,107 @@ const GAMES = [
     gpuWeight:.60,
     cpuWeight:.40,
     base:95,
-    reason:'Performa cukup bergantung pada keseimbangan CPU dan GPU.'
+    reason:'Performa dipengaruhi keseimbangan CPU dan GPU.'
+  },
+
+  {
+    name:'Dark Souls III',
+    genre:'Action RPG',
+    preset:'1440p Maximum',
+    gpuWeight:.55,
+    cpuWeight:.45,
+    base:145,
+    reason:'Game relatif ringan dibanding banyak game modern.'
+  },
+
+  {
+    name:'The Witcher 3',
+    genre:'RPG Open World',
+    preset:'1440p Ultra',
+    gpuWeight:.70,
+    cpuWeight:.30,
+    base:105,
+    reason:'Dunia terbuka dan efek visual cukup berat.'
+  },
+
+  {
+    name:'Red Dead Redemption',
+    genre:'Action',
+    preset:'1440p High',
+    gpuWeight:.62,
+    cpuWeight:.38,
+    base:105,
+    reason:'Rendering dunia dan post-processing cukup berat.'
+  },
+
+  {
+    name:'Red Dead Redemption 2',
+    genre:'Open World',
+    preset:'1440p Ultra',
+    gpuWeight:.75,
+    cpuWeight:.25,
+    base:80,
+    reason:'Lingkungan detail dan jarak pandang membebani GPU.'
+  },
+
+  {
+    name:'Cyberpunk 2077',
+    genre:'RPG Open World',
+    preset:'1440p Ultra + RT',
+    gpuWeight:.85,
+    cpuWeight:.15,
+    base:75,
+    reason:'Ray tracing membuat GPU menjadi komponen paling menentukan.'
+  },
+
+  {
+    name:'Cyberpunk 2077',
+    genre:'RPG Open World',
+    preset:'4K Ultra + RT',
+    gpuWeight:.92,
+    cpuWeight:.08,
+    base:42,
+    reason:'4K dan ray tracing menghasilkan beban GPU sangat tinggi.'
+  },
+
+  {
+    name:'Alan Wake 2',
+    genre:'Survival Horror',
+    preset:'1440p High + RT',
+    gpuWeight:.90,
+    cpuWeight:.10,
+    base:55,
+    reason:'Lighting modern dan ray tracing sangat GPU-intensive.'
+  },
+
+  {
+    name:'Control',
+    genre:'Action',
+    preset:'1440p High + RT',
+    gpuWeight:.84,
+    cpuWeight:.16,
+    base:72,
+    reason:'Ray tracing memberikan beban besar pada GPU.'
+  },
+
+  {
+    name:'Metro Exodus Enhanced',
+    genre:'FPS',
+    preset:'1440p Ultra + RT',
+    gpuWeight:.88,
+    cpuWeight:.12,
+    base:68,
+    reason:'Lighting ray traced sangat menuntut GPU.'
+  },
+
+  {
+    name:'Black Myth: Wukong',
+    genre:'Action RPG',
+    preset:'1440p Very High',
+    gpuWeight:.84,
+    cpuWeight:.16,
+    base:55,
+    reason:'Visual Unreal Engine sangat detail dan demanding.'
   },
 
   {
@@ -2958,7 +3638,7 @@ const GAMES = [
     gpuWeight:.55,
     cpuWeight:.45,
     base:85,
-    reason:'Kota dan pertempuran besar dapat meningkatkan beban CPU.'
+    reason:'Kota dan adegan ramai dapat meningkatkan beban CPU.'
   },
 
   {
@@ -2968,7 +3648,7 @@ const GAMES = [
     gpuWeight:.72,
     cpuWeight:.28,
     base:82,
-    reason:'Tekstur, streaming dunia dan efek memerlukan GPU serta VRAM.'
+    reason:'Streaming dunia dan tekstur cukup menuntut.'
   },
 
   {
@@ -2988,7 +3668,7 @@ const GAMES = [
     gpuWeight:.72,
     cpuWeight:.28,
     base:95,
-    reason:'Rendering karakter dan lingkungan cukup GPU intensive.'
+    reason:'Rendering karakter dan lingkungan cukup berat.'
   },
 
   {
@@ -2998,67 +3678,7 @@ const GAMES = [
     gpuWeight:.78,
     cpuWeight:.22,
     base:72,
-    reason:'Asset berkualitas tinggi membutuhkan GPU dan VRAM besar.'
-  },
-
-  {
-    name:'Resident Evil 4',
-    genre:'Survival Horror',
-    preset:'1440p High',
-    gpuWeight:.68,
-    cpuWeight:.32,
-    base:110,
-    reason:'RE Engine cukup optimal tetapi tetap scaling dengan GPU.'
-  },
-
-  {
-    name:'Minecraft',
-    genre:'Sandbox',
-    preset:'1440p + Shaders',
-    gpuWeight:.70,
-    cpuWeight:.30,
-    base:120,
-    reason:'Shaders meningkatkan kebutuhan GPU secara signifikan.'
-  },
-
-  {
-    name:'Minecraft Java',
-    genre:'Sandbox',
-    preset:'1080p Vanilla',
-    gpuWeight:.30,
-    cpuWeight:.70,
-    base:220,
-    reason:'Versi vanilla sangat sensitif terhadap CPU dan single-core.'
-  },
-
-  {
-    name:'Microsoft Flight Simulator',
-    genre:'Simulasi',
-    preset:'1440p High',
-    gpuWeight:.55,
-    cpuWeight:.45,
-    base:60,
-    reason:'Streaming dunia dan simulasi meningkatkan beban CPU.'
-  },
-
-  {
-    name:'Forza Horizon 5',
-    genre:'Racing',
-    preset:'1440p Extreme',
-    gpuWeight:.72,
-    cpuWeight:.28,
-    base:110,
-    reason:'Rendering dunia terbuka dan kendaraan cukup berat di GPU.'
-  },
-
-  {
-    name:'Forza Motorsport',
-    genre:'Racing',
-    preset:'1440p High',
-    gpuWeight:.76,
-    cpuWeight:.24,
-    base:92,
-    reason:'Visual modern memberikan beban tinggi pada GPU.'
+    reason:'Asset besar membutuhkan GPU dan VRAM kuat.'
   },
 
   {
@@ -3068,7 +3688,17 @@ const GAMES = [
     gpuWeight:.72,
     cpuWeight:.28,
     base:68,
-    reason:'Area besar dan simulasi dunia dapat membebani kedua sisi sistem.'
+    reason:'Dunia besar dan simulasi dapat membebani kedua komponen.'
+  },
+
+  {
+    name:'Microsoft Flight Simulator',
+    genre:'Simulasi',
+    preset:'1440p High',
+    gpuWeight:.55,
+    cpuWeight:.45,
+    base:60,
+    reason:'Streaming dunia dan simulasi real-time cukup berat.'
   },
 
   {
@@ -3078,41 +3708,90 @@ const GAMES = [
     gpuWeight:.62,
     cpuWeight:.38,
     base:82,
-    reason:'Banyak musuh dan efek simultan meningkatkan beban CPU/GPU.'
+    reason:'Jumlah musuh dan efek simultan meningkatkan beban sistem.'
   },
 
   {
-    name:'Black Myth: Wukong',
+    name:'Monster Hunter Wilds',
     genre:'Action RPG',
-    preset:'1440p Very High',
+    preset:'1440p High',
+    gpuWeight:.80,
+    cpuWeight:.20,
+    base:58,
+    reason:'Visual modern dan dunia detail cukup demanding.'
+  },
+
+  {
+    name:'Dragon\'s Dogma 2',
+    genre:'Action RPG',
+    preset:'1440p High',
+    gpuWeight:.68,
+    cpuWeight:.32,
+    base:62,
+    reason:'Kota dan NPC memberikan beban CPU cukup besar.'
+  },
+
+  {
+    name:'Assassin\'s Creed Mirage',
+    genre:'Action',
+    preset:'1440p Ultra',
+    gpuWeight:.67,
+    cpuWeight:.33,
+    base:105,
+    reason:'Kota besar dan detail lingkungan membutuhkan CPU serta GPU.'
+  },
+
+  {
+    name:'Assassin\'s Creed Shadows',
+    genre:'Action RPG',
+    preset:'1440p High',
+    gpuWeight:.80,
+    cpuWeight:.20,
+    base:65,
+    reason:'Rendering generasi baru lebih demanding.'
+  },
+
+  {
+    name:'Avatar: Frontiers of Pandora',
+    genre:'Action Open World',
+    preset:'1440p Ultra',
     gpuWeight:.84,
     cpuWeight:.16,
-    base:55,
-    reason:'Visual Unreal Engine dan efek lighting sangat berat bagi GPU.'
+    base:58,
+    reason:'Dunia detail dan lighting sangat berat untuk GPU.'
   },
 
   {
-    name:'Red Dead Redemption',
-    genre:'Action',
+    name:'ARK: Survival Ascended',
+    genre:'Survival',
     preset:'1440p High',
-    gpuWeight:.62,
-    cpuWeight:.38,
-    base:105,
-    reason:'Rendering lingkungan dan post-processing cukup berat.'
+    gpuWeight:.85,
+    cpuWeight:.15,
+    base:48,
+    reason:'Unreal Engine 5 membuat game sangat demanding.'
   },
 
   {
-    name:'Terraria',
-    genre:'Sandbox 2D',
-    preset:'1440p',
-    gpuWeight:.15,
-    cpuWeight:.85,
-    base:360,
-    reason:'Sangat ringan untuk GPU dan sangat mudah dijalankan oleh CPU modern.'
+    name:'The Finals',
+    genre:'FPS',
+    preset:'1440p High',
+    gpuWeight:.63,
+    cpuWeight:.37,
+    base:105,
+    reason:'Destruction physics dan visual dinamis memakai CPU serta GPU.'
+  },
+
+  {
+    name:'Once Human',
+    genre:'Survival MMO',
+    preset:'1440p High',
+    gpuWeight:.68,
+    cpuWeight:.32,
+    base:85,
+    reason:'Dunia terbuka dan asset streaming meningkatkan penggunaan hardware.'
   }
 
 ];
-
 
 /* =========================================================
    LABEL
@@ -3129,17 +3808,21 @@ const TIER_LABEL = {
 
 };
 
-
 /* =========================================================
    STATE
 ========================================================= */
 
 let selectedCPU = null;
+
 let selectedGPU = null;
 
 let cpuFilter = 'all';
+
 let gpuFilter = 'all';
 
+let currentGamePage = 1;
+
+const gamesPerPage = 8;
 
 /* =========================================================
    LOADING
@@ -3148,17 +3831,23 @@ let gpuFilter = 'all';
 let loadingTimer = null;
 
 function showLoading(
-  text = 'Menghitung ulang performa...'
+  text='Menghitung ulang performa...'
 ){
 
   const overlay =
-    document.getElementById('loading-overlay');
+    document.getElementById(
+      'loading-overlay'
+    );
 
   const loadingText =
-    document.getElementById('loading-text');
+    document.getElementById(
+      'loading-text'
+    );
 
   const bar =
-    document.getElementById('loading-bar-fill');
+    document.getElementById(
+      'loading-bar-fill'
+    );
 
   clearInterval(loadingTimer);
 
@@ -3174,94 +3863,112 @@ function showLoading(
 
   loadingTimer = setInterval(() => {
 
-    progress += Math.random() * 18 + 7;
+    progress +=
+      Math.random() * 18 + 7;
 
     if(progress >= 100){
+
       progress = 100;
 
-      clearInterval(loadingTimer);
+      clearInterval(
+        loadingTimer
+      );
+
     }
 
-    bar.style.width = progress + '%';
+    bar.style.width =
+      progress + '%';
 
   },80);
 
 }
 
-
 function hideLoading(){
 
   const overlay =
-    document.getElementById('loading-overlay');
+    document.getElementById(
+      'loading-overlay'
+    );
 
-  overlay.classList.remove('active');
+  overlay.classList.remove(
+    'active'
+  );
 
-  document.body.classList.remove('loading');
+  document.body.classList.remove(
+    'loading'
+  );
 
 }
 
-
 /* =========================================================
-   DELAY
+   WAIT
 ========================================================= */
 
 function wait(ms){
 
-  return new Promise(resolve => {
-
-    setTimeout(resolve,ms);
-
-  });
+  return new Promise(
+    resolve =>
+      setTimeout(
+        resolve,
+        ms
+      )
+  );
 
 }
 
-
 /* =========================================================
-   ANIMATED NUMBER
+   ANIMATE NUMBER
 ========================================================= */
 
 function animateNumber(
   el,
   to,
-  duration = 800
+  duration=800
 ){
 
   const from = 0;
 
-  const start = performance.now();
+  const start =
+    performance.now();
 
   function tick(now){
 
     const p =
       Math.min(
         1,
-        (now - start) / duration
+        (now-start)/duration
       );
 
     const eased =
-      1 - Math.pow(1 - p, 3);
+      1-Math.pow(
+        1-p,
+        3
+      );
 
     el.textContent =
       Math.round(
         from +
-        (to - from) * eased
+        (to-from)*eased
       );
 
-    if(p < 1){
+    if(p<1){
 
-      requestAnimationFrame(tick);
+      requestAnimationFrame(
+        tick
+      );
 
     }
 
   }
 
-  requestAnimationFrame(tick);
+  requestAnimationFrame(
+    tick
+  );
 
 }
 
-
 /* =========================================================
-   BAR ANIMATION
+   BAR
 ========================================================= */
 
 function triggerWidth(
@@ -3269,7 +3976,7 @@ function triggerWidth(
   targetWidth
 ){
 
-  el.style.width = '0%';
+  el.style.width='0%';
 
   requestAnimationFrame(() => {
 
@@ -3284,7 +3991,6 @@ function triggerWidth(
 
 }
 
-
 /* =========================================================
    RIPPLE
 ========================================================= */
@@ -3295,7 +4001,7 @@ document.addEventListener(
 
     const target =
       e.target.closest(
-        '.btn, .filter-btn, .build-clear'
+        '.btn,.filter-btn,.build-clear,.page-btn'
       );
 
     if(!target) return;
@@ -3314,27 +4020,32 @@ document.addEventListener(
       target.getBoundingClientRect();
 
     const ripple =
-      document.createElement('span');
+      document.createElement(
+        'span'
+      );
 
-    ripple.className = 'ripple';
+    ripple.className =
+      'ripple';
 
     ripple.style.left =
-      (e.clientX - rect.left) + 'px';
+      (e.clientX -
+       rect.left) + 'px';
 
     ripple.style.top =
-      (e.clientY - rect.top) + 'px';
+      (e.clientY -
+       rect.top) + 'px';
 
-    target.appendChild(ripple);
+    target.appendChild(
+      ripple
+    );
 
-    setTimeout(() => {
-
-      ripple.remove();
-
-    },600);
+    setTimeout(
+      () => ripple.remove(),
+      600
+    );
 
   }
 );
-
 
 /* =========================================================
    RENDER COMPONENTS
@@ -3374,215 +4085,232 @@ function renderGrid(
   }
 
   el.innerHTML =
-    filtered.map((c,i) => {
+    filtered.map(
+      (c,i) => {
 
-      const isSelected =
+        const isSelected =
+          (
+            c.type === 'cpu' &&
+            selectedCPU?.id === c.id
+          ) ||
+          (
+            c.type === 'gpu' &&
+            selectedGPU?.id === c.id
+          );
 
-        (
-          c.type === 'cpu' &&
-          selectedCPU?.id === c.id
-        ) ||
+        const specsHtml =
+          Object.entries(
+            c.specs
+          )
+          .map(
+            ([k,v]) => `
 
-        (
-          c.type === 'gpu' &&
-          selectedGPU?.id === c.id
-        );
+              <div class="spec-item">
 
-      const specsHtml =
-        Object.entries(c.specs)
-          .map(([k,v]) => `
+                <span class="spec-k">
+                  ${k}
+                </span>
 
-            <div class="spec-item">
+                <span class="spec-v">
+                  ${v}
+                </span>
 
-              <span class="spec-k">
-                ${k}
-              </span>
+              </div>
 
-              <span class="spec-v">
-                ${v}
-              </span>
-
-            </div>
-
-          `)
+            `
+          )
           .join('');
 
-      const scoreWidth =
-        Math.min(
-          100,
-          c.score
-        );
+        const scoreWidth =
+          Math.min(
+            100,
+            c.score
+          );
 
-      return `
+        return `
 
-        <div
-          class="comp-card ${isSelected ? 'selected' : ''}"
-          data-id="${c.id}"
-          data-type="${c.type}"
-          style="
-            animation-delay:${Math.min(
-              i * 32,
-              420
-            )}ms;
-          "
-        >
+          <div
+            class="comp-card ${
+              isSelected
+              ? 'selected'
+              : ''
+            }"
+            data-id="${c.id}"
+            data-type="${c.type}"
+            style="
+              animation-delay:
+                ${Math.min(
+                  i*32,
+                  420
+                )}ms;
+            "
+          >
 
-          <div class="comp-top">
+            <div class="comp-top">
 
-            <div>
+              <div>
 
-              <span
-                class="comp-tag ${
-                  c.type === 'cpu'
-                    ? 'tag-cpu'
-                    : 'tag-gpu'
-                }"
-              >
-                ${c.type}
-              </span>
+                <span
+                  class="
+                    comp-tag
+                    ${
+                      c.type === 'cpu'
+                      ? 'tag-cpu'
+                      : 'tag-gpu'
+                    }
+                  "
+                >
+                  ${c.type}
+                </span>
 
-              <span class="tier-pill">
-                ${TIER_LABEL[c.tier]}
+                <span class="tier-pill">
+                  ${TIER_LABEL[c.tier]}
+                </span>
+
+              </div>
+
+              <span class="comp-price">
+                ${c.price}
               </span>
 
             </div>
 
-            <span class="comp-price">
-              ${c.price}
-            </span>
+            <div class="comp-name">
+              ${c.name}
+            </div>
 
-          </div>
+            <div class="comp-sub">
+              ${c.sub}
+            </div>
 
-          <div class="comp-name">
-            ${c.name}
-          </div>
+            <div class="comp-specs">
+              ${specsHtml}
+            </div>
 
-          <div class="comp-sub">
-            ${c.sub}
-          </div>
+            <div class="comp-score-row">
 
-          <div class="comp-specs">
-            ${specsHtml}
-          </div>
+              <div class="score-track">
 
-          <div class="comp-score-row">
+                <div
+                  class="score-fill"
+                  data-target="${scoreWidth}%"
+                ></div>
 
-            <div class="score-track">
+              </div>
 
-              <div
-                class="score-fill"
-                data-target="${scoreWidth}%"
-              ></div>
+              <span class="score-label">
+                Skor ${c.score}
+              </span>
 
             </div>
 
-            <span class="score-label">
-              Skor ${c.score}
-            </span>
-
           </div>
 
-        </div>
+        `;
 
-      `;
-
-    })
+      }
+    )
     .join('');
 
   el
-    .querySelectorAll('.score-fill')
-    .forEach(bar => {
-
-      triggerWidth(
-        bar,
-        bar.dataset.target
-      );
-
-    });
+    .querySelectorAll(
+      '.score-fill'
+    )
+    .forEach(
+      bar =>
+        triggerWidth(
+          bar,
+          bar.dataset.target
+        )
+    );
 
   el
-    .querySelectorAll('.comp-card')
-    .forEach(card => {
+    .querySelectorAll(
+      '.comp-card'
+    )
+    .forEach(
+      card => {
 
-      card.addEventListener(
-        'click',
-        async () => {
+        card.addEventListener(
+          'click',
+          async () => {
 
-          const id =
-            card.dataset.id;
+            const id =
+              card.dataset.id;
 
-          const type =
-            card.dataset.type;
+            const type =
+              card.dataset.type;
 
-          const source =
-            type === 'cpu'
-              ? CPUS
-              : GPUS;
+            const source =
+              type === 'cpu'
+                ? CPUS
+                : GPUS;
 
-          const item =
-            source.find(
-              x => x.id === id
+            const item =
+              source.find(
+                x =>
+                  x.id === id
+              );
+
+            showLoading(
+              `Memuat ${item.name}...`
             );
 
-          showLoading(
-            `Memuat ${item.name}...`
-          );
+            await wait(850);
 
-          await wait(850);
+            if(type === 'cpu'){
 
-          if(type === 'cpu'){
+              selectedCPU =
+                selectedCPU?.id === id
+                  ? null
+                  : item;
 
-            selectedCPU =
-              selectedCPU?.id === id
-                ? null
-                : item;
+            }else{
 
-          }else{
+              selectedGPU =
+                selectedGPU?.id === id
+                  ? null
+                  : item;
 
-            selectedGPU =
-              selectedGPU?.id === id
-                ? null
-                : item;
+            }
 
-          }
+            renderAll();
 
-          renderAll();
+            await wait(180);
 
-          await wait(180);
+            hideLoading();
 
-          hideLoading();
+            const updatedCard =
+              document.querySelector(
+                `.comp-card[data-id="${id}"]`
+              );
 
-          const updatedCard =
-            document.querySelector(
-              `.comp-card[data-id="${id}"]`
-            );
+            if(updatedCard){
 
-          if(updatedCard){
-
-            updatedCard.classList.add(
-              'pop'
-            );
-
-            setTimeout(() => {
-
-              updatedCard.classList.remove(
+              updatedCard.classList.add(
                 'pop'
               );
 
-            },400);
+              setTimeout(
+                () =>
+                  updatedCard.classList.remove(
+                    'pop'
+                  ),
+                400
+              );
+
+            }
 
           }
+        );
 
-        }
-      );
-
-    });
+      }
+    );
 
 }
 
-
 /* =========================================================
-   BUILD SUMMARY
+   BUILD
 ========================================================= */
 
 function renderBuildSummary(){
@@ -3608,8 +4336,10 @@ function renderBuildSummary(){
     el.innerHTML = `
 
       <span class="build-empty">
+
         Belum ada komponen dipilih.
-        Klik CPU dan GPU dari katalog di atas.
+        Klik CPU dan GPU dari katalog.
+
       </span>
 
     `;
@@ -3618,7 +4348,7 @@ function renderBuildSummary(){
 
   }
 
-  let html = '';
+  let html='';
 
   if(selectedCPU){
 
@@ -3703,10 +4433,12 @@ function renderBuildSummary(){
 
   `;
 
-  el.innerHTML = html;
+  el.innerHTML=html;
 
   document
-    .getElementById('clear-build')
+    .getElementById(
+      'clear-build'
+    )
     ?.addEventListener(
       'click',
       async () => {
@@ -3717,8 +4449,9 @@ function renderBuildSummary(){
 
         await wait(650);
 
-        selectedCPU = null;
-        selectedGPU = null;
+        selectedCPU=null;
+
+        selectedGPU=null;
 
         renderAll();
 
@@ -3731,9 +4464,8 @@ function renderBuildSummary(){
 
 }
 
-
 /* =========================================================
-   FPS CALCULATION
+   FPS
 ========================================================= */
 
 function calcFPS(
@@ -3753,12 +4485,10 @@ function calcFPS(
       : 40;
 
   const combined =
-
     (
       cpuScore *
       game.cpuWeight
     ) +
-
     (
       gpuScore *
       game.gpuWeight
@@ -3769,8 +4499,7 @@ function calcFPS(
 
   let fps =
     Math.round(
-      game.base *
-      factor
+      game.base * factor
     );
 
   fps =
@@ -3782,7 +4511,6 @@ function calcFPS(
   return fps;
 
 }
-
 
 /* =========================================================
    FPS COLOR
@@ -3800,9 +4528,8 @@ function fpsColor(fps){
 
 }
 
-
 /* =========================================================
-   GAMES
+   RENDER GAMES
 ========================================================= */
 
 function renderGames(){
@@ -3812,126 +4539,340 @@ function renderGames(){
       'game-list'
     );
 
+  const pagination =
+    document.getElementById(
+      'game-pagination'
+    );
+
+  const totalPages =
+    Math.ceil(
+      GAMES.length /
+      gamesPerPage
+    );
+
+  if(currentGamePage >
+     totalPages){
+
+    currentGamePage =
+      totalPages;
+
+  }
+
+  const start =
+    (
+      currentGamePage - 1
+    ) *
+    gamesPerPage;
+
+  const end =
+    start +
+    gamesPerPage;
+
+  const visibleGames =
+    GAMES.slice(
+      start,
+      end
+    );
+
+  el.classList.remove(
+    'game-page-enter'
+  );
+
+  void el.offsetWidth;
+
+  el.classList.add(
+    'game-page-enter'
+  );
+
   el.innerHTML =
-    GAMES.map(g => {
+    visibleGames
+      .map(
+        g => {
 
-      const fps =
-        calcFPS(
-          g,
-          selectedCPU,
-          selectedGPU
-        );
+          const fps =
+            calcFPS(
+              g,
+              selectedCPU,
+              selectedGPU
+            );
 
-      const color =
-        fpsColor(fps);
+          const color =
+            fpsColor(fps);
 
-      const pct =
-        Math.min(
-          100,
-          Math.round(
-            (fps / 360) * 100
-          )
-        );
+          const pct =
+            Math.min(
+              100,
+              Math.round(
+                (
+                  fps / 360
+                ) * 100
+              )
+            );
 
-      return `
+          return `
 
-        <div class="game-row">
+            <div class="game-row">
 
-          <div class="game-info">
+              <div class="game-info">
 
-            <span class="game-name">
-              ${g.name}
-            </span>
+                <span class="game-name">
+                  ${g.name}
+                </span>
 
-            <span class="game-genre">
-              ${g.genre}
-            </span>
+                <span class="game-genre">
+                  ${g.genre}
+                </span>
 
-          </div>
+              </div>
 
-          <div class="game-preset">
-            ${g.preset}
-          </div>
+              <div class="game-preset">
+                ${g.preset}
+              </div>
 
-          <div>
+              <div>
 
-            <div class="fps-cell">
+                <div class="fps-cell">
 
-              <span
-                class="n"
-                data-target="${fps}"
-                style="color:${color}"
-              >
-                0
-              </span>
+                  <span
+                    class="n"
+                    data-target="${fps}"
+                    style="color:${color}"
+                  >
+                    0
+                  </span>
 
-              <span class="u">
-                FPS
-              </span>
+                  <span class="u">
+                    FPS
+                  </span>
+
+                </div>
+
+                <div
+                  class="fps-track"
+                  style="margin-top:6px"
+                >
+
+                  <div
+                    class="fps-fill"
+                    data-target="${pct}%"
+                    style="
+                      background:${color}
+                    "
+                  ></div>
+
+                </div>
+
+              </div>
+
+              <div class="reason">
+                ${g.reason}
+              </div>
 
             </div>
 
-            <div
-              class="fps-track"
-              style="margin-top:6px"
-            >
+          `;
 
-              <div
-                class="fps-fill"
-                data-target="${pct}%"
-                style="background:${color}"
-              ></div>
-
-            </div>
-
-          </div>
-
-          <div class="reason">
-            ${g.reason}
-          </div>
-
-        </div>
-
-      `;
-
-    })
-    .join('');
+        }
+      )
+      .join('');
 
   el
     .querySelectorAll(
       '.fps-cell .n'
     )
-    .forEach(n => {
-
-      animateNumber(
-        n,
-        parseInt(
-          n.dataset.target,
-          10
-        ),
-        700
-      );
-
-    });
+    .forEach(
+      n =>
+        animateNumber(
+          n,
+          parseInt(
+            n.dataset.target,
+            10
+          ),
+          700
+        )
+    );
 
   el
     .querySelectorAll(
       '.fps-fill'
     )
-    .forEach(bar => {
+    .forEach(
+      bar =>
+        triggerWidth(
+          bar,
+          bar.dataset.target
+        )
+    );
 
-      triggerWidth(
-        bar,
-        bar.dataset.target
+  pagination.innerHTML='';
+
+  if(totalPages <= 1)
+    return;
+
+  const prev =
+    document.createElement(
+      'button'
+    );
+
+  prev.className =
+    'page-btn page-arrow';
+
+  prev.innerHTML =
+    '←';
+
+  prev.disabled =
+    currentGamePage === 1;
+
+  prev.style.opacity =
+    prev.disabled
+      ? '.35'
+      : '1';
+
+  prev.addEventListener(
+    'click',
+    () =>
+      changeGamePage(
+        currentGamePage - 1
+      )
+  );
+
+  pagination.appendChild(
+    prev
+  );
+
+  for(
+    let page=1;
+    page<=totalPages;
+    page++
+  ){
+
+    const button =
+      document.createElement(
+        'button'
       );
 
-    });
+    button.className =
+      'page-btn';
+
+    if(
+      page ===
+      currentGamePage
+    ){
+
+      button.classList.add(
+        'active'
+      );
+
+    }
+
+    button.textContent =
+      page;
+
+    button.addEventListener(
+      'click',
+      () =>
+        changeGamePage(
+          page
+        )
+    );
+
+    pagination.appendChild(
+      button
+    );
+
+  }
+
+  const info =
+    document.createElement(
+      'span'
+    );
+
+  info.className =
+    'page-info';
+
+  info.textContent =
+    `Halaman ${currentGamePage} / ${totalPages}`;
+
+  pagination.appendChild(
+    info
+  );
+
+  const next =
+    document.createElement(
+      'button'
+    );
+
+  next.className =
+    'page-btn page-arrow';
+
+  next.innerHTML =
+    '→';
+
+  next.disabled =
+    currentGamePage === totalPages;
+
+  next.style.opacity =
+    next.disabled
+      ? '.35'
+      : '1';
+
+  next.addEventListener(
+    'click',
+    () =>
+      changeGamePage(
+        currentGamePage + 1
+      )
+  );
+
+  pagination.appendChild(
+    next
+  );
 
 }
 
+/* =========================================================
+   GAME PAGE CHANGE
+========================================================= */
+
+async function changeGamePage(
+  page
+){
+
+  const totalPages =
+    Math.ceil(
+      GAMES.length /
+      gamesPerPage
+    );
+
+  if(
+    page < 1 ||
+    page > totalPages ||
+    page === currentGamePage
+  ){
+
+    return;
+
+  }
+
+  showLoading(
+    `Membuka halaman game ${page}...`
+  );
+
+  await wait(700);
+
+  currentGamePage =
+    page;
+
+  renderGames();
+
+  await wait(120);
+
+  hideLoading();
+
+}
 
 /* =========================================================
-   FILTER WITH LOADING
+   FILTER SETUP
 ========================================================= */
 
 function setupFilter(
@@ -3954,16 +4895,11 @@ function setupFilter(
         !e.target.matches(
           '.filter-btn'
         )
-      ) return;
+      )
+        return;
 
       const nextFilter =
         e.target.dataset.filter;
-
-      if(type === 'cpu'){
-        cpuFilter = nextFilter;
-      }else{
-        gpuFilter = nextFilter;
-      }
 
       showLoading(
         `Mengubah filter ${
@@ -3973,17 +4909,28 @@ function setupFilter(
 
       await wait(700);
 
+      if(type === 'cpu'){
+
+        cpuFilter =
+          nextFilter;
+
+      }else{
+
+        gpuFilter =
+          nextFilter;
+
+      }
+
       container
         .querySelectorAll(
           '.filter-btn'
         )
-        .forEach(b => {
-
-          b.classList.remove(
-            'active'
-          );
-
-        });
+        .forEach(
+          b =>
+            b.classList.remove(
+              'active'
+            )
+        );
 
       e.target.classList.add(
         'active'
@@ -4003,7 +4950,6 @@ function setupFilter(
   );
 
 }
-
 
 /* =========================================================
    RENDER ALL
@@ -4029,9 +4975,8 @@ function renderAll(){
 
 }
 
-
 /* =========================================================
-   SETUP FILTERS
+   SETUP
 ========================================================= */
 
 setupFilter(
@@ -4048,16 +4993,14 @@ setupFilter(
   'gpu'
 );
 
-
 /* =========================================================
-   INITIAL LOAD
+   INITIAL RENDER
 ========================================================= */
 
 renderAll();
 
-
 /* =========================================================
-   HERO ANIMATION
+   HERO
 ========================================================= */
 
 window.addEventListener(
@@ -4076,14 +5019,14 @@ window.addEventListener(
       .querySelectorAll(
         '.readout .rbar-fill'
       )
-      .forEach(bar => {
-
-        triggerWidth(
-          bar,
-          bar.dataset.target + '%'
-        );
-
-      });
+      .forEach(
+        bar =>
+          triggerWidth(
+            bar,
+            bar.dataset.target +
+            '%'
+          )
+      );
 
   }
 );
@@ -4092,4 +5035,3 @@ window.addEventListener(
 
 </body>
 </html>
-```
