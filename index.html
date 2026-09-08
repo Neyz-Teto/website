@@ -21,6 +21,7 @@
   --red:#ff3860;
   --amber:#ffb020;
   --cpu-accent:#5eb1ff;
+  --entry-accent:#a78bfa;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -35,10 +36,36 @@ h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
 .mono{font-family:'JetBrains Mono',monospace;}
 a{color:inherit;}
 ::selection{background:var(--neon);color:#000;}
+:focus-visible{outline:2px solid var(--neon);outline-offset:2px;}
 
 @media (prefers-reduced-motion: reduce){
-  *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
+  *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
 }
+
+/* ---------- Entrance keyframes ---------- */
+@keyframes riseIn{
+  from{opacity:0;transform:translateY(14px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes cardIn{
+  from{opacity:0;transform:translateY(10px) scale(.985);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+@keyframes pulseGlow{
+  0%,100%{text-shadow:0 0 30px var(--neon-dim);}
+  50%{text-shadow:0 0 44px rgba(0,255,157,0.35);}
+}
+@keyframes selectPop{
+  0%{transform:scale(1);}
+  35%{transform:scale(1.018);}
+  100%{transform:scale(1);}
+}
+@keyframes scanline{
+  0%{transform:translateX(-100%);}
+  100%{transform:translateX(220%);}
+}
+
+.reveal{opacity:0;animation:riseIn .7s cubic-bezier(.16,.9,.3,1) forwards;}
 
 /* ---------- Layout shell ---------- */
 .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
@@ -54,8 +81,13 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:17px;letter-spacing:-0.01em;}
 .logo-mark{width:9px;height:22px;background:var(--neon);border-radius:1px;box-shadow:0 0 12px var(--neon);}
 .nav-links{display:flex;gap:28px;font-size:14px;color:var(--text-dim);}
-.nav-links a{transition:color .15s;}
+.nav-links a{transition:color .15s;position:relative;}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--neon);
+  transition:width .2s ease;
+}
 .nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after{width:100%;}
 @media (max-width:640px){.nav-links{display:none;}}
 
 /* ---------- Hero ---------- */
@@ -84,9 +116,9 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
   font-family:'Inter',sans-serif;
 }
 .btn-primary{background:var(--neon);color:#04140d;}
-.btn-primary:hover{background:#33ffb3;}
+.btn-primary:hover{background:#33ffb3;transform:translateY(-1px);}
 .btn-ghost{background:transparent;border-color:var(--line);color:var(--text);}
-.btn-ghost:hover{border-color:var(--text-faint);}
+.btn-ghost:hover{border-color:var(--text-faint);transform:translateY(-1px);}
 
 /* live readout card */
 .readout{
@@ -94,19 +126,29 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
   border:1px solid var(--line);
   border-radius:14px;
   padding:26px;
+  position:relative;
+  overflow:hidden;
+}
+.readout::before{
+  content:'';position:absolute;top:0;left:0;width:40%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(0,255,157,0.045),transparent);
+  animation:scanline 5s linear infinite;
+  pointer-events:none;
 }
 .readout-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
-.readout-label{font-size:12px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.06em;}
+.readout-label{font-size:12px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.06em;display:flex;align-items:center;gap:6px;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--neon);box-shadow:0 0 8px var(--neon);animation:blink 1.6s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.35;}}
 .readout-pair{font-size:13px;color:var(--text-dim);}
 .readout-pair b{color:var(--text);font-weight:600;}
 .fps-display{display:flex;align-items:baseline;gap:10px;margin:8px 0 20px;}
-.fps-num{font-family:'Space Grotesk';font-size:64px;font-weight:700;line-height:1;color:var(--neon);text-shadow:0 0 30px var(--neon-dim);}
+.fps-num{font-family:'Space Grotesk';font-size:64px;font-weight:700;line-height:1;color:var(--neon);animation:pulseGlow 3.2s ease-in-out infinite;}
 .fps-unit{font-size:15px;color:var(--text-dim);}
 .readout-bars{display:flex;flex-direction:column;gap:10px;}
 .rbar-row{display:flex;align-items:center;gap:12px;font-size:12.5px;}
 .rbar-label{width:64px;color:var(--text-dim);flex-shrink:0;}
 .rbar-track{flex:1;height:6px;background:var(--bg-inset);border-radius:3px;overflow:hidden;}
-.rbar-fill{height:100%;border-radius:3px;}
+.rbar-fill{height:100%;border-radius:3px;width:0;transition:width 1s cubic-bezier(.16,.8,.3,1);}
 .rbar-val{width:34px;text-align:right;color:var(--text-faint);}
 
 /* ---------- Section shared ---------- */
@@ -117,7 +159,7 @@ section{padding:56px 0;}
 .divider{height:1px;background:var(--line);}
 
 /* ---------- Filters ---------- */
-.filter-bar{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap;}
+.filter-bar{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;align-items:center;}
 .filter-btn{
   padding:8px 16px;border-radius:20px;font-size:13.5px;font-weight:500;
   background:var(--bg-raised);border:1px solid var(--line);color:var(--text-dim);
@@ -125,15 +167,18 @@ section{padding:56px 0;}
 }
 .filter-btn:hover{border-color:var(--text-faint);color:var(--text);}
 .filter-btn.active{background:var(--neon);border-color:var(--neon);color:#04140d;}
+.filter-count{font-size:12.5px;color:var(--text-faint);margin-bottom:20px;}
 
 /* ---------- Component cards ---------- */
 .comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;}
 .comp-card{
   background:var(--bg-raised);border:1px solid var(--line);border-radius:12px;
   padding:22px;cursor:pointer;transition:border-color .15s,transform .15s;
+  opacity:0;animation:cardIn .5s cubic-bezier(.16,.9,.3,1) forwards;
 }
-.comp-card:hover{border-color:var(--text-faint);}
-.comp-card.selected{border-color:var(--neon);box-shadow:0 0 0 1px var(--neon);}
+.comp-card:hover{border-color:var(--text-faint);transform:translateY(-2px);}
+.comp-card.selected{border-color:var(--neon);box-shadow:0 0 0 1px var(--neon),0 0 22px rgba(0,255,157,0.08);}
+.comp-card.pop{animation:cardIn .5s cubic-bezier(.16,.9,.3,1) forwards,selectPop .35s ease;}
 .comp-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
 .comp-tag{
   font-size:10.5px;font-weight:600;padding:3px 8px;border-radius:4px;
@@ -141,6 +186,7 @@ section{padding:56px 0;}
 }
 .tag-cpu{background:#5eb1ff1a;color:var(--cpu-accent);}
 .tag-gpu{background:var(--neon-dim);color:var(--neon);}
+.tier-pill{font-size:10px;color:var(--text-faint);border:1px solid var(--line);padding:2px 7px;border-radius:10px;margin-left:6px;}
 .comp-price{font-size:12.5px;color:var(--text-faint);}
 .comp-name{font-size:17px;font-weight:600;margin-bottom:4px;letter-spacing:-0.01em;}
 .comp-sub{font-size:12.5px;color:var(--text-faint);margin-bottom:16px;}
@@ -150,34 +196,38 @@ section{padding:56px 0;}
 .spec-v{color:var(--text-dim);font-weight:500;}
 .comp-score-row{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
 .score-track{flex:1;height:5px;background:var(--bg-inset);border-radius:3px;overflow:hidden;}
-.score-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--cpu-accent),var(--neon));}
+.score-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--cpu-accent),var(--neon));width:0;transition:width .8s cubic-bezier(.16,.8,.3,1);}
 .score-label{font-size:11.5px;color:var(--text-faint);white-space:nowrap;}
 
 /* ---------- Build & game results ---------- */
 .build-summary{
   display:flex;gap:16px;align-items:center;flex-wrap:wrap;
   background:var(--bg-raised);border:1px solid var(--line);border-radius:12px;
-  padding:20px 22px;margin-bottom:28px;
+  padding:20px 22px;margin-bottom:28px;transition:border-color .2s;
 }
-.build-chip{display:flex;align-items:center;gap:10px;font-size:14px;}
+.build-summary.filled{border-color:rgba(0,255,157,0.35);}
+.build-chip{display:flex;align-items:center;gap:10px;font-size:14px;animation:riseIn .35s ease forwards;}
 .build-chip .dot{width:7px;height:7px;border-radius:50%;}
 .build-empty{color:var(--text-faint);font-size:13.5px;}
+.build-clear{margin-left:auto;font-size:12.5px;color:var(--text-faint);background:transparent;border:1px solid var(--line);padding:6px 12px;border-radius:8px;cursor:pointer;transition:all .15s;}
+.build-clear:hover{border-color:var(--text-faint);color:var(--text);}
 
 .game-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
 .game-row{
   display:grid;grid-template-columns:1.6fr 0.6fr 1fr 1.4fr;gap:20px;align-items:center;
-  background:var(--bg-raised);padding:16px 22px;
+  background:var(--bg-raised);padding:16px 22px;transition:background .15s;
 }
+.game-row:hover{background:#151c25;}
 @media (max-width:720px){.game-row{grid-template-columns:1fr;gap:10px;}}
 .game-info{display:flex;flex-direction:column;gap:3px;}
 .game-name{font-weight:600;font-size:14.5px;}
 .game-genre{font-size:12px;color:var(--text-faint);}
 .game-preset{font-size:12px;color:var(--text-dim);}
 .fps-cell{display:flex;align-items:baseline;gap:5px;}
-.fps-cell .n{font-family:'Space Grotesk';font-size:22px;font-weight:700;}
+.fps-cell .n{font-family:'Space Grotesk';font-size:22px;font-weight:700;transition:color .3s;}
 .fps-cell .u{font-size:11px;color:var(--text-faint);}
 .fps-track{height:6px;background:var(--bg-inset);border-radius:3px;overflow:hidden;}
-.fps-fill{height:100%;border-radius:3px;}
+.fps-fill{height:100%;border-radius:3px;width:0;transition:width .8s cubic-bezier(.16,.8,.3,1),background-color .3s;}
 .reason{font-size:12px;color:var(--text-faint);line-height:1.5;}
 
 /* legend / playability */
@@ -205,27 +255,27 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
 
 <header class="hero">
   <div class="wrap hero-grid">
-    <div>
+    <div class="reveal" style="animation-delay:.05s;">
       <h1>Tau persis performa PC-mu sebelum beli komponennya.</h1>
-      <p>Katalog CPU dan GPU dengan estimasi FPS nyata di berbagai game populer, lengkap dengan alasan teknis di balik tiap angka — bukan cuma tabel spek kosong.</p>
+      <p>Katalog CPU dan GPU dari kelas entry-level sampai flagship, dengan estimasi FPS nyata di berbagai game populer, lengkap dengan alasan teknis di balik tiap angka — bukan cuma tabel spek kosong.</p>
       <div class="hero-actions">
         <a href="#cpu" class="btn btn-primary">Lihat Katalog CPU</a>
         <a href="#gpu" class="btn btn-ghost">Lihat Katalog GPU</a>
       </div>
     </div>
-    <div class="readout">
+    <div class="readout reveal" style="animation-delay:.18s;">
       <div class="readout-top">
-        <span class="readout-label">Contoh Pengujian</span>
+        <span class="readout-label"><span class="live-dot"></span>Contoh Pengujian</span>
         <span class="readout-pair"><b>Ryzen 7 7800X3D</b> + <b>RTX 4070 Ti</b></span>
       </div>
       <div class="fps-display">
-        <span class="fps-num">142</span>
+        <span class="fps-num" id="hero-fps">0</span>
         <span class="fps-unit">FPS rata-rata<br>Cyberpunk 2077 · 1440p Ultra</span>
       </div>
       <div class="readout-bars">
-        <div class="rbar-row"><span class="rbar-label">GPU Load</span><div class="rbar-track"><div class="rbar-fill" style="width:96%;background:var(--neon);"></div></div><span class="rbar-val">96%</span></div>
-        <div class="rbar-row"><span class="rbar-label">CPU Load</span><div class="rbar-track"><div class="rbar-fill" style="width:54%;background:var(--cpu-accent);"></div></div><span class="rbar-val">54%</span></div>
-        <div class="rbar-row"><span class="rbar-label">1% Low</span><div class="rbar-track"><div class="rbar-fill" style="width:78%;background:var(--amber);"></div></div><span class="rbar-val">108</span></div>
+        <div class="rbar-row"><span class="rbar-label">GPU Load</span><div class="rbar-track"><div class="rbar-fill" data-target="96" style="background:var(--neon);"></div></div><span class="rbar-val">96%</span></div>
+        <div class="rbar-row"><span class="rbar-label">CPU Load</span><div class="rbar-track"><div class="rbar-fill" data-target="54" style="background:var(--cpu-accent);"></div></div><span class="rbar-val">54%</span></div>
+        <div class="rbar-row"><span class="rbar-label">1% Low</span><div class="rbar-track"><div class="rbar-fill" data-target="78" style="background:var(--amber);"></div></div><span class="rbar-val">108</span></div>
       </div>
     </div>
   </div>
@@ -241,10 +291,12 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
     </div>
     <div class="filter-bar" id="cpu-filters">
       <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="entry">Entry-level</button>
       <button class="filter-btn" data-filter="budget">Budget</button>
       <button class="filter-btn" data-filter="mid">Mid-range</button>
       <button class="filter-btn" data-filter="high">High-end</button>
     </div>
+    <div class="filter-count" id="cpu-count"></div>
     <div class="comp-grid" id="cpu-grid"></div>
   </div>
 </section>
@@ -257,10 +309,12 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
     </div>
     <div class="filter-bar" id="gpu-filters">
       <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="entry">Entry-level</button>
       <button class="filter-btn" data-filter="budget">Budget</button>
       <button class="filter-btn" data-filter="mid">Mid-range</button>
       <button class="filter-btn" data-filter="high">High-end</button>
     </div>
+    <div class="filter-count" id="gpu-count"></div>
     <div class="comp-grid" id="gpu-grid"></div>
   </div>
 </section>
@@ -297,38 +351,96 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;font-
 <footer>
   <div class="wrap">
     <span>Benchkit — data estimasi, untuk referensi awal sebelum membeli.</span>
-    <span class="mono">v1.0</span>
+    <span class="mono">v2.0</span>
   </div>
 </footer>
 
 <script>
 /* ================= DATA ================= */
 const CPUS = [
+  // entry-level
+  {id:'ath-3000g', type:'cpu', tier:'entry', name:'Athlon 3000G', sub:'2C/4T · AM4', price:'~Rp750.000',
+   specs:{Cores:'2/4', Clock:'3.5 GHz', TDP:'35W', Cache:'5MB'}, score:9},
+  {id:'cel-g5905', type:'cpu', tier:'entry', name:'Celeron G5905', sub:'2C/2T · LGA1200', price:'~Rp700.000',
+   specs:{Cores:'2/2', Clock:'3.5 GHz', TDP:'58W', Cache:'4MB'}, score:10},
+  {id:'pent-g7400', type:'cpu', tier:'entry', name:'Pentium Gold G7400', sub:'2C/4T · LGA1700', price:'~Rp900.000',
+   specs:{Cores:'2/4', Clock:'3.7 GHz', TDP:'46W', Cache:'6MB'}, score:14},
+  {id:'r3-4100', type:'cpu', tier:'entry', name:'Ryzen 3 4100', sub:'4C/8T · AM4', price:'~Rp1.100.000',
+   specs:{Cores:'4/8', Clock:'3.8–4.0 GHz', TDP:'65W', Cache:'6MB'}, score:22},
+  {id:'i3-10100f', type:'cpu', tier:'entry', name:'Core i3-10100F', sub:'4C/8T · LGA1200', price:'~Rp1.300.000',
+   specs:{Cores:'4/8', Clock:'3.6–4.3 GHz', TDP:'65W', Cache:'6MB'}, score:25},
+  // budget
+  {id:'i3-12100f', type:'cpu', tier:'budget', name:'Core i3-12100F', sub:'4C/8T · LGA1700', price:'~Rp1.600.000',
+   specs:{Cores:'4/8', Clock:'3.3–4.3 GHz', TDP:'60W', Cache:'12MB'}, score:34},
+  {id:'i5-11400f', type:'cpu', tier:'budget', name:'Core i5-11400F', sub:'6C/12T · LGA1200', price:'~Rp2.000.000',
+   specs:{Cores:'6/12', Clock:'2.6–4.4 GHz', TDP:'65W', Cache:'12MB'}, score:50},
   {id:'r5-5600', type:'cpu', tier:'budget', name:'Ryzen 5 5600', sub:'6C/12T · AM4', price:'~Rp1.500.000',
    specs:{Cores:'6/12', Clock:'3.5–4.4 GHz', TDP:'65W', Cache:'32MB'}, score:52},
+  {id:'r5-5600x', type:'cpu', tier:'budget', name:'Ryzen 5 5600X', sub:'6C/12T · AM4', price:'~Rp2.300.000',
+   specs:{Cores:'6/12', Clock:'3.7–4.6 GHz', TDP:'65W', Cache:'32MB'}, score:55},
   {id:'i5-12400f', type:'cpu', tier:'budget', name:'Core i5-12400F', sub:'6C/12T · LGA1700', price:'~Rp2.000.000',
    specs:{Cores:'6/12', Clock:'2.5–4.4 GHz', TDP:'65W', Cache:'18MB'}, score:56},
+  // mid-range
+  {id:'i5-13400f', type:'cpu', tier:'mid', name:'Core i5-13400F', sub:'10C/16T · LGA1700', price:'~Rp3.400.000',
+   specs:{Cores:'10/16', Clock:'2.5–4.6 GHz', TDP:'65W', Cache:'20MB'}, score:63},
+  {id:'r7-5700x', type:'cpu', tier:'mid', name:'Ryzen 7 5700X', sub:'8C/16T · AM4', price:'~Rp3.000.000',
+   specs:{Cores:'8/16', Clock:'3.4–4.6 GHz', TDP:'65W', Cache:'36MB'}, score:66},
   {id:'r5-7600', type:'cpu', tier:'mid', name:'Ryzen 5 7600', sub:'6C/12T · AM5', price:'~Rp3.200.000',
    specs:{Cores:'6/12', Clock:'3.8–5.1 GHz', TDP:'65W', Cache:'32MB'}, score:68},
   {id:'i5-13600k', type:'cpu', tier:'mid', name:'Core i5-13600K', sub:'14C/20T · LGA1700', price:'~Rp4.800.000',
    specs:{Cores:'14/20', Clock:'3.5–5.1 GHz', TDP:'125W', Cache:'24MB'}, score:78},
+  // high-end
+  {id:'r9-7900x', type:'cpu', tier:'high', name:'Ryzen 9 7900X', sub:'12C/24T · AM5', price:'~Rp7.200.000',
+   specs:{Cores:'12/24', Clock:'4.7–5.6 GHz', TDP:'170W', Cache:'76MB'}, score:88},
   {id:'r7-7800x3d', type:'cpu', tier:'high', name:'Ryzen 7 7800X3D', sub:'8C/16T · AM5 · 3D V-Cache', price:'~Rp6.800.000',
    specs:{Cores:'8/16', Clock:'4.2–5.0 GHz', TDP:'120W', Cache:'96MB'}, score:92},
+  {id:'i7-14700k', type:'cpu', tier:'high', name:'Core i7-14700K', sub:'20C/28T · LGA1700', price:'~Rp7.500.000',
+   specs:{Cores:'20/28', Clock:'3.4–5.6 GHz', TDP:'125W', Cache:'33MB'}, score:90},
   {id:'i9-14900k', type:'cpu', tier:'high', name:'Core i9-14900K', sub:'24C/32T · LGA1700', price:'~Rp8.500.000',
    specs:{Cores:'24/32', Clock:'3.2–6.0 GHz', TDP:'253W', Cache:'36MB'}, score:96},
+  {id:'r9-7950x3d', type:'cpu', tier:'high', name:'Ryzen 9 7950X3D', sub:'16C/32T · AM5 · 3D V-Cache', price:'~Rp10.500.000',
+   specs:{Cores:'16/32', Clock:'4.2–5.7 GHz', TDP:'120W', Cache:'144MB'}, score:97},
+  {id:'i9-14900ks', type:'cpu', tier:'high', name:'Core i9-14900KS', sub:'24C/32T · LGA1700', price:'~Rp11.000.000',
+   specs:{Cores:'24/32', Clock:'3.2–6.2 GHz', TDP:'253W', Cache:'36MB'}, score:99},
 ];
 
 const GPUS = [
+  // entry-level
+  {id:'gt1030', type:'gpu', tier:'entry', name:'GeForce GT 1030', sub:'2GB GDDR5', price:'~Rp900.000',
+   specs:{VRAM:'2GB', Bus:'64-bit', TGP:'30W', RT:'Tidak'}, score:6},
+  {id:'gtx1050ti', type:'gpu', tier:'entry', name:'GeForce GTX 1050 Ti', sub:'4GB GDDR5', price:'~Rp1.400.000',
+   specs:{VRAM:'4GB', Bus:'128-bit', TGP:'75W', RT:'Tidak'}, score:12},
+  {id:'rx6400', type:'gpu', tier:'entry', name:'Radeon RX 6400', sub:'4GB GDDR6', price:'~Rp1.900.000',
+   specs:{VRAM:'4GB', Bus:'64-bit', TGP:'53W', RT:'Terbatas'}, score:16},
+  {id:'gtx1650', type:'gpu', tier:'entry', name:'GeForce GTX 1650', sub:'4GB GDDR6', price:'~Rp2.100.000',
+   specs:{VRAM:'4GB', Bus:'128-bit', TGP:'75W', RT:'Tidak'}, score:18},
+  // budget
+  {id:'rtx3050', type:'gpu', tier:'budget', name:'GeForce RTX 3050', sub:'8GB GDDR6', price:'~Rp3.000.000',
+   specs:{VRAM:'8GB', Bus:'128-bit', TGP:'130W', RT:'Ya'}, score:32},
   {id:'rx6600', type:'gpu', tier:'budget', name:'Radeon RX 6600', sub:'8GB GDDR6', price:'~Rp3.300.000',
    specs:{VRAM:'8GB', Bus:'128-bit', TGP:'132W', RT:'Terbatas'}, score:48},
   {id:'rtx3060', type:'gpu', tier:'budget', name:'GeForce RTX 3060', sub:'12GB GDDR6', price:'~Rp4.200.000',
    specs:{VRAM:'12GB', Bus:'192-bit', TGP:'170W', RT:'Ya'}, score:52},
+  {id:'rx6650xt', type:'gpu', tier:'budget', name:'Radeon RX 6650 XT', sub:'8GB GDDR6', price:'~Rp4.500.000',
+   specs:{VRAM:'8GB', Bus:'128-bit', TGP:'180W', RT:'Terbatas'}, score:54},
+  // mid-range
   {id:'rtx4060', type:'gpu', tier:'mid', name:'GeForce RTX 4060', sub:'8GB GDDR6', price:'~Rp5.200.000',
    specs:{VRAM:'8GB', Bus:'128-bit', TGP:'115W', RT:'Ya + DLSS3'}, score:60},
+  {id:'rx6750xt', type:'gpu', tier:'mid', name:'Radeon RX 6750 XT', sub:'12GB GDDR6', price:'~Rp5.800.000',
+   specs:{VRAM:'12GB', Bus:'192-bit', TGP:'250W', RT:'Ya'}, score:65},
+  {id:'rtx4060ti', type:'gpu', tier:'mid', name:'GeForce RTX 4060 Ti', sub:'16GB GDDR6', price:'~Rp6.500.000',
+   specs:{VRAM:'16GB', Bus:'128-bit', TGP:'165W', RT:'Ya + DLSS3'}, score:66},
   {id:'rx7700xt', type:'gpu', tier:'mid', name:'Radeon RX 7700 XT', sub:'12GB GDDR6', price:'~Rp7.500.000',
    specs:{VRAM:'12GB', Bus:'192-bit', TGP:'245W', RT:'Ya'}, score:72},
+  // high-end
+  {id:'rtx4070super', type:'gpu', tier:'high', name:'GeForce RTX 4070 Super', sub:'12GB GDDR6X', price:'~Rp10.200.000',
+   specs:{VRAM:'12GB', Bus:'192-bit', TGP:'220W', RT:'Ya + DLSS3'}, score:82},
   {id:'rtx4070ti', type:'gpu', tier:'high', name:'GeForce RTX 4070 Ti', sub:'12GB GDDR6X', price:'~Rp12.500.000',
    specs:{VRAM:'12GB', Bus:'192-bit', TGP:'285W', RT:'Ya + DLSS3'}, score:87},
+  {id:'rx7900xtx', type:'gpu', tier:'high', name:'Radeon RX 7900 XTX', sub:'24GB GDDR6', price:'~Rp18.500.000',
+   specs:{VRAM:'24GB', Bus:'384-bit', TGP:'355W', RT:'Ya'}, score:94},
+  {id:'rtx4080super', type:'gpu', tier:'high', name:'GeForce RTX 4080 Super', sub:'16GB GDDR6X', price:'~Rp19.500.000',
+   specs:{VRAM:'16GB', Bus:'256-bit', TGP:'320W', RT:'Ya + DLSS3'}, score:95},
   {id:'rtx4090', type:'gpu', tier:'high', name:'GeForce RTX 4090', sub:'24GB GDDR6X', price:'~Rp28.000.000',
    specs:{VRAM:'24GB', Bus:'384-bit', TGP:'450W', RT:'Ya + DLSS3'}, score:100},
 ];
@@ -358,7 +470,11 @@ const GAMES = [
    reason:'Path tracing dan pencahayaan volumetrik menjadikan game ini salah satu yang paling GPU-intensive saat ini.'},
   {name:'Rocket League', genre:'Sport Arcade', preset:'1440p Epic', gpuWeight:0.25, cpuWeight:0.75, base:280,
    reason:'Engine sangat ringan dan dioptimasi untuk frame rate ekstrem; hampir seluruhnya dibatasi oleh kecepatan CPU.'},
+  {name:'DOTA 2', genre:'MOBA', preset:'1440p Tinggi', gpuWeight:0.4, cpuWeight:0.6, base:190,
+   reason:'Team fight besar dengan banyak unit dan efek skill membebani CPU untuk kalkulasi logika permainan secara real-time.'},
 ];
+
+const TIER_LABEL = {entry:'Entry', budget:'Budget', mid:'Mid', high:'High-end'};
 
 /* ================= STATE ================= */
 let selectedCPU = null;
@@ -366,30 +482,56 @@ let selectedGPU = null;
 let cpuFilter = 'all';
 let gpuFilter = 'all';
 
+/* ================= UTIL: animated number/width ================= */
+function animateNumber(el, to, duration=800){
+  const from = 0;
+  const start = performance.now();
+  function tick(now){
+    const p = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(from + (to - from) * eased);
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+function triggerWidth(el, targetWidth){
+  el.style.width = '0%';
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { el.style.width = targetWidth; });
+  });
+}
+
 /* ================= RENDER COMPONENTS ================= */
 function renderGrid(list, containerId, filter){
   const el = document.getElementById(containerId);
   const filtered = filter === 'all' ? list : list.filter(c => c.tier === filter);
-  el.innerHTML = filtered.map(c => {
+  const countEl = document.getElementById(containerId.replace('-grid','-count'));
+  if(countEl) countEl.textContent = `${filtered.length} komponen ditemukan`;
+
+  el.innerHTML = filtered.map((c, i) => {
     const isSelected = (c.type === 'cpu' && selectedCPU?.id === c.id) || (c.type === 'gpu' && selectedGPU?.id === c.id);
     const specsHtml = Object.entries(c.specs).map(([k,v]) =>
       `<div class="spec-item"><span class="spec-k">${k}</span><span class="spec-v">${v}</span></div>`
     ).join('');
     return `
-      <div class="comp-card ${isSelected ? 'selected' : ''}" data-id="${c.id}" data-type="${c.type}">
+      <div class="comp-card ${isSelected ? 'selected' : ''}" data-id="${c.id}" data-type="${c.type}" style="animation-delay:${Math.min(i*35,400)}ms;">
         <div class="comp-top">
-          <span class="comp-tag ${c.type === 'cpu' ? 'tag-cpu' : 'tag-gpu'}">${c.type}</span>
+          <div>
+            <span class="comp-tag ${c.type === 'cpu' ? 'tag-cpu' : 'tag-gpu'}">${c.type}</span><span class="tier-pill">${TIER_LABEL[c.tier]}</span>
+          </div>
           <span class="comp-price">${c.price}</span>
         </div>
         <div class="comp-name">${c.name}</div>
         <div class="comp-sub">${c.sub}</div>
         <div class="comp-specs">${specsHtml}</div>
         <div class="comp-score-row">
-          <div class="score-track"><div class="score-fill" style="width:${c.score}%;"></div></div>
+          <div class="score-track"><div class="score-fill" data-target="${c.score}%"></div></div>
           <span class="score-label">Skor ${c.score}</span>
         </div>
       </div>`;
   }).join('');
+
+  el.querySelectorAll('.score-fill').forEach(bar => triggerWidth(bar, bar.dataset.target));
 
   el.querySelectorAll('.comp-card').forEach(card => {
     card.addEventListener('click', () => {
@@ -399,6 +541,7 @@ function renderGrid(list, containerId, filter){
       const item = source.find(x => x.id === id);
       if(type === 'cpu') selectedCPU = (selectedCPU?.id === id) ? null : item;
       else selectedGPU = (selectedGPU?.id === id) ? null : item;
+      card.classList.add('pop');
       renderAll();
     });
   });
@@ -407,6 +550,7 @@ function renderGrid(list, containerId, filter){
 /* ================= RENDER BUILD SUMMARY ================= */
 function renderBuildSummary(){
   const el = document.getElementById('build-summary');
+  el.classList.toggle('filled', !!(selectedCPU && selectedGPU));
   if(!selectedCPU && !selectedGPU){
     el.innerHTML = `<span class="build-empty">Belum ada komponen dipilih. Klik kartu CPU dan GPU di atas.</span>`;
     return;
@@ -422,7 +566,11 @@ function renderBuildSummary(){
   } else {
     html += `<div class="build-chip"><span class="dot" style="background:var(--text-faint);"></span>Pilih GPU</div>`;
   }
+  html += `<button class="build-clear" id="clear-build">Reset pilihan</button>`;
   el.innerHTML = html;
+  document.getElementById('clear-build')?.addEventListener('click', () => {
+    selectedCPU = null; selectedGPU = null; renderAll();
+  });
 }
 
 /* ================= FPS CALC ================= */
@@ -432,7 +580,7 @@ function calcFPS(game, cpu, gpu){
   const combined = (cpuScore * game.cpuWeight) + (gpuScore * game.gpuWeight);
   const factor = combined / 70; // normalized around mid-range
   let fps = Math.round(game.base * factor);
-  fps = Math.max(18, fps);
+  fps = Math.max(12, fps);
   return fps;
 }
 
@@ -447,7 +595,7 @@ function renderGames(){
   el.innerHTML = GAMES.map(g => {
     const fps = calcFPS(g, selectedCPU, selectedGPU);
     const color = fpsColor(fps);
-    const pct = Math.min(100, Math.round((fps / 220) * 100));
+    const pct = Math.min(100, Math.round((fps / 280) * 100));
     return `
       <div class="game-row">
         <div class="game-info">
@@ -456,12 +604,15 @@ function renderGames(){
         </div>
         <div class="game-preset">${g.preset}</div>
         <div>
-          <div class="fps-cell"><span class="n" style="color:${color};">${fps}</span><span class="u">FPS</span></div>
-          <div class="fps-track" style="margin-top:6px;"><div class="fps-fill" style="width:${pct}%;background:${color};"></div></div>
+          <div class="fps-cell"><span class="n" data-target="${fps}" style="color:${color};">0</span><span class="u">FPS</span></div>
+          <div class="fps-track" style="margin-top:6px;"><div class="fps-fill" data-target="${pct}%" style="background:${color};"></div></div>
         </div>
         <div class="reason">${g.reason}</div>
       </div>`;
   }).join('');
+
+  el.querySelectorAll('.fps-cell .n').forEach(n => animateNumber(n, parseInt(n.dataset.target, 10), 700));
+  el.querySelectorAll('.fps-fill').forEach(bar => triggerWidth(bar, bar.dataset.target));
 }
 
 /* ================= FILTERS ================= */
@@ -488,6 +639,12 @@ function renderAll(){
   renderGames();
 }
 renderAll();
+
+// hero readout animation on load
+window.addEventListener('load', () => {
+  animateNumber(document.getElementById('hero-fps'), 142, 1100);
+  document.querySelectorAll('.readout .rbar-fill').forEach(bar => triggerWidth(bar, bar.dataset.target + '%'));
+});
 </script>
 </body>
 </html>
