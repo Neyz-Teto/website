@@ -1,10 +1,12 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Benchkit — Katalog CPU & GPU</title>
+<title>Benchkit — CPU, GPU & Gaming</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +19,9 @@
   --bg:#080c12;
   --bg-raised:#111720;
   --bg-inset:#0b1017;
+
   --line:#202936;
+
   --text:#eef2f7;
   --text-dim:#8b95a7;
   --text-faint:#576073;
@@ -26,7 +30,11 @@
   --neon-dim:rgba(0,255,157,.10);
 
   --red:#ff3860;
+  --red-dim:rgba(255,56,96,.10);
+
   --amber:#ffb020;
+  --amber-dim:rgba(255,176,32,.10);
+
   --blue:#5eb1ff;
   --purple:#a78bfa;
 }
@@ -46,7 +54,9 @@ body{
   color:var(--text);
   font-family:'Inter',sans-serif;
   line-height:1.5;
+
   overflow-x:hidden;
+
   -webkit-font-smoothing:antialiased;
 }
 
@@ -54,7 +64,10 @@ body.loading{
   overflow:hidden;
 }
 
-h1,h2,h3,.display{
+h1,
+h2,
+h3,
+.display{
   font-family:'Space Grotesk',sans-serif;
 }
 
@@ -67,6 +80,11 @@ a{
   text-decoration:none;
 }
 
+button,
+input{
+  font-family:inherit;
+}
+
 ::selection{
   background:var(--neon);
   color:#000;
@@ -77,15 +95,15 @@ a{
   outline-offset:2px;
 }
 
-@media (prefers-reduced-motion:reduce){
+@media(prefers-reduced-motion:reduce){
 
   *,
   *::before,
   *::after{
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    transition-duration:.01ms !important;
-    scroll-behavior:auto !important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
   }
 
 }
@@ -112,7 +130,7 @@ a{
 
   from{
     opacity:0;
-    transform:translateY(14px) scale(.985);
+    transform:translateY(12px) scale(.985);
   }
 
   to{
@@ -125,11 +143,11 @@ a{
 @keyframes pulseGlow{
 
   0%,100%{
-    text-shadow:0 0 30px rgba(0,255,157,.08);
+    text-shadow:0 0 26px rgba(0,255,157,.08);
   }
 
   50%{
-    text-shadow:0 0 46px rgba(0,255,157,.38);
+    text-shadow:0 0 44px rgba(0,255,157,.34);
   }
 
 }
@@ -141,7 +159,7 @@ a{
   }
 
   50%{
-    opacity:.35;
+    opacity:.3;
   }
 
 }
@@ -197,7 +215,7 @@ a{
   }
 
   50%{
-    transform:translate3d(-80px,35px,0) scale(.92);
+    transform:translate3d(-75px,30px,0) scale(.92);
   }
 
 }
@@ -218,7 +236,7 @@ a{
 
 }
 
-@keyframes gamePageEnter{
+@keyframes pageEnter{
 
   from{
     opacity:0;
@@ -232,6 +250,20 @@ a{
 
 }
 
+@keyframes unsupportedPulse{
+
+  0%,100%{
+    box-shadow:
+      inset 0 0 0 1px rgba(255,56,96,.04);
+  }
+
+  50%{
+    box-shadow:
+      inset 0 0 25px rgba(255,56,96,.04);
+  }
+
+}
+
 /* =========================================================
    BACKGROUND
 ========================================================= */
@@ -239,23 +271,32 @@ a{
 .background-effects{
   position:fixed;
   inset:0;
+  z-index:-5;
   overflow:hidden;
   pointer-events:none;
-  z-index:-5;
 }
 
 .background-grid{
   position:absolute;
   inset:-100px;
+
   opacity:.28;
 
   background-image:
-    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    linear-gradient(
+      rgba(255,255,255,.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.035) 1px,
+      transparent 1px
+    );
 
   background-size:55px 55px;
 
-  animation:gridMove 7s linear infinite;
+  animation:
+    gridMove 7s linear infinite;
 }
 
 .background-grid::after{
@@ -267,24 +308,27 @@ a{
   background:
     radial-gradient(
       circle at center,
-      transparent 20%,
-      rgba(8,12,18,.72) 78%,
+      transparent 18%,
+      rgba(8,12,18,.72) 76%,
       rgba(8,12,18,1) 100%
     );
 }
 
 .bg-orb{
   position:absolute;
+
   border-radius:50%;
+
   filter:blur(65px);
 }
 
 .bg-orb.one{
+
   width:420px;
   height:420px;
 
   left:-120px;
-  top:150px;
+  top:130px;
 
   background:rgba(0,255,157,.07);
 
@@ -293,11 +337,12 @@ a{
 }
 
 .bg-orb.two{
+
   width:500px;
   height:500px;
 
   right:-150px;
-  top:480px;
+  top:470px;
 
   background:rgba(94,177,255,.07);
 
@@ -306,11 +351,12 @@ a{
 }
 
 .bg-orb.three{
-  width:340px;
-  height:340px;
 
-  left:45%;
-  bottom:-180px;
+  width:350px;
+  height:350px;
+
+  left:44%;
+  bottom:-200px;
 
   background:rgba(167,139,250,.05);
 
@@ -353,7 +399,10 @@ a{
 
 .loading-box{
 
-  width:min(420px,calc(100% - 40px));
+  width:min(
+    420px,
+    calc(100% - 40px)
+  );
 
   padding:30px;
 
@@ -377,13 +426,17 @@ a{
 
   margin:0 auto 18px;
 
-  border:3px solid rgba(255,255,255,.08);
+  border:
+    3px solid
+    rgba(255,255,255,.08);
 
-  border-top-color:var(--neon);
+  border-top-color:
+    var(--neon);
 
   border-radius:50%;
 
-  animation:spin .7s linear infinite;
+  animation:
+    spin .7s linear infinite;
 }
 
 .loading-title{
@@ -430,7 +483,8 @@ a{
       var(--neon)
     );
 
-  transition:width .08s linear;
+  transition:
+    width .08s linear;
 }
 
 /* =========================================================
@@ -441,12 +495,12 @@ a{
 
   position:absolute;
 
+  width:20px;
+  height:20px;
+
   border-radius:50%;
 
   pointer-events:none;
-
-  width:20px;
-  height:20px;
 
   background:rgba(0,255,157,.22);
 
@@ -467,6 +521,7 @@ a{
       scale(11);
 
     opacity:0;
+
   }
 
 }
@@ -481,13 +536,15 @@ a{
 
   margin:0 auto;
 
-  padding:0 32px;
+  padding:
+    0 32px;
 }
 
 @media(max-width:640px){
 
   .wrap{
-    padding:0 20px;
+    padding:
+      0 20px;
   }
 
 }
@@ -499,27 +556,29 @@ a{
 nav{
 
   position:sticky;
-
   top:0;
 
   z-index:50;
 
-  background:rgba(8,12,18,.82);
+  background:
+    rgba(8,12,18,.82);
 
-  backdrop-filter:blur(14px);
+  backdrop-filter:
+    blur(14px);
 
-  border-bottom:1px solid var(--line);
+  border-bottom:
+    1px solid var(--line);
 }
 
 nav .wrap{
+
+  min-height:64px;
 
   display:flex;
 
   align-items:center;
 
   justify-content:space-between;
-
-  min-height:64px;
 }
 
 .logo{
@@ -530,18 +589,18 @@ nav .wrap{
 
   gap:9px;
 
-  font-weight:600;
-
   font-size:17px;
+
+  font-weight:600;
 }
 
 .logo-mark{
 
   width:9px;
-
   height:22px;
 
-  background:var(--neon);
+  background:
+    var(--neon);
 
   border-radius:1px;
 
@@ -553,7 +612,9 @@ nav .wrap{
 
   display:flex;
 
-  gap:28px;
+  align-items:center;
+
+  gap:26px;
 
   color:var(--text-dim);
 
@@ -575,30 +636,27 @@ nav .wrap{
   position:absolute;
 
   left:0;
-
   bottom:-5px;
 
   width:0;
-
   height:1px;
 
-  background:var(--neon);
+  background:
+    var(--neon);
 
   transition:
     width .2s ease;
 }
 
 .nav-links a:hover{
-
   color:var(--text);
 }
 
 .nav-links a:hover::after{
-
   width:100%;
 }
 
-@media(max-width:640px){
+@media(max-width:800px){
 
   .nav-links{
     display:none;
@@ -612,9 +670,10 @@ nav .wrap{
 
 .hero{
 
-  padding:88px 0 64px;
-
   position:relative;
+
+  padding:
+    88px 0 64px;
 
   overflow:hidden;
 }
@@ -634,7 +693,7 @@ nav .wrap{
   background:
     radial-gradient(
       circle,
-      rgba(0,255,157,.12) 0%,
+      rgba(0,255,157,.12),
       transparent 70%
     );
 
@@ -643,29 +702,30 @@ nav .wrap{
 
 .hero-grid{
 
+  position:relative;
+
   display:grid;
 
-  grid-template-columns:1.1fr .9fr;
+  grid-template-columns:
+    1.1fr .9fr;
 
   gap:56px;
 
   align-items:center;
-
-  position:relative;
 }
 
 @media(max-width:900px){
 
   .hero-grid{
     grid-template-columns:1fr;
-    gap:40px;
   }
 
 }
 
 .hero h1{
 
-  font-size:clamp(34px,5vw,52px);
+  font-size:
+    clamp(34px,5vw,52px);
 
   font-weight:600;
 
@@ -678,11 +738,11 @@ nav .wrap{
 
 .hero p{
 
-  font-size:16.5px;
+  max-width:50ch;
 
   color:var(--text-dim);
 
-  max-width:50ch;
+  font-size:16.5px;
 
   margin-bottom:28px;
 }
@@ -691,9 +751,9 @@ nav .wrap{
 
   display:flex;
 
-  gap:12px;
-
   flex-wrap:wrap;
+
+  gap:12px;
 }
 
 /* =========================================================
@@ -712,11 +772,10 @@ nav .wrap{
 
   gap:8px;
 
-  padding:12px 22px;
+  padding:
+    12px 22px;
 
   border-radius:8px;
-
-  font-family:'Inter';
 
   font-size:14.5px;
 
@@ -728,17 +787,15 @@ nav .wrap{
 
   transition:
     transform .18s ease,
-    border-color .18s ease,
-    background .18s ease;
+    background .18s ease,
+    border-color .18s ease;
 }
 
 .btn:hover{
-
   transform:translateY(-2px);
 }
 
 .btn:active{
-
   transform:
     translateY(1px)
     scale(.985);
@@ -746,28 +803,30 @@ nav .wrap{
 
 .btn-primary{
 
-  background:var(--neon);
+  background:
+    var(--neon);
 
   color:#04140d;
 }
 
 .btn-primary:hover{
-
   background:#35ffb5;
 }
 
 .btn-ghost{
 
-  background:transparent;
+  background:
+    transparent;
 
-  border-color:var(--line);
+  border-color:
+    var(--line);
 
   color:var(--text);
 }
 
 .btn-ghost:hover{
-
-  border-color:var(--text-faint);
+  border-color:
+    var(--text-faint);
 }
 
 /* =========================================================
@@ -776,17 +835,19 @@ nav .wrap{
 
 .readout{
 
-  background:rgba(17,23,32,.88);
+  position:relative;
 
-  border:1px solid var(--line);
+  overflow:hidden;
+
+  background:
+    rgba(17,23,32,.88);
+
+  border:
+    1px solid var(--line);
 
   border-radius:14px;
 
   padding:26px;
-
-  position:relative;
-
-  overflow:hidden;
 
   box-shadow:
     0 20px 70px rgba(0,0,0,.18),
@@ -823,9 +884,9 @@ nav .wrap{
 
   display:flex;
 
-  justify-content:space-between;
-
   align-items:center;
+
+  justify-content:space-between;
 
   gap:20px;
 
@@ -856,7 +917,8 @@ nav .wrap{
 
   border-radius:50%;
 
-  background:var(--neon);
+  background:
+    var(--neon);
 
   box-shadow:
     0 0 8px var(--neon);
@@ -875,7 +937,6 @@ nav .wrap{
 }
 
 .readout-pair b{
-
   color:var(--text);
 }
 
@@ -887,7 +948,8 @@ nav .wrap{
 
   gap:10px;
 
-  margin:8px 0 20px;
+  margin:
+    8px 0 20px;
 }
 
 .fps-num{
@@ -900,7 +962,8 @@ nav .wrap{
 
   line-height:1;
 
-  color:var(--neon);
+  color:
+    var(--neon);
 
   animation:
     pulseGlow 3.2s ease-in-out infinite;
@@ -908,7 +971,8 @@ nav .wrap{
 
 .fps-unit{
 
-  color:var(--text-dim);
+  color:
+    var(--text-dim);
 
   font-size:15px;
 }
@@ -939,7 +1003,8 @@ nav .wrap{
 
   flex-shrink:0;
 
-  color:var(--text-dim);
+  color:
+    var(--text-dim);
 }
 
 .rbar-track{
@@ -948,7 +1013,8 @@ nav .wrap{
 
   height:6px;
 
-  background:var(--bg-inset);
+  background:
+    var(--bg-inset);
 
   border-radius:3px;
 
@@ -964,7 +1030,8 @@ nav .wrap{
   border-radius:3px;
 
   transition:
-    width 1s cubic-bezier(.16,.8,.3,1);
+    width 1s
+    cubic-bezier(.16,.8,.3,1);
 }
 
 .rbar-val{
@@ -973,20 +1040,19 @@ nav .wrap{
 
   text-align:right;
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 }
 
 /* =========================================================
-   SECTIONS
+   SECTION
 ========================================================= */
 
 section{
-
   padding:56px 0;
 }
 
 .section-head{
-
   margin-bottom:32px;
 }
 
@@ -1003,7 +1069,8 @@ section{
 
 .section-head p{
 
-  color:var(--text-dim);
+  color:
+    var(--text-dim);
 
   font-size:14.5px;
 }
@@ -1012,7 +1079,8 @@ section{
 
   height:1px;
 
-  background:var(--line);
+  background:
+    var(--line);
 }
 
 /* =========================================================
@@ -1023,9 +1091,9 @@ section{
 
   display:flex;
 
-  align-items:center;
-
   flex-wrap:wrap;
+
+  align-items:center;
 
   gap:10px;
 
@@ -1038,7 +1106,8 @@ section{
 
   overflow:hidden;
 
-  padding:8px 16px;
+  padding:
+    8px 16px;
 
   border-radius:20px;
 
@@ -1046,11 +1115,14 @@ section{
 
   font-weight:500;
 
-  background:rgba(17,23,32,.82);
+  background:
+    rgba(17,23,32,.82);
 
-  border:1px solid var(--line);
+  border:
+    1px solid var(--line);
 
-  color:var(--text-dim);
+  color:
+    var(--text-dim);
 
   cursor:pointer;
 
@@ -1063,33 +1135,39 @@ section{
 
 .filter-btn:hover{
 
-  border-color:var(--text-faint);
+  border-color:
+    var(--text-faint);
 
-  color:var(--text);
+  color:
+    var(--text);
 
-  transform:translateY(-1px);
+  transform:
+    translateY(-1px);
 }
 
 .filter-btn:active{
-
   transform:scale(.95);
 }
 
 .filter-btn.active{
 
-  background:var(--neon);
+  background:
+    var(--neon);
 
-  border-color:var(--neon);
+  border-color:
+    var(--neon);
 
   color:#04140d;
 
   box-shadow:
-    0 0 18px rgba(0,255,157,.15);
+    0 0 18px
+    rgba(0,255,157,.15);
 }
 
 .filter-count{
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 
   font-size:12.5px;
 
@@ -1119,9 +1197,11 @@ section{
 
   overflow:hidden;
 
-  background:rgba(17,23,32,.88);
+  background:
+    rgba(17,23,32,.88);
 
-  border:1px solid var(--line);
+  border:
+    1px solid var(--line);
 
   border-radius:12px;
 
@@ -1158,7 +1238,8 @@ section{
       transparent 70%
     );
 
-  transform:translateX(-120%);
+  transform:
+    translateX(-120%);
 
   transition:
     transform .5s ease;
@@ -1167,15 +1248,16 @@ section{
 }
 
 .comp-card:hover::after{
-
   transform:translateX(120%);
 }
 
 .comp-card:hover{
 
-  border-color:var(--text-faint);
+  border-color:
+    var(--text-faint);
 
-  transform:translateY(-4px);
+  transform:
+    translateY(-4px);
 
   box-shadow:
     0 15px 35px rgba(0,0,0,.18);
@@ -1190,7 +1272,8 @@ section{
 
 .comp-card.selected{
 
-  border-color:var(--neon);
+  border-color:
+    var(--neon);
 
   box-shadow:
     0 0 0 1px var(--neon),
@@ -1210,9 +1293,9 @@ section{
 
   display:flex;
 
-  justify-content:space-between;
-
   align-items:flex-start;
+
+  justify-content:space-between;
 
   gap:12px;
 
@@ -1223,13 +1306,14 @@ section{
 
   display:inline-flex;
 
+  padding:
+    3px 8px;
+
+  border-radius:4px;
+
   font-size:10.5px;
 
   font-weight:600;
-
-  padding:3px 8px;
-
-  border-radius:4px;
 
   text-transform:uppercase;
 
@@ -1241,34 +1325,41 @@ section{
   background:
     rgba(94,177,255,.10);
 
-  color:var(--blue);
+  color:
+    var(--blue);
 }
 
 .tag-gpu{
 
-  background:var(--neon-dim);
+  background:
+    var(--neon-dim);
 
-  color:var(--neon);
+  color:
+    var(--neon);
 }
 
 .tier-pill{
 
-  font-size:10px;
+  margin-left:6px;
 
-  color:var(--text-faint);
-
-  border:1px solid var(--line);
-
-  padding:2px 7px;
+  padding:
+    2px 7px;
 
   border-radius:10px;
 
-  margin-left:6px;
+  border:
+    1px solid var(--line);
+
+  color:
+    var(--text-faint);
+
+  font-size:10px;
 }
 
 .comp-price{
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 
   font-size:12.5px;
 
@@ -1281,14 +1372,15 @@ section{
 
   font-weight:600;
 
-  margin-bottom:4px;
-
   letter-spacing:-.01em;
+
+  margin-bottom:4px;
 }
 
 .comp-sub{
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 
   font-size:12.5px;
 
@@ -1299,7 +1391,8 @@ section{
 
   display:grid;
 
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:
+    1fr 1fr;
 
   gap:8px 14px;
 
@@ -1316,13 +1409,13 @@ section{
 }
 
 .spec-k{
-
   color:var(--text-faint);
 }
 
 .spec-v{
 
-  color:var(--text-dim);
+  color:
+    var(--text-dim);
 
   font-weight:500;
 }
@@ -1339,7 +1432,8 @@ section{
 
   padding-top:14px;
 
-  border-top:1px solid var(--line);
+  border-top:
+    1px solid var(--line);
 }
 
 .score-track{
@@ -1348,7 +1442,8 @@ section{
 
   height:5px;
 
-  background:var(--bg-inset);
+  background:
+    var(--bg-inset);
 
   border-radius:3px;
 
@@ -1379,7 +1474,8 @@ section{
 
   white-space:nowrap;
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 
   font-size:11.5px;
 }
@@ -1398,13 +1494,16 @@ section{
 
   gap:16px;
 
-  background:rgba(17,23,32,.85);
+  background:
+    rgba(17,23,32,.85);
 
-  border:1px solid var(--line);
+  border:
+    1px solid var(--line);
 
   border-radius:12px;
 
-  padding:20px 22px;
+  padding:
+    20px 22px;
 
   margin-bottom:28px;
 
@@ -1419,7 +1518,8 @@ section{
     rgba(0,255,157,.35);
 
   box-shadow:
-    0 0 30px rgba(0,255,157,.04);
+    0 0 30px
+    rgba(0,255,157,.04);
 }
 
 .build-chip{
@@ -1446,24 +1546,33 @@ section{
 
 .build-empty{
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 
   font-size:13.5px;
 }
 
 .build-clear{
 
+  position:relative;
+
+  overflow:hidden;
+
   margin-left:auto;
 
-  color:var(--text-faint);
-
-  background:transparent;
-
-  border:1px solid var(--line);
-
-  padding:6px 12px;
+  padding:
+    6px 12px;
 
   border-radius:8px;
+
+  border:
+    1px solid var(--line);
+
+  background:
+    transparent;
+
+  color:
+    var(--text-faint);
 
   cursor:pointer;
 
@@ -1475,15 +1584,18 @@ section{
 
 .build-clear:hover{
 
-  border-color:var(--text-faint);
+  border-color:
+    var(--text-faint);
 
-  color:var(--text);
+  color:
+    var(--text);
 
-  transform:translateY(-1px);
+  transform:
+    translateY(-1px);
 }
 
 /* =========================================================
-   GAME LIST
+   GAMES
 ========================================================= */
 
 .game-list{
@@ -1494,19 +1606,21 @@ section{
 
   gap:1px;
 
-  background:var(--line);
+  background:
+    var(--line);
 
-  border:1px solid var(--line);
+  border:
+    1px solid var(--line);
 
   border-radius:12px;
 
   overflow:hidden;
 }
 
-.game-list.game-page-enter{
+.game-list.page-change{
 
   animation:
-    gamePageEnter .35s
+    pageEnter .35s
     cubic-bezier(.16,.9,.3,1);
 }
 
@@ -1520,13 +1634,15 @@ section{
     1fr
     1.5fr;
 
-  gap:20px;
-
   align-items:center;
 
-  background:rgba(17,23,32,.92);
+  gap:20px;
 
-  padding:16px 22px;
+  padding:
+    16px 22px;
+
+  background:
+    rgba(17,23,32,.92);
 
   transition:
     background .18s ease,
@@ -1535,9 +1651,11 @@ section{
 
 .game-row:hover{
 
-  background:#151c25;
+  background:
+    #151c25;
 
-  transform:translateX(2px);
+  transform:
+    translateX(2px);
 }
 
 .game-info{
@@ -1558,14 +1676,16 @@ section{
 
 .game-genre{
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 
   font-size:12px;
 }
 
 .game-preset{
 
-  color:var(--text-dim);
+  color:
+    var(--text-dim);
 
   font-size:12px;
 }
@@ -1581,7 +1701,8 @@ section{
 
 .fps-cell .n{
 
-  font-family:'Space Grotesk';
+  font-family:
+    'Space Grotesk';
 
   font-size:22px;
 
@@ -1590,7 +1711,8 @@ section{
 
 .fps-cell .u{
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 
   font-size:11px;
 }
@@ -1599,7 +1721,10 @@ section{
 
   height:6px;
 
-  background:var(--bg-inset);
+  margin-top:6px;
+
+  background:
+    var(--bg-inset);
 
   border-radius:3px;
 
@@ -1621,18 +1746,104 @@ section{
 
 .reason{
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 
   font-size:12px;
 
   line-height:1.5;
 }
 
+/* =========================================================
+   NOT SUPPORTED
+========================================================= */
+
+.game-row.unsupported{
+
+  background:
+    rgba(255,56,96,.025);
+
+  animation:
+    unsupportedPulse 3s
+    ease-in-out infinite;
+}
+
+.unsupported-box{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:4px;
+}
+
+.unsupported-title{
+
+  display:inline-flex;
+
+  width:max-content;
+
+  align-items:center;
+
+  gap:7px;
+
+  padding:
+    5px 9px;
+
+  border-radius:6px;
+
+  background:
+    var(--red-dim);
+
+  color:
+    var(--red);
+
+  font-family:
+    'JetBrains Mono',
+    monospace;
+
+  font-size:11px;
+
+  font-weight:500;
+
+  letter-spacing:.04em;
+}
+
+.unsupported-title::before{
+
+  content:"×";
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  width:14px;
+  height:14px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,56,96,.18);
+}
+
+.unsupported-detail{
+
+  color:
+    var(--text-faint);
+
+  font-size:11px;
+
+  line-height:1.45;
+}
+
 @media(max-width:720px){
 
   .game-row{
 
-    grid-template-columns:1fr;
+    grid-template-columns:
+      1fr;
 
     gap:10px;
   }
@@ -1640,16 +1851,17 @@ section{
 }
 
 /* =========================================================
-   GAME PAGINATION
+   PAGINATION
 ========================================================= */
 
-.game-pagination{
+.game-pagination,
+.fact-pagination{
 
   display:flex;
 
-  justify-content:center;
-
   align-items:center;
+
+  justify-content:center;
 
   flex-wrap:wrap;
 
@@ -1659,6 +1871,10 @@ section{
 }
 
 .page-btn{
+
+  position:relative;
+
+  overflow:hidden;
 
   min-width:38px;
 
@@ -1670,15 +1886,19 @@ section{
 
   justify-content:center;
 
-  border:1px solid var(--line);
+  padding:
+    0 11px;
+
+  background:
+    rgba(17,23,32,.85);
+
+  border:
+    1px solid var(--line);
 
   border-radius:8px;
 
-  background:rgba(17,23,32,.85);
-
-  color:var(--text-dim);
-
-  font-family:'Inter',sans-serif;
+  color:
+    var(--text-dim);
 
   font-size:13px;
 
@@ -1696,42 +1916,56 @@ section{
 
 .page-btn:hover{
 
-  color:var(--text);
+  color:
+    var(--text);
 
-  border-color:var(--text-faint);
+  border-color:
+    var(--text-faint);
 
-  transform:translateY(-2px);
+  transform:
+    translateY(-2px);
 }
 
 .page-btn:active{
 
-  transform:scale(.94);
+  transform:
+    scale(.94);
 }
 
 .page-btn.active{
 
-  background:var(--neon);
+  background:
+    var(--neon);
 
-  color:#04140d;
+  border-color:
+    var(--neon);
 
-  border-color:var(--neon);
+  color:
+    #04140d;
 
   box-shadow:
-    0 0 18px rgba(0,255,157,.13);
+    0 0 18px
+    rgba(0,255,157,.13);
 }
 
-.page-arrow{
+.page-btn:disabled{
 
-  padding:0 13px;
+  cursor:not-allowed;
+
+  opacity:.32;
+
+  transform:none;
 }
 
 .page-info{
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 
   font-size:12px;
 
-  margin:0 8px;
+  margin:
+    0 8px;
 }
 
 /* =========================================================
@@ -1748,7 +1982,8 @@ section{
 
   margin-top:14px;
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 
   font-size:12px;
 }
@@ -1771,19 +2006,10 @@ section{
 }
 
 /* =========================================================
-   FOOTER
+   FUN FACT
 ========================================================= */
 
-footer{
-
-  border-top:1px solid var(--line);
-
-  padding:32px 0;
-
-  margin-top:40px;
-}
-
-footer .wrap{
+.fact-toolbar{
 
   display:flex;
 
@@ -1791,11 +2017,331 @@ footer .wrap{
 
   align-items:center;
 
+  gap:14px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:22px;
+}
+
+.fact-search{
+
+  width:min(
+    360px,
+    100%
+  );
+
+  padding:
+    11px 14px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:9px;
+
+  background:
+    rgba(17,23,32,.85);
+
+  color:
+    var(--text);
+
+  font-size:13px;
+
+  outline:none;
+
+  transition:
+    border-color .18s ease,
+    box-shadow .18s ease;
+}
+
+.fact-search::placeholder{
+
+  color:
+    var(--text-faint);
+}
+
+.fact-search:focus{
+
+  border-color:
+    rgba(0,255,157,.5);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(0,255,157,.06);
+}
+
+.fact-count{
+
+  color:
+    var(--text-faint);
+
+  font-size:12.5px;
+}
+
+.fact-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(300px,1fr)
+    );
+
+  gap:16px;
+}
+
+.fact-card{
+
+  position:relative;
+
+  overflow:hidden;
+
+  background:
+    rgba(17,23,32,.88);
+
+  border:
+    1px solid var(--line);
+
+  border-radius:12px;
+
+  padding:22px;
+
+  animation:
+    cardIn .45s
+    cubic-bezier(.16,.9,.3,1)
+    forwards;
+
+  transition:
+    border-color .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.fact-card:hover{
+
+  border-color:
+    var(--text-faint);
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 15px 35px
+    rgba(0,0,0,.18);
+}
+
+.fact-number{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  min-width:30px;
+  height:30px;
+
+  padding:
+    0 8px;
+
+  border-radius:7px;
+
+  background:
+    var(--neon-dim);
+
+  color:
+    var(--neon);
+
+  font-family:
+    'JetBrains Mono';
+
+  font-size:11px;
+
+  margin-bottom:14px;
+}
+
+.fact-title{
+
+  font-size:18px;
+
+  font-weight:600;
+
+  margin-bottom:8px;
+}
+
+.fact-short{
+
+  color:
+    var(--text-dim);
+
+  font-size:13px;
+
+  margin-bottom:14px;
+
+  line-height:1.6;
+}
+
+.fact-example{
+
+  padding:
+    12px;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:8px;
+
+  background:
+    var(--bg-inset);
+
+  color:
+    var(--text-faint);
+
+  font-size:12px;
+
+  line-height:1.6;
+}
+
+.fact-example b{
+
+  color:
+    var(--text);
+
+  font-weight:600;
+}
+
+/* =========================================================
+   TECH TABLE
+========================================================= */
+
+.tech-table-wrap{
+
+  margin-top:28px;
+
+  overflow-x:auto;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:12px;
+}
+
+.tech-table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+  min-width:760px;
+}
+
+.tech-table th{
+
+  padding:
+    13px 16px;
+
+  text-align:left;
+
+  background:
+    var(--bg-inset);
+
+  color:
+    var(--text-faint);
+
+  font-size:11px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.06em;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+.tech-table td{
+
+  padding:
+    14px 16px;
+
+  background:
+    rgba(17,23,32,.80);
+
+  color:
+    var(--text-dim);
+
+  font-size:12.5px;
+
+  border-bottom:
+    1px solid var(--line);
+
+  vertical-align:top;
+}
+
+.tech-table tr:last-child td{
+  border-bottom:0;
+}
+
+.tech-table td:first-child{
+
+  color:
+    var(--text);
+
+  font-weight:600;
+
+  white-space:nowrap;
+}
+
+.tech-badge{
+
+  display:inline-flex;
+
+  padding:
+    3px 7px;
+
+  border-radius:5px;
+
+  background:
+    rgba(94,177,255,.08);
+
+  color:
+    var(--blue);
+
+  font-size:10px;
+
+  font-family:
+    'JetBrains Mono';
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+
+  margin-top:40px;
+
+  padding:
+    32px 0;
+
+  border-top:
+    1px solid var(--line);
+}
+
+footer .wrap{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
   flex-wrap:wrap;
 
   gap:10px;
 
-  color:var(--text-faint);
+  color:
+    var(--text-faint);
 
   font-size:13px;
 }
@@ -1885,13 +2431,25 @@ footer .wrap{
 
     <div class="nav-links">
 
-      <a href="#cpu">CPU</a>
+      <a href="#cpu">
+        CPU
+      </a>
 
-      <a href="#gpu">GPU</a>
+      <a href="#gpu">
+        GPU
+      </a>
 
-      <a href="#build">Susun Build</a>
+      <a href="#build">
+        Susun Build
+      </a>
 
-      <a href="#games">Hasil Game</a>
+      <a href="#games">
+        Game
+      </a>
+
+      <a href="#funfact">
+        Fun Fact
+      </a>
 
     </div>
 
@@ -1912,14 +2470,14 @@ footer .wrap{
       style="animation-delay:.05s">
 
       <h1>
-        Tau persis performa PC-mu
+        Tau performa PC-mu
         sebelum beli komponennya.
       </h1>
 
       <p>
-        Katalog CPU dan GPU dari kelas super-low-end
-        sampai flagship, lengkap dengan simulasi FPS
-        game populer dan alasan teknis di balik angka.
+        Bandingkan CPU dan GPU dari kelas
+        ultra-low sampai flagship, lalu
+        simulasikan performanya di berbagai game.
       </p>
 
       <div class="hero-actions">
@@ -1933,10 +2491,10 @@ footer .wrap{
         </a>
 
         <a
-          href="#gpu"
+          href="#funfact"
           class="btn btn-ghost">
 
-          Lihat Katalog GPU
+          Pelajari Teknologi
 
         </a>
 
@@ -2001,7 +2559,9 @@ footer .wrap{
             <div
               class="rbar-fill"
               data-target="96"
-              style="background:var(--neon)">
+              style="
+                background:var(--neon)
+              ">
             </div>
 
           </div>
@@ -2023,7 +2583,9 @@ footer .wrap{
             <div
               class="rbar-fill"
               data-target="54"
-              style="background:var(--blue)">
+              style="
+                background:var(--blue)
+              ">
             </div>
 
           </div>
@@ -2045,7 +2607,9 @@ footer .wrap{
             <div
               class="rbar-fill"
               data-target="78"
-              style="background:var(--amber)">
+              style="
+                background:var(--amber)
+              ">
             </div>
 
           </div>
@@ -2083,8 +2647,8 @@ footer .wrap{
       </h2>
 
       <p>
-        Dari prosesor lawas super murah sampai
-        CPU gaming enthusiast.
+        Dari CPU lawas super murah sampai prosesor
+        flagship untuk gaming dan workload berat.
       </p>
 
     </div>
@@ -2166,8 +2730,8 @@ footer .wrap{
       </h2>
 
       <p>
-        Mulai dari GPU super-low-end hingga
-        GPU kelas enthusiast.
+        Dari GPU lawas yang sangat ringan hingga
+        kartu grafis enthusiast generasi modern.
       </p>
 
     </div>
@@ -2254,7 +2818,7 @@ footer .wrap{
 
       <p>
         Pilih satu CPU dan satu GPU untuk
-        melihat simulasi performa per game.
+        mensimulasikan performa game.
       </p>
 
     </div>
@@ -2264,7 +2828,9 @@ footer .wrap{
       id="build-summary">
 
       <span class="build-empty">
+
         Belum ada komponen dipilih.
+
       </span>
 
     </div>
@@ -2288,8 +2854,9 @@ footer .wrap{
       </h2>
 
       <p>
-        Database game dibagi menjadi beberapa halaman
-        agar halaman tetap ringkas dan mudah digunakan.
+        Game yang membutuhkan hardware lebih tinggi
+        akan otomatis ditandai NOT SUPPORTED jika
+        CPU atau GPU pilihan berada di bawah batas minimum.
       </p>
 
     </div>
@@ -2310,7 +2877,9 @@ footer .wrap{
 
         <span
           class="sw"
-          style="background:var(--neon)">
+          style="
+            background:var(--neon)
+          ">
         </span>
 
         Lancar (90+ FPS)
@@ -2321,7 +2890,9 @@ footer .wrap{
 
         <span
           class="sw"
-          style="background:var(--amber)">
+          style="
+            background:var(--amber)
+          ">
         </span>
 
         Playable (50–89 FPS)
@@ -2332,12 +2903,356 @@ footer .wrap{
 
         <span
           class="sw"
-          style="background:var(--red)">
+          style="
+            background:var(--red)
+          ">
         </span>
 
-        Berat (di bawah 50 FPS)
+        Berat (&lt;50 FPS)
 
       </span>
+
+      <span>
+
+        <span
+          class="sw"
+          style="
+            background:var(--red)
+          ">
+        </span>
+
+        NOT SUPPORTED
+
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+<div class="wrap">
+  <div class="divider"></div>
+</div>
+
+<!-- ======================================================
+     FUN FACT
+====================================================== -->
+
+<section id="funfact">
+
+  <div class="wrap">
+
+    <div class="section-head">
+
+      <h2>
+        Fun Fact & Teknologi Gaming
+      </h2>
+
+      <p>
+        Pahami istilah-istilah yang sering muncul
+        saat membahas performa PC, GPU, monitor, dan game.
+      </p>
+
+    </div>
+
+    <div class="fact-toolbar">
+
+      <input
+        type="search"
+        class="fact-search"
+        id="fact-search"
+        placeholder="Cari: DLSS, FPS, VRAM, tearing..."
+        autocomplete="off">
+
+      <span
+        class="fact-count"
+        id="fact-count">
+      </span>
+
+    </div>
+
+    <div
+      class="fact-grid"
+      id="fact-grid">
+    </div>
+
+    <div
+      class="fact-pagination"
+      id="fact-pagination">
+    </div>
+
+    <div class="tech-table-wrap">
+
+      <table class="tech-table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Istilah
+            </th>
+
+            <th>
+              Apa itu?
+            </th>
+
+            <th>
+              Dampak
+            </th>
+
+            <th>
+              Contoh
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr>
+
+            <td>
+              FPS
+            </td>
+
+            <td>
+              Jumlah frame yang dapat dirender
+              dalam satu detik.
+            </td>
+
+            <td>
+              Semakin tinggi umumnya semakin
+              responsif dan halus.
+            </td>
+
+            <td>
+              <span class="tech-badge">
+                60 FPS
+              </span>
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td>
+              Frametime
+            </td>
+
+            <td>
+              Waktu yang dibutuhkan untuk
+              menghasilkan satu frame.
+            </td>
+
+            <td>
+              Frametime konsisten membuat gerakan
+              terasa lebih stabil.
+            </td>
+
+            <td>
+              <span class="tech-badge">
+                8.3 ms ≈ 120 FPS
+              </span>
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td>
+              DLSS
+            </td>
+
+            <td>
+              Teknologi upscaling dan rekonstruksi
+              gambar dari NVIDIA.
+            </td>
+
+            <td>
+              Dapat meningkatkan FPS dengan
+              mempertahankan kualitas visual.
+            </td>
+
+            <td>
+              <span class="tech-badge">
+                Performance
+              </span>
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td>
+              FSR
+            </td>
+
+            <td>
+              Teknologi upscaling dari AMD
+              yang dapat digunakan lintas GPU.
+            </td>
+
+            <td>
+              Dapat membantu meningkatkan performa.
+            </td>
+
+            <td>
+              <span class="tech-badge">
+                Upscaling
+              </span>
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td>
+              VRAM
+            </td>
+
+            <td>
+              Memori pada kartu grafis untuk menyimpan
+              texture, framebuffer, dan data rendering.
+            </td>
+
+            <td>
+              Kapasitas terlalu kecil dapat menyebabkan
+              masalah performa atau texture streaming.
+            </td>
+
+            <td>
+              <span class="tech-badge">
+                8 GB
+              </span>
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td>
+              V-Sync
+            </td>
+
+            <td>
+              Menyinkronkan output GPU dengan
+              refresh rate monitor.
+            </td>
+
+            <td>
+              Dapat mengurangi screen tearing,
+              tetapi bisa menambah latency.
+            </td>
+
+            <td>
+              <span class="tech-badge">
+                60Hz
+              </span>
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td>
+              Screen Tearing
+            </td>
+
+            <td>
+              Frame tampak seperti terbelah karena
+              beberapa frame tampil dalam satu refresh.
+            </td>
+
+            <td>
+              Gerakan terlihat tidak menyatu.
+            </td>
+
+            <td>
+              <span class="tech-badge">
+                tearing
+              </span>
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td>
+              Ray Tracing
+            </td>
+
+            <td>
+              Teknik rendering untuk mensimulasikan
+              perilaku cahaya dengan lebih realistis.
+            </td>
+
+            <td>
+              Kualitas pencahayaan meningkat,
+              tetapi beban GPU juga dapat meningkat.
+            </td>
+
+            <td>
+              <span class="tech-badge">
+                RT
+              </span>
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td>
+              1% Low
+            </td>
+
+            <td>
+              Gambaran performa pada frame-frame
+              terendah yang diambil dari benchmark.
+            </td>
+
+            <td>
+              Membantu melihat apakah game mengalami
+              penurunan frame yang terasa.
+            </td>
+
+            <td>
+              <span class="tech-badge">
+                58 FPS
+              </span>
+            </td>
+
+          </tr>
+
+          <tr>
+
+            <td>
+              Bottleneck
+            </td>
+
+            <td>
+              Komponen yang sedang menjadi pembatas
+              performa sistem.
+            </td>
+
+            <td>
+              Upgrade komponen tersebut dapat
+              memberi peningkatan lebih besar.
+            </td>
+
+            <td>
+              <span class="tech-badge">
+                CPU-bound
+              </span>
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
 
     </div>
 
@@ -2358,7 +3273,7 @@ footer .wrap{
     </span>
 
     <span class="mono">
-      v3.1
+      v4.0
     </span>
 
   </div>
@@ -2438,7 +3353,7 @@ const CPUS = [
   },
 
   {
-    id:'ath-3000g',
+    id:'athlon-3000g',
     type:'cpu',
     tier:'entry',
     name:'Athlon 3000G',
@@ -3246,22 +4161,6 @@ const GPUS = [
   },
 
   {
-    id:'rtx4090',
-    type:'gpu',
-    tier:'flagship',
-    name:'GeForce RTX 4090',
-    sub:'24GB GDDR6X',
-    price:'~Rp28.000.000',
-    specs:{
-      VRAM:'24GB',
-      Bus:'384-bit',
-      TGP:'450W',
-      RT:'Ya + DLSS'
-    },
-    score:100
-  },
-
-  {
     id:'rx9070xt',
     type:'gpu',
     tier:'flagship',
@@ -3278,6 +4177,22 @@ const GPUS = [
   },
 
   {
+    id:'rtx4090',
+    type:'gpu',
+    tier:'flagship',
+    name:'GeForce RTX 4090',
+    sub:'24GB GDDR6X',
+    price:'~Rp28.000.000',
+    specs:{
+      VRAM:'24GB',
+      Bus:'384-bit',
+      TGP:'450W',
+      RT:'Ya + DLSS'
+    },
+    score:100
+  },
+
+  {
     id:'rtx5090',
     type:'gpu',
     tier:'flagship',
@@ -3288,7 +4203,7 @@ const GPUS = [
       VRAM:'32GB',
       Bus:'512-bit',
       TGP:'575W',
-      RT:'Ya + DLSS 4'
+      RT:'Ya + DLSS'
     },
     score:110
   }
@@ -3296,20 +4211,11 @@ const GPUS = [
 ];
 
 /* =========================================================
-   GAME DATABASE
+   GAME DATA
+   minCPU / minGPU menggunakan score internal Benchkit.
 ========================================================= */
 
 const GAMES = [
-
-  {
-    name:'League of Legends',
-    genre:'MOBA',
-    preset:'1080p Very High',
-    gpuWeight:.20,
-    cpuWeight:.80,
-    base:320,
-    reason:'Sangat ringan untuk GPU dan lebih bergantung pada CPU.'
-  },
 
   {
     name:'Terraria',
@@ -3318,7 +4224,21 @@ const GAMES = [
     gpuWeight:.15,
     cpuWeight:.85,
     base:360,
-    reason:'Sangat ringan untuk hardware modern.'
+    minCPU:2,
+    minGPU:1,
+    reason:'Game sangat ringan; hampir semua hardware di katalog dapat menjalankannya.'
+  },
+
+  {
+    name:'League of Legends',
+    genre:'MOBA',
+    preset:'1080p Very High',
+    gpuWeight:.20,
+    cpuWeight:.80,
+    base:320,
+    minCPU:3,
+    minGPU:2,
+    reason:'Sangat ringan untuk GPU dan lebih bergantung pada CPU.'
   },
 
   {
@@ -3328,7 +4248,9 @@ const GAMES = [
     gpuWeight:.25,
     cpuWeight:.75,
     base:280,
-    reason:'Engine ringan dan sangat sensitif terhadap performa CPU.'
+    minCPU:5,
+    minGPU:3,
+    reason:'Engine ringan tetapi CPU lama dapat menjadi pembatas utama.'
   },
 
   {
@@ -3338,7 +4260,9 @@ const GAMES = [
     gpuWeight:.30,
     cpuWeight:.70,
     base:220,
-    reason:'Performa vanilla cukup bergantung pada CPU dan single-core.'
+    minCPU:6,
+    minGPU:4,
+    reason:'Performa Java vanilla cukup sensitif terhadap CPU dan single-core.'
   },
 
   {
@@ -3348,7 +4272,21 @@ const GAMES = [
     gpuWeight:.25,
     cpuWeight:.75,
     base:300,
-    reason:'Engine sangat ringan dan cocok untuk frame rate tinggi.'
+    minCPU:5,
+    minGPU:4,
+    reason:'Engine relatif ringan dan dapat menghasilkan FPS tinggi.'
+  },
+
+  {
+    name:'Portal 2',
+    genre:'Puzzle',
+    preset:'1440p Maximum',
+    gpuWeight:.20,
+    cpuWeight:.80,
+    base:300,
+    minCPU:3,
+    minGPU:2,
+    reason:'Game lawas dan ringan untuk hardware modern.'
   },
 
   {
@@ -3358,7 +4296,9 @@ const GAMES = [
     gpuWeight:.35,
     cpuWeight:.65,
     base:240,
-    reason:'CPU sangat penting ketika mengejar frame rate tinggi.'
+    minCPU:10,
+    minGPU:8,
+    reason:'CPU cukup penting untuk menjaga frame rate tinggi.'
   },
 
   {
@@ -3368,6 +4308,8 @@ const GAMES = [
     gpuWeight:.40,
     cpuWeight:.60,
     base:210,
+    minCPU:7,
+    minGPU:5,
     reason:'Team fight besar meningkatkan beban CPU dan GPU.'
   },
 
@@ -3378,7 +4320,9 @@ const GAMES = [
     gpuWeight:.45,
     cpuWeight:.55,
     base:180,
-    reason:'Engine relatif ringan tetapi tetap membutuhkan CPU cepat.'
+    minCPU:10,
+    minGPU:9,
+    reason:'Engine relatif ringan tetapi tetap membutuhkan hardware modern.'
   },
 
   {
@@ -3388,7 +4332,9 @@ const GAMES = [
     gpuWeight:.45,
     cpuWeight:.55,
     base:210,
-    reason:'Engine cukup ringan dan dapat menghasilkan FPS sangat tinggi.'
+    minCPU:9,
+    minGPU:8,
+    reason:'Game dapat berjalan sangat cepat pada hardware yang cukup kuat.'
   },
 
   {
@@ -3398,6 +4344,8 @@ const GAMES = [
     gpuWeight:.55,
     cpuWeight:.45,
     base:170,
+    minCPU:8,
+    minGPU:8,
     reason:'Banyak efek visual tetapi engine cukup efisien.'
   },
 
@@ -3408,7 +4356,9 @@ const GAMES = [
     gpuWeight:.50,
     cpuWeight:.50,
     base:130,
-    reason:'Game lama tetapi CPU tetap penting di area ramai.'
+    minCPU:10,
+    minGPU:10,
+    reason:'Area kota dan lalu lintas dapat meningkatkan beban CPU.'
   },
 
   {
@@ -3418,7 +4368,9 @@ const GAMES = [
     gpuWeight:.65,
     cpuWeight:.35,
     base:95,
-    reason:'Visual Enhanced meningkatkan kebutuhan GPU.'
+    minCPU:22,
+    minGPU:30,
+    reason:'Versi Enhanced membutuhkan hardware yang lebih modern.'
   },
 
   {
@@ -3428,7 +4380,9 @@ const GAMES = [
     gpuWeight:.50,
     cpuWeight:.50,
     base:150,
-    reason:'Beban CPU dan GPU relatif seimbang.'
+    minCPU:10,
+    minGPU:12,
+    reason:'Beban CPU dan GPU cukup seimbang.'
   },
 
   {
@@ -3438,7 +4392,9 @@ const GAMES = [
     gpuWeight:.55,
     cpuWeight:.45,
     base:125,
-    reason:'Area ramai dapat memberikan beban besar pada sistem.'
+    minCPU:12,
+    minGPU:16,
+    reason:'Lingkungan besar dan area ramai dapat memberi beban tinggi.'
   },
 
   {
@@ -3448,47 +4404,9 @@ const GAMES = [
     gpuWeight:.55,
     cpuWeight:.45,
     base:140,
-    reason:'Setting Epic cukup berat untuk GPU.'
-  },
-
-  {
-    name:'Forza Horizon 5',
-    genre:'Racing',
-    preset:'1440p Extreme',
-    gpuWeight:.72,
-    cpuWeight:.28,
-    base:110,
-    reason:'Dunia terbuka detail tinggi cukup berat untuk GPU.'
-  },
-
-  {
-    name:'Forza Motorsport',
-    genre:'Racing',
-    preset:'1440p High',
-    gpuWeight:.76,
-    cpuWeight:.24,
-    base:92,
-    reason:'Rendering trek dan kendaraan memberikan beban GPU.'
-  },
-
-  {
-    name:'Euro Truck Simulator 2',
-    genre:'Simulasi',
-    preset:'1440p Ultra',
-    gpuWeight:.40,
-    cpuWeight:.60,
-    base:145,
-    reason:'CPU cukup penting ketika kota dan lalu lintas semakin ramai.'
-  },
-
-  {
-    name:'Assetto Corsa Competizione',
-    genre:'Racing Sim',
-    preset:'1440p High',
-    gpuWeight:.72,
-    cpuWeight:.28,
-    base:105,
-    reason:'Rendering sirkuit dan kendaraan cukup berat.'
+    minCPU:12,
+    minGPU:18,
+    reason:'Preset Epic meningkatkan kebutuhan GPU cukup besar.'
   },
 
   {
@@ -3498,17 +4416,9 @@ const GAMES = [
     gpuWeight:.65,
     cpuWeight:.35,
     base:180,
-    reason:'id Tech sangat optimal dan dapat menghasilkan FPS tinggi.'
-  },
-
-  {
-    name:'Resident Evil 4',
-    genre:'Survival Horror',
-    preset:'1440p High',
-    gpuWeight:.68,
-    cpuWeight:.32,
-    base:110,
-    reason:'RE Engine cukup optimal tetapi tetap scaling dengan GPU.'
+    minCPU:10,
+    minGPU:14,
+    reason:'Engine sangat optimal dan bisa menghasilkan FPS tinggi.'
   },
 
   {
@@ -3518,7 +4428,21 @@ const GAMES = [
     gpuWeight:.65,
     cpuWeight:.35,
     base:125,
-    reason:'Engine modern namun relatif efisien.'
+    minCPU:16,
+    minGPU:25,
+    reason:'Visual modern membutuhkan GPU yang cukup kuat.'
+  },
+
+  {
+    name:'Resident Evil 4',
+    genre:'Survival Horror',
+    preset:'1440p High',
+    gpuWeight:.68,
+    cpuWeight:.32,
+    base:110,
+    minCPU:18,
+    minGPU:30,
+    reason:'RE Engine cukup optimal namun tetap membutuhkan GPU modern.'
   },
 
   {
@@ -3528,17 +4452,9 @@ const GAMES = [
     gpuWeight:.60,
     cpuWeight:.40,
     base:95,
+    minCPU:18,
+    minGPU:28,
     reason:'Performa dipengaruhi keseimbangan CPU dan GPU.'
-  },
-
-  {
-    name:'Dark Souls III',
-    genre:'Action RPG',
-    preset:'1440p Maximum',
-    gpuWeight:.55,
-    cpuWeight:.45,
-    base:145,
-    reason:'Game relatif ringan dibanding banyak game modern.'
   },
 
   {
@@ -3548,7 +4464,33 @@ const GAMES = [
     gpuWeight:.70,
     cpuWeight:.30,
     base:105,
-    reason:'Dunia terbuka dan efek visual cukup berat.'
+    minCPU:20,
+    minGPU:32,
+    reason:'Dunia terbuka dan efek visual membutuhkan hardware menengah.'
+  },
+
+  {
+    name:'Forza Horizon 5',
+    genre:'Racing',
+    preset:'1440p Extreme',
+    gpuWeight:.72,
+    cpuWeight:.28,
+    base:110,
+    minCPU:22,
+    minGPU:45,
+    reason:'Dunia terbuka detail tinggi cukup berat bagi GPU.'
+  },
+
+  {
+    name:'Forza Motorsport',
+    genre:'Racing',
+    preset:'1440p High',
+    gpuWeight:.76,
+    cpuWeight:.24,
+    base:92,
+    minCPU:28,
+    minGPU:48,
+    reason:'Rendering kendaraan dan trek modern membutuhkan GPU kuat.'
   },
 
   {
@@ -3558,6 +4500,8 @@ const GAMES = [
     gpuWeight:.62,
     cpuWeight:.38,
     base:105,
+    minCPU:22,
+    minGPU:34,
     reason:'Rendering dunia dan post-processing cukup berat.'
   },
 
@@ -3568,7 +4512,69 @@ const GAMES = [
     gpuWeight:.75,
     cpuWeight:.25,
     base:80,
-    reason:'Lingkungan detail dan jarak pandang membebani GPU.'
+    minCPU:30,
+    minGPU:50,
+    reason:'Lingkungan detail dan jarak pandang jauh sangat membebani GPU.'
+  },
+
+  {
+    name:'Baldur\'s Gate 3',
+    genre:'RPG',
+    preset:'1440p Ultra',
+    gpuWeight:.55,
+    cpuWeight:.45,
+    base:85,
+    minCPU:30,
+    minGPU:35,
+    reason:'Kota dan area ramai meningkatkan beban CPU.'
+  },
+
+  {
+    name:'Hogwarts Legacy',
+    genre:'Action RPG',
+    preset:'1440p Ultra',
+    gpuWeight:.72,
+    cpuWeight:.28,
+    base:82,
+    minCPU:30,
+    minGPU:45,
+    reason:'Streaming dunia dan tekstur membutuhkan VRAM dan GPU kuat.'
+  },
+
+  {
+    name:'Horizon Forbidden West',
+    genre:'Action RPG',
+    preset:'1440p Very High',
+    gpuWeight:.76,
+    cpuWeight:.24,
+    base:88,
+    minCPU:34,
+    minGPU:52,
+    reason:'Asset lingkungan berkualitas tinggi membutuhkan GPU modern.'
+  },
+
+  {
+    name:'God of War Ragnarök',
+    genre:'Action',
+    preset:'1440p High',
+    gpuWeight:.72,
+    cpuWeight:.28,
+    base:95,
+    minCPU:34,
+    minGPU:45,
+    reason:'Kualitas lingkungan dan karakter memberikan beban tinggi.'
+  },
+
+  {
+    name:'The Last of Us Part I',
+    genre:'Action RPG',
+    preset:'1440p High',
+    gpuWeight:.78,
+    cpuWeight:.22,
+    base:72,
+    minCPU:35,
+    minGPU:50,
+    reason:'Asset besar dan texture streaming cukup berat.'
   },
 
   {
@@ -3578,17 +4584,9 @@ const GAMES = [
     gpuWeight:.85,
     cpuWeight:.15,
     base:75,
-    reason:'Ray tracing membuat GPU menjadi komponen paling menentukan.'
-  },
-
-  {
-    name:'Cyberpunk 2077',
-    genre:'RPG Open World',
-    preset:'4K Ultra + RT',
-    gpuWeight:.92,
-    cpuWeight:.08,
-    base:42,
-    reason:'4K dan ray tracing menghasilkan beban GPU sangat tinggi.'
+    minCPU:40,
+    minGPU:70,
+    reason:'Ray tracing dan kota padat sangat membebani GPU.'
   },
 
   {
@@ -3598,7 +4596,9 @@ const GAMES = [
     gpuWeight:.90,
     cpuWeight:.10,
     base:55,
-    reason:'Lighting modern dan ray tracing sangat GPU-intensive.'
+    minCPU:42,
+    minGPU:75,
+    reason:'Lighting modern dan ray tracing sangat demanding.'
   },
 
   {
@@ -3608,6 +4608,8 @@ const GAMES = [
     gpuWeight:.84,
     cpuWeight:.16,
     base:72,
+    minCPU:32,
+    minGPU:55,
     reason:'Ray tracing memberikan beban besar pada GPU.'
   },
 
@@ -3618,7 +4620,9 @@ const GAMES = [
     gpuWeight:.88,
     cpuWeight:.12,
     base:68,
-    reason:'Lighting ray traced sangat menuntut GPU.'
+    minCPU:38,
+    minGPU:62,
+    reason:'Enhanced Edition menggunakan lighting ray traced secara intensif.'
   },
 
   {
@@ -3628,57 +4632,9 @@ const GAMES = [
     gpuWeight:.84,
     cpuWeight:.16,
     base:55,
+    minCPU:42,
+    minGPU:72,
     reason:'Visual Unreal Engine sangat detail dan demanding.'
-  },
-
-  {
-    name:'Baldur\'s Gate 3',
-    genre:'RPG',
-    preset:'1440p Ultra',
-    gpuWeight:.55,
-    cpuWeight:.45,
-    base:85,
-    reason:'Kota dan adegan ramai dapat meningkatkan beban CPU.'
-  },
-
-  {
-    name:'Hogwarts Legacy',
-    genre:'Action RPG',
-    preset:'1440p Ultra',
-    gpuWeight:.72,
-    cpuWeight:.28,
-    base:82,
-    reason:'Streaming dunia dan tekstur cukup menuntut.'
-  },
-
-  {
-    name:'Horizon Forbidden West',
-    genre:'Action RPG',
-    preset:'1440p Very High',
-    gpuWeight:.76,
-    cpuWeight:.24,
-    base:88,
-    reason:'Detail lingkungan sangat bergantung pada kemampuan GPU.'
-  },
-
-  {
-    name:'God of War Ragnarök',
-    genre:'Action',
-    preset:'1440p High',
-    gpuWeight:.72,
-    cpuWeight:.28,
-    base:95,
-    reason:'Rendering karakter dan lingkungan cukup berat.'
-  },
-
-  {
-    name:'The Last of Us Part I',
-    genre:'Action RPG',
-    preset:'1440p High',
-    gpuWeight:.78,
-    cpuWeight:.22,
-    base:72,
-    reason:'Asset besar membutuhkan GPU dan VRAM kuat.'
   },
 
   {
@@ -3688,6 +4644,8 @@ const GAMES = [
     gpuWeight:.72,
     cpuWeight:.28,
     base:68,
+    minCPU:38,
+    minGPU:50,
     reason:'Dunia besar dan simulasi dapat membebani kedua komponen.'
   },
 
@@ -3698,7 +4656,9 @@ const GAMES = [
     gpuWeight:.55,
     cpuWeight:.45,
     base:60,
-    reason:'Streaming dunia dan simulasi real-time cukup berat.'
+    minCPU:45,
+    minGPU:40,
+    reason:'Simulasi dan streaming dunia membuat CPU sangat penting.'
   },
 
   {
@@ -3708,7 +4668,9 @@ const GAMES = [
     gpuWeight:.62,
     cpuWeight:.38,
     base:82,
-    reason:'Jumlah musuh dan efek simultan meningkatkan beban sistem.'
+    minCPU:38,
+    minGPU:48,
+    reason:'Banyak musuh dan efek simultan meningkatkan beban sistem.'
   },
 
   {
@@ -3718,6 +4680,8 @@ const GAMES = [
     gpuWeight:.80,
     cpuWeight:.20,
     base:58,
+    minCPU:45,
+    minGPU:65,
     reason:'Visual modern dan dunia detail cukup demanding.'
   },
 
@@ -3728,7 +4692,9 @@ const GAMES = [
     gpuWeight:.68,
     cpuWeight:.32,
     base:62,
-    reason:'Kota dan NPC memberikan beban CPU cukup besar.'
+    minCPU:45,
+    minGPU:52,
+    reason:'NPC dan kota besar meningkatkan beban CPU.'
   },
 
   {
@@ -3738,7 +4704,9 @@ const GAMES = [
     gpuWeight:.67,
     cpuWeight:.33,
     base:105,
-    reason:'Kota besar dan detail lingkungan membutuhkan CPU serta GPU.'
+    minCPU:30,
+    minGPU:38,
+    reason:'Kota besar dan detail lingkungan membutuhkan hardware modern.'
   },
 
   {
@@ -3748,7 +4716,9 @@ const GAMES = [
     gpuWeight:.80,
     cpuWeight:.20,
     base:65,
-    reason:'Rendering generasi baru lebih demanding.'
+    minCPU:44,
+    minGPU:65,
+    reason:'Rendering generasi baru membutuhkan GPU yang cukup tinggi.'
   },
 
   {
@@ -3758,7 +4728,9 @@ const GAMES = [
     gpuWeight:.84,
     cpuWeight:.16,
     base:58,
-    reason:'Dunia detail dan lighting sangat berat untuk GPU.'
+    minCPU:45,
+    minGPU:66,
+    reason:'Dunia detail dan lighting modern sangat berat.'
   },
 
   {
@@ -3768,157 +4740,293 @@ const GAMES = [
     gpuWeight:.85,
     cpuWeight:.15,
     base:48,
+    minCPU:45,
+    minGPU:70,
     reason:'Unreal Engine 5 membuat game sangat demanding.'
-  },
-
-  {
-    name:'The Finals',
-    genre:'FPS',
-    preset:'1440p High',
-    gpuWeight:.63,
-    cpuWeight:.37,
-    base:105,
-    reason:'Destruction physics dan visual dinamis memakai CPU serta GPU.'
-  },
-
-  {
-    name:'Once Human',
-    genre:'Survival MMO',
-    preset:'1440p High',
-    gpuWeight:.68,
-    cpuWeight:.32,
-    base:85,
-    reason:'Dunia terbuka dan asset streaming meningkatkan penggunaan hardware.'
   }
 
 ];
 
 /* =========================================================
-   LABEL
+   FUN FACT DATA
 ========================================================= */
 
-const TIER_LABEL = {
+const FUN_FACTS = [
 
-  lowest:'Ultra Low',
-  entry:'Entry',
-  budget:'Budget',
-  mid:'Mid',
-  high:'High-end',
-  flagship:'Flagship'
+  {
+    title:'Apa itu FPS?',
+    short:'FPS berarti Frames Per Second, yaitu jumlah frame yang ditampilkan atau dirender setiap detik.',
+    example:'60 FPS berarti game menghasilkan sekitar <b>60 frame setiap detik</b>.'
+  },
 
-};
+  {
+    title:'Kenapa FPS tinggi terasa lebih halus?',
+    short:'Semakin tinggi FPS, semakin pendek jeda antar-frame yang dikirim ke layar.',
+    example:'144 FPS menghasilkan frame baru sekitar setiap <b>6,94 ms</b>.'
+  },
+
+  {
+    title:'Apa itu frametime?',
+    short:'Frametime adalah waktu yang dibutuhkan sistem untuk menghasilkan satu frame.',
+    example:'120 FPS ≈ <b>8,33 ms per frame</b>.'
+  },
+
+  {
+    title:'Apa itu ms dalam game?',
+    short:'MS biasanya merujuk pada milidetik, satuan waktu yang sangat kecil. Dalam gaming, ms sering digunakan untuk membicarakan frametime atau latency.',
+    example:'Semakin kecil angka latency umumnya semakin cepat respons sistem.'
+  },
+
+  {
+    title:'FPS vs Hz',
+    short:'FPS berasal dari game atau GPU, sedangkan Hz adalah berapa kali monitor melakukan refresh setiap detik.',
+    example:'Game 200 FPS pada monitor <b>60 Hz</b> tidak berarti kamu melihat 200 refresh per detik.'
+  },
+
+  {
+    title:'Apa itu screen tearing?',
+    short:'Screen tearing terjadi ketika bagian dari frame yang berbeda terlihat bersamaan sehingga gambar tampak seperti terbelah.',
+    example:'Gerakan kamera cepat bisa memperlihatkan <b>garis sobekan horizontal</b>.'
+  },
+
+  {
+    title:'Apa fungsi V-Sync?',
+    short:'V-Sync mencoba menyinkronkan frame output dengan refresh rate monitor.',
+    example:'Monitor 60 Hz dapat dikunci ke sekitar <b>60 FPS</b>.'
+  },
+
+  {
+    title:'Apa itu DLSS?',
+    short:'DLSS adalah teknologi NVIDIA yang menggunakan rekonstruksi gambar dan upscaling untuk membantu meningkatkan performa.',
+    example:'GPU bisa merender pada resolusi internal lebih rendah lalu menghasilkan gambar output yang lebih tinggi.'
+  },
+
+  {
+    title:'Apa itu FSR?',
+    short:'FSR adalah teknologi upscaling AMD yang dirancang agar dapat digunakan pada berbagai GPU.',
+    example:'Resolusi internal dapat diturunkan untuk mendapatkan <b>FPS tambahan</b>.'
+  },
+
+  {
+    title:'Apa itu XeSS?',
+    short:'XeSS adalah teknologi upscaling dan rekonstruksi gambar dari Intel.',
+    example:'Tujuannya mirip: meningkatkan performa sambil menjaga kualitas gambar.'
+  },
+
+  {
+    title:'Apa itu anti-aliasing?',
+    short:'Anti-aliasing digunakan untuk mengurangi tampilan bergerigi pada tepi objek diagonal.',
+    example:'Tanpa AA, kabel atau pagar diagonal dapat terlihat seperti <b>anak tangga</b>.'
+  },
+
+  {
+    title:'Apa itu ray tracing?',
+    short:'Ray tracing mensimulasikan jalur cahaya untuk menghasilkan pencahayaan, pantulan, dan bayangan yang lebih realistis.',
+    example:'Pantulan kaca dan cahaya dari sumber kecil dapat terlihat lebih natural.'
+  },
+
+  {
+    title:'Kenapa Ray Tracing berat?',
+    short:'Perhitungan tambahan untuk pencahayaan dan pantulan membutuhkan banyak pekerjaan GPU.',
+    example:'Game yang sama bisa kehilangan banyak FPS saat <b>RT diaktifkan</b>.'
+  },
+
+  {
+    title:'Apa itu VRAM?',
+    short:'VRAM adalah memori yang tersedia pada GPU untuk menyimpan texture, framebuffer, dan data rendering lainnya.',
+    example:'GPU dengan <b>12 GB VRAM</b> mempunyai kapasitas memori grafis lebih besar daripada GPU 4 GB.'
+  },
+
+  {
+    title:'VRAM besar selalu lebih cepat?',
+    short:'Tidak. Kapasitas VRAM dan kecepatan GPU adalah dua hal berbeda.',
+    example:'GPU 12 GB tidak otomatis lebih cepat daripada GPU 8 GB.'
+  },
+
+  {
+    title:'Apa itu bottleneck?',
+    short:'Bottleneck adalah kondisi ketika suatu komponen membatasi performa keseluruhan sistem pada workload tertentu.',
+    example:'Pada game kompetitif FPS tinggi, <b>CPU</b> bisa menjadi pembatas walaupun GPU sangat kuat.'
+  },
+
+  {
+    title:'CPU-bound',
+    short:'Game disebut CPU-bound ketika CPU menjadi faktor utama pembatas FPS.',
+    example:'Game ringan dengan target <b>200–300 FPS</b> sering lebih sensitif terhadap CPU.'
+  },
+
+  {
+    title:'GPU-bound',
+    short:'Game disebut GPU-bound ketika GPU menjadi faktor utama pembatas FPS.',
+    example:'4K Ultra dengan Ray Tracing biasanya membuat <b>GPU</b> menjadi faktor utama.'
+  },
+
+  {
+    title:'Apa itu 1% Low?',
+    short:'1% Low digunakan untuk melihat bagian performa frame rate terendah dalam benchmark.',
+    example:'Average 100 FPS dengan 1% Low 45 FPS bisa terasa kurang stabil dibanding average 90 dengan 1% Low 75.'
+  },
+
+  {
+    title:'Apa itu 0.1% Low?',
+    short:'0.1% Low melihat bagian frame yang lebih ekstrem di sisi bawah performa.',
+    example:'Berguna untuk melihat <b>stutter atau drop</b> yang sangat singkat.'
+  },
+
+  {
+    title:'Apa itu stutter?',
+    short:'Stutter adalah gangguan kelancaran ketika frametime tiba-tiba melonjak.',
+    example:'Game bisa menunjukkan FPS tinggi tetapi tetap terasa patah jika frametime tidak konsisten.'
+  },
+
+  {
+    title:'Mengapa frametime konsisten penting?',
+    short:'Dua sistem dengan average FPS sama dapat terasa berbeda jika distribusi frametime mereka berbeda.',
+    example:'<b>60 FPS stabil</b> dapat terasa lebih baik daripada FPS tinggi yang terus naik turun.'
+  },
+
+  {
+    title:'Apa itu refresh rate?',
+    short:'Refresh rate adalah jumlah refresh monitor setiap detik.',
+    example:'60 Hz, 120 Hz, 144 Hz, 165 Hz, dan 240 Hz adalah contoh refresh rate.'
+  },
+
+  {
+    title:'Monitor 240 Hz harus 240 FPS?',
+    short:'Tidak wajib. Namun FPS yang mendekati refresh rate dapat memanfaatkan kemampuan monitor dengan lebih baik.',
+    example:'Game 180 FPS tetap dapat berjalan di monitor 240 Hz.'
+  },
+
+  {
+    title:'Apa itu input latency?',
+    short:'Input latency adalah jeda dari input pengguna sampai respons terlihat pada layar.',
+    example:'Mouse click → game memproses → frame dirender → monitor menampilkan hasil.'
+  },
+
+  {
+    title:'Apa itu texture?',
+    short:'Texture adalah gambar atau data permukaan yang ditempelkan pada objek 3D.',
+    example:'Batu, kayu, dinding dan pakaian karakter menggunakan texture.'
+  },
+
+  {
+    title:'Apa itu shader?',
+    short:'Shader adalah program kecil yang dijalankan GPU untuk menentukan bagaimana objek diproses atau ditampilkan.',
+    example:'Shader dapat mengatur warna, cahaya, material dan efek tertentu.'
+  },
+
+  {
+    title:'Kenapa shader compilation bisa menyebabkan stutter?',
+    short:'Game kadang perlu menyiapkan shader sebelum efek tertentu dapat digunakan secara optimal.',
+    example:'Perubahan area atau efek baru dapat memicu <b>shader compilation</b>.'
+  },
+
+  {
+    title:'Apa itu upscaling?',
+    short:'Upscaling berarti menghasilkan output resolusi lebih tinggi dari resolusi render internal.',
+    example:'Render 1080p → output 1440p dengan bantuan algoritma upscaling.'
+  },
+
+  {
+    title:'Apa itu resolution scaling?',
+    short:'Resolution scaling mengatur resolusi internal yang digunakan game untuk dirender.',
+    example:'Output monitor tetap 1440p tetapi render scale dapat diturunkan menjadi 80%.'
+  },
+
+  {
+    title:'Kenapa menurunkan resolusi menaikkan FPS?',
+    short:'Resolusi lebih rendah berarti GPU harus mengolah lebih sedikit pixel.',
+    example:'1080p memiliki jauh lebih sedikit pixel dibanding <b>4K</b>.'
+  },
+
+  {
+    title:'Kenapa CPU kuat penting untuk FPS tinggi?',
+    short:'CPU bertanggung jawab terhadap banyak pekerjaan seperti game logic, AI, physics, draw calls dan pemrosesan lainnya.',
+    example:'Target 240 FPS membutuhkan frame yang dihasilkan setiap sekitar <b>4,17 ms</b>.'
+  },
+
+  {
+    title:'Apa itu game engine?',
+    short:'Game engine adalah kumpulan teknologi dan sistem yang membantu pengembang membuat game.',
+    example:'Engine dapat menangani rendering, physics, audio, input dan berbagai sistem lainnya.'
+  },
+
+  {
+    title:'Apa itu draw call?',
+    short:'Draw call adalah instruksi yang meminta GPU menggambar sekumpulan objek atau pekerjaan rendering tertentu.',
+    example:'Jumlah draw call yang sangat tinggi bisa meningkatkan beban CPU.'
+  },
+
+  {
+    title:'Kenapa game open world berat?',
+    short:'Game open world dapat terus memproses dunia luas, NPC, streaming asset, lighting dan physics.',
+    example:'Kota besar dengan banyak NPC dapat menjadi jauh lebih berat daripada ruangan kosong.'
+  },
+
+  {
+    title:'Kenapa 4K lebih berat daripada 1080p?',
+    short:'4K memiliki jumlah pixel jauh lebih besar yang harus diproses GPU.',
+    example:'3840×2160 memiliki sekitar <b>4× jumlah pixel</b> 1920×1080.'
+  },
+
+  {
+    title:'Apa itu path tracing?',
+    short:'Path tracing adalah bentuk ray tracing yang menggunakan pendekatan lebih menyeluruh untuk simulasi cahaya.',
+    example:'Kualitas pencahayaan bisa sangat tinggi, tetapi kebutuhan komputasinya juga sangat besar.'
+  },
+
+  {
+    title:'Frame Generation itu apa?',
+    short:'Frame Generation menciptakan frame tambahan di antara frame yang dirender secara langsung untuk meningkatkan frame rate yang terlihat.',
+    example:'Teknologi ini berbeda dari sekadar meningkatkan kekuatan GPU mentah.'
+  },
+
+  {
+    title:'Kenapa Frame Generation bukan pengganti FPS asli?',
+    short:'Frame tambahan tidak selalu sama dengan frame yang dihasilkan langsung oleh game.',
+    example:'Latency dan kualitas frame tetap bergantung pada implementasi game dan teknologi yang digunakan.'
+  },
+
+  {
+    title:'Apa itu texture streaming?',
+    short:'Texture streaming adalah proses memuat texture sesuai kebutuhan saat pemain bergerak di dunia game.',
+    example:'Area baru bisa membutuhkan data texture tambahan dari storage ke memory.'
+  }
+
+];
 
 /* =========================================================
    STATE
 ========================================================= */
 
 let selectedCPU = null;
-
 let selectedGPU = null;
 
 let cpuFilter = 'all';
-
 let gpuFilter = 'all';
 
 let currentGamePage = 1;
-
 const gamesPerPage = 8;
 
-/* =========================================================
-   LOADING
-========================================================= */
+let currentFactPage = 1;
+const factsPerPage = 6;
+
+let factSearchTerm = '';
 
 let loadingTimer = null;
 
-function showLoading(
-  text='Menghitung ulang performa...'
-){
-
-  const overlay =
-    document.getElementById(
-      'loading-overlay'
-    );
-
-  const loadingText =
-    document.getElementById(
-      'loading-text'
-    );
-
-  const bar =
-    document.getElementById(
-      'loading-bar-fill'
-    );
-
-  clearInterval(loadingTimer);
-
-  loadingText.textContent = text;
-
-  bar.style.width = '0%';
-
-  overlay.classList.add('active');
-
-  document.body.classList.add('loading');
-
-  let progress = 0;
-
-  loadingTimer = setInterval(() => {
-
-    progress +=
-      Math.random() * 18 + 7;
-
-    if(progress >= 100){
-
-      progress = 100;
-
-      clearInterval(
-        loadingTimer
-      );
-
-    }
-
-    bar.style.width =
-      progress + '%';
-
-  },80);
-
-}
-
-function hideLoading(){
-
-  const overlay =
-    document.getElementById(
-      'loading-overlay'
-    );
-
-  overlay.classList.remove(
-    'active'
-  );
-
-  document.body.classList.remove(
-    'loading'
-  );
-
-}
-
 /* =========================================================
-   WAIT
+   HELPERS
 ========================================================= */
 
 function wait(ms){
 
   return new Promise(
     resolve =>
-      setTimeout(
-        resolve,
-        ms
-      )
+      setTimeout(resolve,ms)
   );
 
 }
-
-/* =========================================================
-   ANIMATE NUMBER
-========================================================= */
 
 function animateNumber(
   el,
@@ -3967,10 +5075,6 @@ function animateNumber(
 
 }
 
-/* =========================================================
-   BAR
-========================================================= */
-
 function triggerWidth(
   el,
   targetWidth
@@ -3992,6 +5096,88 @@ function triggerWidth(
 }
 
 /* =========================================================
+   LOADING
+========================================================= */
+
+function showLoading(
+  text='Menghitung ulang performa...'
+){
+
+  const overlay =
+    document.getElementById(
+      'loading-overlay'
+    );
+
+  const loadingText =
+    document.getElementById(
+      'loading-text'
+    );
+
+  const bar =
+    document.getElementById(
+      'loading-bar-fill'
+    );
+
+  clearInterval(
+    loadingTimer
+  );
+
+  loadingText.textContent =
+    text;
+
+  bar.style.width =
+    '0%';
+
+  overlay.classList.add(
+    'active'
+  );
+
+  document.body.classList.add(
+    'loading'
+  );
+
+  let progress = 0;
+
+  loadingTimer =
+    setInterval(() => {
+
+      progress +=
+        Math.random()*18+7;
+
+      if(progress>=100){
+
+        progress=100;
+
+        clearInterval(
+          loadingTimer
+        );
+
+      }
+
+      bar.style.width =
+        progress+'%';
+
+    },80);
+
+}
+
+function hideLoading(){
+
+  document
+    .getElementById(
+      'loading-overlay'
+    )
+    .classList.remove(
+      'active'
+    );
+
+  document.body.classList.remove(
+    'loading'
+  );
+
+}
+
+/* =========================================================
    RIPPLE
 ========================================================= */
 
@@ -4001,7 +5187,10 @@ document.addEventListener(
 
     const target =
       e.target.closest(
-        '.btn,.filter-btn,.build-clear,.page-btn'
+        '.btn,' +
+        '.filter-btn,' +
+        '.build-clear,' +
+        '.page-btn'
       );
 
     if(!target) return;
@@ -4028,12 +5217,16 @@ document.addEventListener(
       'ripple';
 
     ripple.style.left =
-      (e.clientX -
-       rect.left) + 'px';
+      (
+        e.clientX -
+        rect.left
+      )+'px';
 
     ripple.style.top =
-      (e.clientY -
-       rect.top) + 'px';
+      (
+        e.clientY -
+        rect.top
+      )+'px';
 
     target.appendChild(
       ripple
@@ -4063,10 +5256,11 @@ function renderGrid(
     );
 
   const filtered =
-    filter === 'all'
+    filter==='all'
       ? list
       : list.filter(
-          c => c.tier === filter
+          item =>
+            item.tier===filter
         );
 
   const countEl =
@@ -4085,132 +5279,144 @@ function renderGrid(
   }
 
   el.innerHTML =
-    filtered.map(
-      (c,i) => {
+    filtered
+      .map(
+        (c,i) => {
 
-        const isSelected =
-          (
-            c.type === 'cpu' &&
-            selectedCPU?.id === c.id
-          ) ||
-          (
-            c.type === 'gpu' &&
-            selectedGPU?.id === c.id
-          );
+          const selected =
 
-        const specsHtml =
-          Object.entries(
-            c.specs
-          )
-          .map(
-            ([k,v]) => `
+            (
+              c.type==='cpu' &&
+              selectedCPU?.id===c.id
+            ) ||
 
-              <div class="spec-item">
+            (
+              c.type==='gpu' &&
+              selectedGPU?.id===c.id
+            );
 
-                <span class="spec-k">
-                  ${k}
-                </span>
+          const specsHtml =
+            Object.entries(
+              c.specs
+            )
+            .map(
+              ([key,value]) => `
 
-                <span class="spec-v">
-                  ${v}
-                </span>
+                <div class="spec-item">
 
-              </div>
+                  <span class="spec-k">
+                    ${key}
+                  </span>
 
-            `
-          )
-          .join('');
+                  <span class="spec-v">
+                    ${value}
+                  </span>
 
-        const scoreWidth =
-          Math.min(
-            100,
-            c.score
-          );
+                </div>
 
-        return `
+              `
+            )
+            .join('');
 
-          <div
-            class="comp-card ${
-              isSelected
-              ? 'selected'
-              : ''
-            }"
-            data-id="${c.id}"
-            data-type="${c.type}"
-            style="
-              animation-delay:
+          const scoreWidth =
+            Math.min(
+              100,
+              c.score
+            );
+
+          return `
+
+            <div
+              class="
+                comp-card
+                ${
+                  selected
+                  ? 'selected'
+                  : ''
+                }
+              "
+              data-id="${c.id}"
+              data-type="${c.type}"
+              style="
+                animation-delay:
                 ${Math.min(
                   i*32,
                   420
                 )}ms;
-            "
-          >
+              "
+            >
 
-            <div class="comp-top">
+              <div class="comp-top">
 
-              <div>
+                <div>
 
-                <span
-                  class="
-                    comp-tag
+                  <span
+                    class="
+                      comp-tag
+                      ${
+                        c.type==='cpu'
+                        ? 'tag-cpu'
+                        : 'tag-gpu'
+                      }
+                    "
+                  >
+                    ${c.type}
+                  </span>
+
+                  <span class="tier-pill">
                     ${
-                      c.type === 'cpu'
-                      ? 'tag-cpu'
-                      : 'tag-gpu'
+                      getTierLabel(
+                        c.tier
+                      )
                     }
-                  "
-                >
-                  ${c.type}
-                </span>
+                  </span>
 
-                <span class="tier-pill">
-                  ${TIER_LABEL[c.tier]}
+                </div>
+
+                <span class="comp-price">
+                  ${c.price}
                 </span>
 
               </div>
 
-              <span class="comp-price">
-                ${c.price}
-              </span>
+              <div class="comp-name">
+                ${c.name}
+              </div>
 
-            </div>
+              <div class="comp-sub">
+                ${c.sub}
+              </div>
 
-            <div class="comp-name">
-              ${c.name}
-            </div>
+              <div class="comp-specs">
 
-            <div class="comp-sub">
-              ${c.sub}
-            </div>
-
-            <div class="comp-specs">
-              ${specsHtml}
-            </div>
-
-            <div class="comp-score-row">
-
-              <div class="score-track">
-
-                <div
-                  class="score-fill"
-                  data-target="${scoreWidth}%"
-                ></div>
+                ${specsHtml}
 
               </div>
 
-              <span class="score-label">
-                Skor ${c.score}
-              </span>
+              <div class="comp-score-row">
+
+                <div class="score-track">
+
+                  <div
+                    class="score-fill"
+                    data-target="${scoreWidth}%"
+                  ></div>
+
+                </div>
+
+                <span class="score-label">
+                  Skor ${c.score}
+                </span>
+
+              </div>
 
             </div>
 
-          </div>
+          `;
 
-        `;
-
-      }
-    )
-    .join('');
+        }
+      )
+      .join('');
 
   el
     .querySelectorAll(
@@ -4242,14 +5448,14 @@ function renderGrid(
               card.dataset.type;
 
             const source =
-              type === 'cpu'
+              type==='cpu'
                 ? CPUS
                 : GPUS;
 
             const item =
               source.find(
                 x =>
-                  x.id === id
+                  x.id===id
               );
 
             showLoading(
@@ -4258,17 +5464,17 @@ function renderGrid(
 
             await wait(850);
 
-            if(type === 'cpu'){
+            if(type==='cpu'){
 
               selectedCPU =
-                selectedCPU?.id === id
+                selectedCPU?.id===id
                   ? null
                   : item;
 
             }else{
 
               selectedGPU =
-                selectedGPU?.id === id
+                selectedGPU?.id===id
                   ? null
                   : item;
 
@@ -4276,24 +5482,24 @@ function renderGrid(
 
             renderAll();
 
-            await wait(180);
+            await wait(160);
 
             hideLoading();
 
-            const updatedCard =
+            const updated =
               document.querySelector(
                 `.comp-card[data-id="${id}"]`
               );
 
-            if(updatedCard){
+            if(updated){
 
-              updatedCard.classList.add(
+              updated.classList.add(
                 'pop'
               );
 
               setTimeout(
                 () =>
-                  updatedCard.classList.remove(
+                  updated.classList.remove(
                     'pop'
                   ),
                 400
@@ -4306,6 +5512,30 @@ function renderGrid(
 
       }
     );
+
+}
+
+/* =========================================================
+   TIER LABEL
+========================================================= */
+
+function getTierLabel(
+  tier
+){
+
+  const labels = {
+
+    lowest:'Ultra Low',
+    entry:'Entry',
+    budget:'Budget',
+    mid:'Mid',
+    high:'High-end',
+    flagship:'Flagship'
+
+  };
+
+  return labels[tier] ||
+    tier;
 
 }
 
@@ -4358,7 +5588,9 @@ function renderBuildSummary(){
 
         <span
           class="dot"
-          style="background:var(--blue)">
+          style="
+            background:var(--blue)
+          ">
         </span>
 
         ${selectedCPU.name}
@@ -4375,7 +5607,9 @@ function renderBuildSummary(){
 
         <span
           class="dot"
-          style="background:var(--text-faint)">
+          style="
+            background:var(--text-faint)
+          ">
         </span>
 
         Pilih CPU
@@ -4394,7 +5628,9 @@ function renderBuildSummary(){
 
         <span
           class="dot"
-          style="background:var(--neon)">
+          style="
+            background:var(--neon)
+          ">
         </span>
 
         ${selectedGPU.name}
@@ -4411,7 +5647,9 @@ function renderBuildSummary(){
 
         <span
           class="dot"
-          style="background:var(--text-faint)">
+          style="
+            background:var(--text-faint)
+          ">
         </span>
 
         Pilih GPU
@@ -4433,7 +5671,8 @@ function renderBuildSummary(){
 
   `;
 
-  el.innerHTML=html;
+  el.innerHTML =
+    html;
 
   document
     .getElementById(
@@ -4449,9 +5688,14 @@ function renderBuildSummary(){
 
         await wait(650);
 
-        selectedCPU=null;
+        selectedCPU =
+          null;
 
-        selectedGPU=null;
+        selectedGPU =
+          null;
+
+        currentGamePage =
+          1;
 
         renderAll();
 
@@ -4465,7 +5709,75 @@ function renderBuildSummary(){
 }
 
 /* =========================================================
-   FPS
+   GAME REQUIREMENT
+========================================================= */
+
+function getSupportStatus(
+  game,
+  cpu,
+  gpu
+){
+
+  const cpuScore =
+    cpu
+      ? cpu.score
+      : 0;
+
+  const gpuScore =
+    gpu
+      ? gpu.score
+      : 0;
+
+  if(
+    cpuScore <
+    game.minCPU &&
+    gpuScore <
+    game.minGPU
+  ){
+
+    return {
+      supported:false,
+      reason:
+        'CPU dan GPU berada di bawah minimum estimasi.'
+    };
+
+  }
+
+  if(
+    cpuScore <
+    game.minCPU
+  ){
+
+    return {
+      supported:false,
+      reason:
+        `CPU belum memenuhi minimum estimasi (${game.minCPU}).`
+    };
+
+  }
+
+  if(
+    gpuScore <
+    game.minGPU
+  ){
+
+    return {
+      supported:false,
+      reason:
+        `GPU belum memenuhi minimum estimasi (${game.minGPU}).`
+    };
+
+  }
+
+  return {
+    supported:true,
+    reason:''
+  };
+
+}
+
+/* =========================================================
+   FPS CALC
 ========================================================= */
 
 function calcFPS(
@@ -4485,10 +5797,12 @@ function calcFPS(
       : 40;
 
   const combined =
+
     (
       cpuScore *
       game.cpuWeight
     ) +
+
     (
       gpuScore *
       game.gpuWeight
@@ -4499,13 +5813,22 @@ function calcFPS(
 
   let fps =
     Math.round(
-      game.base * factor
+      game.base *
+      factor
     );
+
+  /*
+    Hindari angka ekstrem
+    yang tidak masuk akal untuk UI.
+  */
 
   fps =
     Math.max(
       8,
-      fps
+      Math.min(
+        fps,
+        500
+      )
     );
 
   return fps;
@@ -4516,12 +5839,14 @@ function calcFPS(
    FPS COLOR
 ========================================================= */
 
-function fpsColor(fps){
+function fpsColor(
+  fps
+){
 
-  if(fps >= 90)
+  if(fps>=90)
     return 'var(--neon)';
 
-  if(fps >= 50)
+  if(fps>=50)
     return 'var(--amber)';
 
   return 'var(--red)';
@@ -4529,184 +5854,21 @@ function fpsColor(fps){
 }
 
 /* =========================================================
-   RENDER GAMES
+   GAME PAGINATION
 ========================================================= */
 
-function renderGames(){
-
-  const el =
-    document.getElementById(
-      'game-list'
-    );
+function renderGamePagination(
+  totalPages
+){
 
   const pagination =
     document.getElementById(
       'game-pagination'
     );
 
-  const totalPages =
-    Math.ceil(
-      GAMES.length /
-      gamesPerPage
-    );
-
-  if(currentGamePage >
-     totalPages){
-
-    currentGamePage =
-      totalPages;
-
-  }
-
-  const start =
-    (
-      currentGamePage - 1
-    ) *
-    gamesPerPage;
-
-  const end =
-    start +
-    gamesPerPage;
-
-  const visibleGames =
-    GAMES.slice(
-      start,
-      end
-    );
-
-  el.classList.remove(
-    'game-page-enter'
-  );
-
-  void el.offsetWidth;
-
-  el.classList.add(
-    'game-page-enter'
-  );
-
-  el.innerHTML =
-    visibleGames
-      .map(
-        g => {
-
-          const fps =
-            calcFPS(
-              g,
-              selectedCPU,
-              selectedGPU
-            );
-
-          const color =
-            fpsColor(fps);
-
-          const pct =
-            Math.min(
-              100,
-              Math.round(
-                (
-                  fps / 360
-                ) * 100
-              )
-            );
-
-          return `
-
-            <div class="game-row">
-
-              <div class="game-info">
-
-                <span class="game-name">
-                  ${g.name}
-                </span>
-
-                <span class="game-genre">
-                  ${g.genre}
-                </span>
-
-              </div>
-
-              <div class="game-preset">
-                ${g.preset}
-              </div>
-
-              <div>
-
-                <div class="fps-cell">
-
-                  <span
-                    class="n"
-                    data-target="${fps}"
-                    style="color:${color}"
-                  >
-                    0
-                  </span>
-
-                  <span class="u">
-                    FPS
-                  </span>
-
-                </div>
-
-                <div
-                  class="fps-track"
-                  style="margin-top:6px"
-                >
-
-                  <div
-                    class="fps-fill"
-                    data-target="${pct}%"
-                    style="
-                      background:${color}
-                    "
-                  ></div>
-
-                </div>
-
-              </div>
-
-              <div class="reason">
-                ${g.reason}
-              </div>
-
-            </div>
-
-          `;
-
-        }
-      )
-      .join('');
-
-  el
-    .querySelectorAll(
-      '.fps-cell .n'
-    )
-    .forEach(
-      n =>
-        animateNumber(
-          n,
-          parseInt(
-            n.dataset.target,
-            10
-          ),
-          700
-        )
-    );
-
-  el
-    .querySelectorAll(
-      '.fps-fill'
-    )
-    .forEach(
-      bar =>
-        triggerWidth(
-          bar,
-          bar.dataset.target
-        )
-    );
-
   pagination.innerHTML='';
 
-  if(totalPages <= 1)
+  if(totalPages<=1)
     return;
 
   const prev =
@@ -4715,24 +5877,19 @@ function renderGames(){
     );
 
   prev.className =
-    'page-btn page-arrow';
+    'page-btn';
 
-  prev.innerHTML =
+  prev.textContent =
     '←';
 
   prev.disabled =
-    currentGamePage === 1;
-
-  prev.style.opacity =
-    prev.disabled
-      ? '.35'
-      : '1';
+    currentGamePage===1;
 
   prev.addEventListener(
     'click',
     () =>
       changeGamePage(
-        currentGamePage - 1
+        currentGamePage-1
       )
   );
 
@@ -4754,9 +5911,11 @@ function renderGames(){
     button.className =
       'page-btn';
 
+    button.textContent =
+      page;
+
     if(
-      page ===
-      currentGamePage
+      page===currentGamePage
     ){
 
       button.classList.add(
@@ -4764,9 +5923,6 @@ function renderGames(){
       );
 
     }
-
-    button.textContent =
-      page;
 
     button.addEventListener(
       'click',
@@ -4803,24 +5959,19 @@ function renderGames(){
     );
 
   next.className =
-    'page-btn page-arrow';
+    'page-btn';
 
-  next.innerHTML =
+  next.textContent =
     '→';
 
   next.disabled =
-    currentGamePage === totalPages;
-
-  next.style.opacity =
-    next.disabled
-      ? '.35'
-      : '1';
+    currentGamePage===totalPages;
 
   next.addEventListener(
     'click',
     () =>
       changeGamePage(
-        currentGamePage + 1
+        currentGamePage+1
       )
   );
 
@@ -4831,7 +5982,252 @@ function renderGames(){
 }
 
 /* =========================================================
-   GAME PAGE CHANGE
+   RENDER GAMES
+========================================================= */
+
+function renderGames(){
+
+  const el =
+    document.getElementById(
+      'game-list'
+    );
+
+  const totalPages =
+    Math.ceil(
+      GAMES.length /
+      gamesPerPage
+    );
+
+  if(
+    currentGamePage >
+    totalPages
+  ){
+
+    currentGamePage =
+      totalPages;
+
+  }
+
+  const start =
+    (
+      currentGamePage-1
+    ) *
+    gamesPerPage;
+
+  const visible =
+    GAMES.slice(
+      start,
+      start+gamesPerPage
+    );
+
+  el.classList.remove(
+    'page-change'
+  );
+
+  void el.offsetWidth;
+
+  el.classList.add(
+    'page-change'
+  );
+
+  el.innerHTML =
+    visible
+      .map(
+        game => {
+
+          const support =
+            getSupportStatus(
+              game,
+              selectedCPU,
+              selectedGPU
+            );
+
+          if(
+            !support.supported
+          ){
+
+            return `
+
+              <div
+                class="
+                  game-row
+                  unsupported
+                "
+              >
+
+                <div class="game-info">
+
+                  <span class="game-name">
+                    ${game.name}
+                  </span>
+
+                  <span class="game-genre">
+                    ${game.genre}
+                  </span>
+
+                </div>
+
+                <div class="game-preset">
+                  ${game.preset}
+                </div>
+
+                <div class="unsupported-box">
+
+                  <span class="unsupported-title">
+                    NOT SUPPORTED
+                  </span>
+
+                  <span
+                    class="unsupported-detail"
+                  >
+                    ${
+                      support.reason
+                    }
+                  </span>
+
+                </div>
+
+                <div class="reason">
+
+                  Minimum CPU:
+                  <b>${game.minCPU}</b>
+                  ·
+                  Minimum GPU:
+                  <b>${game.minGPU}</b>
+
+                  <br><br>
+
+                  Pilih hardware yang lebih kuat
+                  untuk melihat estimasi FPS.
+
+                </div>
+
+              </div>
+
+            `;
+
+          }
+
+          const fps =
+            calcFPS(
+              game,
+              selectedCPU,
+              selectedGPU
+            );
+
+          const color =
+            fpsColor(fps);
+
+          const pct =
+            Math.min(
+              100,
+              Math.round(
+                fps/360*100
+              )
+            );
+
+          return `
+
+            <div class="game-row">
+
+              <div class="game-info">
+
+                <span class="game-name">
+                  ${game.name}
+                </span>
+
+                <span class="game-genre">
+                  ${game.genre}
+                </span>
+
+              </div>
+
+              <div class="game-preset">
+                ${game.preset}
+              </div>
+
+              <div>
+
+                <div class="fps-cell">
+
+                  <span
+                    class="n"
+                    data-target="${fps}"
+                    style="
+                      color:${color}
+                    "
+                  >
+                    0
+                  </span>
+
+                  <span class="u">
+                    FPS
+                  </span>
+
+                </div>
+
+                <div class="fps-track">
+
+                  <div
+                    class="fps-fill"
+                    data-target="${pct}%"
+                    style="
+                      background:${color}
+                    "
+                  ></div>
+
+                </div>
+
+              </div>
+
+              <div class="reason">
+                ${game.reason}
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join('');
+
+  el
+    .querySelectorAll(
+      '.fps-cell .n'
+    )
+    .forEach(
+      number =>
+        animateNumber(
+          number,
+          parseInt(
+            number.dataset.target,
+            10
+          ),
+          700
+        )
+    );
+
+  el
+    .querySelectorAll(
+      '.fps-fill'
+    )
+    .forEach(
+      bar =>
+        triggerWidth(
+          bar,
+          bar.dataset.target
+        )
+    );
+
+  renderGamePagination(
+    totalPages
+  );
+
+}
+
+/* =========================================================
+   CHANGE GAME PAGE
 ========================================================= */
 
 async function changeGamePage(
@@ -4845,9 +6241,9 @@ async function changeGamePage(
     );
 
   if(
-    page < 1 ||
-    page > totalPages ||
-    page === currentGamePage
+    page<1 ||
+    page>totalPages ||
+    page===currentGamePage
   ){
 
     return;
@@ -4858,7 +6254,7 @@ async function changeGamePage(
     `Membuka halaman game ${page}...`
   );
 
-  await wait(700);
+  await wait(650);
 
   currentGamePage =
     page;
@@ -4869,14 +6265,23 @@ async function changeGamePage(
 
   hideLoading();
 
+  document
+    .getElementById(
+      'games'
+    )
+    .scrollIntoView({
+      behavior:'smooth',
+      block:'start'
+    });
+
 }
 
 /* =========================================================
-   FILTER SETUP
+   FILTERS
 ========================================================= */
 
 function setupFilter(
-  filterContainerId,
+  containerId,
   list,
   gridId,
   type
@@ -4884,7 +6289,7 @@ function setupFilter(
 
   const container =
     document.getElementById(
-      filterContainerId
+      containerId
     );
 
   container.addEventListener(
@@ -4898,7 +6303,7 @@ function setupFilter(
       )
         return;
 
-      const nextFilter =
+      const filter =
         e.target.dataset.filter;
 
       showLoading(
@@ -4907,17 +6312,17 @@ function setupFilter(
         }...`
       );
 
-      await wait(700);
+      await wait(650);
 
-      if(type === 'cpu'){
+      if(type==='cpu'){
 
         cpuFilter =
-          nextFilter;
+          filter;
 
       }else{
 
         gpuFilter =
-          nextFilter;
+          filter;
 
       }
 
@@ -4926,8 +6331,8 @@ function setupFilter(
           '.filter-btn'
         )
         .forEach(
-          b =>
-            b.classList.remove(
+          button =>
+            button.classList.remove(
               'active'
             )
         );
@@ -4939,10 +6344,10 @@ function setupFilter(
       renderGrid(
         list,
         gridId,
-        nextFilter
+        filter
       );
 
-      await wait(120);
+      await wait(100);
 
       hideLoading();
 
@@ -4950,6 +6355,346 @@ function setupFilter(
   );
 
 }
+
+/* =========================================================
+   FUN FACT FILTER
+========================================================= */
+
+function getFilteredFacts(){
+
+  const term =
+    factSearchTerm
+      .trim()
+      .toLowerCase();
+
+  if(!term)
+    return FUN_FACTS;
+
+  return FUN_FACTS.filter(
+    fact =>
+      (
+        fact.title+
+        ' '+
+        fact.short+
+        ' '+
+        fact.example
+      )
+      .toLowerCase()
+      .includes(term)
+  );
+
+}
+
+/* =========================================================
+   FACT PAGINATION
+========================================================= */
+
+function renderFactPagination(
+  totalPages
+){
+
+  const pagination =
+    document.getElementById(
+      'fact-pagination'
+    );
+
+  pagination.innerHTML='';
+
+  if(totalPages<=1)
+    return;
+
+  const previous =
+    document.createElement(
+      'button'
+    );
+
+  previous.className =
+    'page-btn';
+
+  previous.textContent =
+    '←';
+
+  previous.disabled =
+    currentFactPage===1;
+
+  previous.addEventListener(
+    'click',
+    () =>
+      changeFactPage(
+        currentFactPage-1
+      )
+  );
+
+  pagination.appendChild(
+    previous
+  );
+
+  for(
+    let page=1;
+    page<=totalPages;
+    page++
+  ){
+
+    const button =
+      document.createElement(
+        'button'
+      );
+
+    button.className =
+      'page-btn';
+
+    button.textContent =
+      page;
+
+    if(
+      page===currentFactPage
+    ){
+
+      button.classList.add(
+        'active'
+      );
+
+    }
+
+    button.addEventListener(
+      'click',
+      () =>
+        changeFactPage(
+          page
+        )
+    );
+
+    pagination.appendChild(
+      button
+    );
+
+  }
+
+  const info =
+    document.createElement(
+      'span'
+    );
+
+  info.className =
+    'page-info';
+
+  info.textContent =
+    `Halaman ${currentFactPage} / ${totalPages}`;
+
+  pagination.appendChild(
+    info
+  );
+
+  const next =
+    document.createElement(
+      'button'
+    );
+
+  next.className =
+    'page-btn';
+
+  next.textContent =
+    '→';
+
+  next.disabled =
+    currentFactPage===totalPages;
+
+  next.addEventListener(
+    'click',
+    () =>
+      changeFactPage(
+        currentFactPage+1
+      )
+  );
+
+  pagination.appendChild(
+    next
+  );
+
+}
+
+/* =========================================================
+   RENDER FUN FACT
+========================================================= */
+
+function renderFacts(){
+
+  const grid =
+    document.getElementById(
+      'fact-grid'
+    );
+
+  const count =
+    document.getElementById(
+      'fact-count'
+    );
+
+  const filtered =
+    getFilteredFacts();
+
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(
+        filtered.length /
+        factsPerPage
+      )
+    );
+
+  if(
+    currentFactPage >
+    totalPages
+  ){
+
+    currentFactPage =
+      totalPages;
+
+  }
+
+  const start =
+    (
+      currentFactPage-1
+    ) *
+    factsPerPage;
+
+  const visible =
+    filtered.slice(
+      start,
+      start+factsPerPage
+    );
+
+  count.textContent =
+    `${filtered.length} topik ditemukan`;
+
+  grid.innerHTML =
+    visible
+      .map(
+        (fact,index) => {
+
+          const number =
+            start+index+1;
+
+          return `
+
+            <article
+              class="fact-card"
+              style="
+                animation-delay:
+                ${Math.min(
+                  index*45,
+                  300
+                )}ms;
+              "
+            >
+
+              <div class="fact-number">
+                ${String(number).padStart(2,'0')}
+              </div>
+
+              <h3 class="fact-title">
+                ${fact.title}
+              </h3>
+
+              <p class="fact-short">
+                ${fact.short}
+              </p>
+
+              <div class="fact-example">
+                ${fact.example}
+              </div>
+
+            </article>
+
+          `;
+
+        }
+      )
+      .join('');
+
+  renderFactPagination(
+    totalPages
+  );
+
+}
+
+/* =========================================================
+   CHANGE FACT PAGE
+========================================================= */
+
+async function changeFactPage(
+  page
+){
+
+  const filtered =
+    getFilteredFacts();
+
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(
+        filtered.length /
+        factsPerPage
+      )
+    );
+
+  if(
+    page<1 ||
+    page>totalPages ||
+    page===currentFactPage
+  ){
+
+    return;
+
+  }
+
+  showLoading(
+    `Membuka Fun Fact halaman ${page}...`
+  );
+
+  await wait(550);
+
+  currentFactPage =
+    page;
+
+  renderFacts();
+
+  await wait(100);
+
+  hideLoading();
+
+  document
+    .getElementById(
+      'funfact'
+    )
+    .scrollIntoView({
+      behavior:'smooth',
+      block:'start'
+    });
+
+}
+
+/* =========================================================
+   SEARCH FACT
+========================================================= */
+
+document
+  .getElementById(
+    'fact-search'
+  )
+  .addEventListener(
+    'input',
+    e => {
+
+      factSearchTerm =
+        e.target.value;
+
+      currentFactPage =
+        1;
+
+      renderFacts();
+
+    }
+  );
 
 /* =========================================================
    RENDER ALL
@@ -4973,6 +6718,8 @@ function renderAll(){
 
   renderGames();
 
+  renderFacts();
+
 }
 
 /* =========================================================
@@ -4994,7 +6741,7 @@ setupFilter(
 );
 
 /* =========================================================
-   INITIAL RENDER
+   INITIAL
 ========================================================= */
 
 renderAll();
@@ -5023,8 +6770,7 @@ window.addEventListener(
         bar =>
           triggerWidth(
             bar,
-            bar.dataset.target +
-            '%'
+            bar.dataset.target+'%'
           )
       );
 
@@ -5035,3 +6781,4 @@ window.addEventListener(
 
 </body>
 </html>
+```
