@@ -1,14 +1,493 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Saya</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benchkit — Katalog CPU & GPU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e14;
+  --bg-raised:#12181f;
+  --bg-inset:#0e131a;
+  --line:#1f2733;
+  --text:#eef2f7;
+  --text-dim:#8b95a7;
+  --text-faint:#576073;
+  --neon:#00ff9d;
+  --neon-dim:#00ff9d1a;
+  --red:#ff3860;
+  --amber:#ffb020;
+  --cpu-accent:#5eb1ff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;}
+.mono{font-family:'JetBrains Mono',monospace;}
+a{color:inherit;}
+::selection{background:var(--neon);color:#000;}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
+}
+
+/* ---------- Layout shell ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+@media (max-width:640px){.wrap{padding:0 20px;}}
+
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,14,20,0.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:17px;letter-spacing:-0.01em;}
+.logo-mark{width:9px;height:22px;background:var(--neon);border-radius:1px;box-shadow:0 0 12px var(--neon);}
+.nav-links{display:flex;gap:28px;font-size:14px;color:var(--text-dim);}
+.nav-links a{transition:color .15s;}
+.nav-links a:hover{color:var(--text);}
+@media (max-width:640px){.nav-links{display:none;}}
+
+/* ---------- Hero ---------- */
+.hero{padding:88px 0 64px;position:relative;overflow:hidden;}
+.hero::before{
+  content:'';position:absolute;top:-200px;right:-180px;width:560px;height:560px;
+  background:radial-gradient(circle,var(--neon-dim) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;position:relative;}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px;}}
+
+.hero h1{
+  font-size:clamp(34px,5vw,52px);
+  font-weight:600;
+  letter-spacing:-0.02em;
+  line-height:1.08;
+  margin-bottom:20px;
+}
+.hero p{font-size:16.5px;color:var(--text-dim);max-width:46ch;margin-bottom:28px;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 22px;border-radius:8px;font-size:14.5px;font-weight:600;
+  border:1px solid transparent;cursor:pointer;transition:all .15s;
+  font-family:'Inter',sans-serif;
+}
+.btn-primary{background:var(--neon);color:#04140d;}
+.btn-primary:hover{background:#33ffb3;}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--text);}
+.btn-ghost:hover{border-color:var(--text-faint);}
+
+/* live readout card */
+.readout{
+  background:var(--bg-raised);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:26px;
+}
+.readout-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.readout-label{font-size:12px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.06em;}
+.readout-pair{font-size:13px;color:var(--text-dim);}
+.readout-pair b{color:var(--text);font-weight:600;}
+.fps-display{display:flex;align-items:baseline;gap:10px;margin:8px 0 20px;}
+.fps-num{font-family:'Space Grotesk';font-size:64px;font-weight:700;line-height:1;color:var(--neon);text-shadow:0 0 30px var(--neon-dim);}
+.fps-unit{font-size:15px;color:var(--text-dim);}
+.readout-bars{display:flex;flex-direction:column;gap:10px;}
+.rbar-row{display:flex;align-items:center;gap:12px;font-size:12.5px;}
+.rbar-label{width:64px;color:var(--text-dim);flex-shrink:0;}
+.rbar-track{flex:1;height:6px;background:var(--bg-inset);border-radius:3px;overflow:hidden;}
+.rbar-fill{height:100%;border-radius:3px;}
+.rbar-val{width:34px;text-align:right;color:var(--text-faint);}
+
+/* ---------- Section shared ---------- */
+section{padding:56px 0;}
+.section-head{margin-bottom:32px;}
+.section-head h2{font-size:26px;font-weight:600;letter-spacing:-0.01em;margin-bottom:6px;}
+.section-head p{color:var(--text-dim);font-size:14.5px;}
+.divider{height:1px;background:var(--line);}
+
+/* ---------- Filters ---------- */
+.filter-bar{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap;}
+.filter-btn{
+  padding:8px 16px;border-radius:20px;font-size:13.5px;font-weight:500;
+  background:var(--bg-raised);border:1px solid var(--line);color:var(--text-dim);
+  cursor:pointer;transition:all .15s;
+}
+.filter-btn:hover{border-color:var(--text-faint);color:var(--text);}
+.filter-btn.active{background:var(--neon);border-color:var(--neon);color:#04140d;}
+
+/* ---------- Component cards ---------- */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;}
+.comp-card{
+  background:var(--bg-raised);border:1px solid var(--line);border-radius:12px;
+  padding:22px;cursor:pointer;transition:border-color .15s,transform .15s;
+}
+.comp-card:hover{border-color:var(--text-faint);}
+.comp-card.selected{border-color:var(--neon);box-shadow:0 0 0 1px var(--neon);}
+.comp-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+.comp-tag{
+  font-size:10.5px;font-weight:600;padding:3px 8px;border-radius:4px;
+  text-transform:uppercase;letter-spacing:0.04em;
+}
+.tag-cpu{background:#5eb1ff1a;color:var(--cpu-accent);}
+.tag-gpu{background:var(--neon-dim);color:var(--neon);}
+.comp-price{font-size:12.5px;color:var(--text-faint);}
+.comp-name{font-size:17px;font-weight:600;margin-bottom:4px;letter-spacing:-0.01em;}
+.comp-sub{font-size:12.5px;color:var(--text-faint);margin-bottom:16px;}
+.comp-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;font-size:12.5px;}
+.spec-item{display:flex;flex-direction:column;gap:2px;}
+.spec-k{color:var(--text-faint);}
+.spec-v{color:var(--text-dim);font-weight:500;}
+.comp-score-row{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
+.score-track{flex:1;height:5px;background:var(--bg-inset);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--cpu-accent),var(--neon));}
+.score-label{font-size:11.5px;color:var(--text-faint);white-space:nowrap;}
+
+/* ---------- Build & game results ---------- */
+.build-summary{
+  display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+  background:var(--bg-raised);border:1px solid var(--line);border-radius:12px;
+  padding:20px 22px;margin-bottom:28px;
+}
+.build-chip{display:flex;align-items:center;gap:10px;font-size:14px;}
+.build-chip .dot{width:7px;height:7px;border-radius:50%;}
+.build-empty{color:var(--text-faint);font-size:13.5px;}
+
+.game-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+.game-row{
+  display:grid;grid-template-columns:1.6fr 0.6fr 1fr 1.4fr;gap:20px;align-items:center;
+  background:var(--bg-raised);padding:16px 22px;
+}
+@media (max-width:720px){.game-row{grid-template-columns:1fr;gap:10px;}}
+.game-info{display:flex;flex-direction:column;gap:3px;}
+.game-name{font-weight:600;font-size:14.5px;}
+.game-genre{font-size:12px;color:var(--text-faint);}
+.game-preset{font-size:12px;color:var(--text-dim);}
+.fps-cell{display:flex;align-items:baseline;gap:5px;}
+.fps-cell .n{font-family:'Space Grotesk';font-size:22px;font-weight:700;}
+.fps-cell .u{font-size:11px;color:var(--text-faint);}
+.fps-track{height:6px;background:var(--bg-inset);border-radius:3px;overflow:hidden;}
+.fps-fill{height:100%;border-radius:3px;}
+.reason{font-size:12px;color:var(--text-faint);line-height:1.5;}
+
+/* legend / playability */
+.legend{display:flex;gap:18px;font-size:12px;color:var(--text-faint);flex-wrap:wrap;margin-top:14px;}
+.legend span{display:inline-flex;align-items:center;gap:6px;}
+.legend .sw{width:9px;height:9px;border-radius:2px;}
+
+footer{border-top:1px solid var(--line);padding:32px 0;margin-top:40px;}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--text-faint);flex-wrap:wrap;gap:10px;}
+</style>
 </head>
 <body>
 
-    <h1>Website Saya</h1>
-    <p>Website ini dibuat menggunakan VS Code dan GitHub Pages.</p>
+<nav>
+  <div class="wrap">
+    <div class="logo"><span class="logo-mark"></span>Benchkit</div>
+    <div class="nav-links">
+      <a href="#cpu">CPU</a>
+      <a href="#gpu">GPU</a>
+      <a href="#build">Susun Build</a>
+      <a href="#games">Hasil Game</a>
+    </div>
+  </div>
+</nav>
 
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Tau persis performa PC-mu sebelum beli komponennya.</h1>
+      <p>Katalog CPU dan GPU dengan estimasi FPS nyata di berbagai game populer, lengkap dengan alasan teknis di balik tiap angka — bukan cuma tabel spek kosong.</p>
+      <div class="hero-actions">
+        <a href="#cpu" class="btn btn-primary">Lihat Katalog CPU</a>
+        <a href="#gpu" class="btn btn-ghost">Lihat Katalog GPU</a>
+      </div>
+    </div>
+    <div class="readout">
+      <div class="readout-top">
+        <span class="readout-label">Contoh Pengujian</span>
+        <span class="readout-pair"><b>Ryzen 7 7800X3D</b> + <b>RTX 4070 Ti</b></span>
+      </div>
+      <div class="fps-display">
+        <span class="fps-num">142</span>
+        <span class="fps-unit">FPS rata-rata<br>Cyberpunk 2077 · 1440p Ultra</span>
+      </div>
+      <div class="readout-bars">
+        <div class="rbar-row"><span class="rbar-label">GPU Load</span><div class="rbar-track"><div class="rbar-fill" style="width:96%;background:var(--neon);"></div></div><span class="rbar-val">96%</span></div>
+        <div class="rbar-row"><span class="rbar-label">CPU Load</span><div class="rbar-track"><div class="rbar-fill" style="width:54%;background:var(--cpu-accent);"></div></div><span class="rbar-val">54%</span></div>
+        <div class="rbar-row"><span class="rbar-label">1% Low</span><div class="rbar-track"><div class="rbar-fill" style="width:78%;background:var(--amber);"></div></div><span class="rbar-val">108</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section id="cpu">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Katalog Prosesor</h2>
+      <p>Klik satu CPU untuk memasukkannya ke simulasi build di bagian bawah.</p>
+    </div>
+    <div class="filter-bar" id="cpu-filters">
+      <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="budget">Budget</button>
+      <button class="filter-btn" data-filter="mid">Mid-range</button>
+      <button class="filter-btn" data-filter="high">High-end</button>
+    </div>
+    <div class="comp-grid" id="cpu-grid"></div>
+  </div>
+</section>
+
+<section id="gpu">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Katalog GPU</h2>
+      <p>Skor performa relatif terhadap rendering 1440p rata-rata seluruh game di database.</p>
+    </div>
+    <div class="filter-bar" id="gpu-filters">
+      <button class="filter-btn active" data-filter="all">Semua</button>
+      <button class="filter-btn" data-filter="budget">Budget</button>
+      <button class="filter-btn" data-filter="mid">Mid-range</button>
+      <button class="filter-btn" data-filter="high">High-end</button>
+    </div>
+    <div class="comp-grid" id="gpu-grid"></div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section id="build">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Build Kamu</h2>
+      <p>Pilih satu CPU dan satu GPU dari katalog di atas untuk melihat estimasi FPS per game.</p>
+    </div>
+    <div class="build-summary" id="build-summary">
+      <span class="build-empty">Belum ada komponen dipilih.</span>
+    </div>
+  </div>
+</section>
+
+<section id="games">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Estimasi FPS per Game</h2>
+      <p>Preset 1440p, kecuali disebutkan lain. Angka merupakan estimasi berbasis benchmark publik, bukan hasil pengujian langsung.</p>
+    </div>
+    <div class="game-list" id="game-list"></div>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--neon);"></span>Lancar (90+ FPS)</span>
+      <span><span class="sw" style="background:var(--amber);"></span>Playable (50–89 FPS)</span>
+      <span><span class="sw" style="background:var(--red);"></span>Berat (di bawah 50 FPS)</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Benchkit — data estimasi, untuk referensi awal sebelum membeli.</span>
+    <span class="mono">v1.0</span>
+  </div>
+</footer>
+
+<script>
+/* ================= DATA ================= */
+const CPUS = [
+  {id:'r5-5600', type:'cpu', tier:'budget', name:'Ryzen 5 5600', sub:'6C/12T · AM4', price:'~Rp1.500.000',
+   specs:{Cores:'6/12', Clock:'3.5–4.4 GHz', TDP:'65W', Cache:'32MB'}, score:52},
+  {id:'i5-12400f', type:'cpu', tier:'budget', name:'Core i5-12400F', sub:'6C/12T · LGA1700', price:'~Rp2.000.000',
+   specs:{Cores:'6/12', Clock:'2.5–4.4 GHz', TDP:'65W', Cache:'18MB'}, score:56},
+  {id:'r5-7600', type:'cpu', tier:'mid', name:'Ryzen 5 7600', sub:'6C/12T · AM5', price:'~Rp3.200.000',
+   specs:{Cores:'6/12', Clock:'3.8–5.1 GHz', TDP:'65W', Cache:'32MB'}, score:68},
+  {id:'i5-13600k', type:'cpu', tier:'mid', name:'Core i5-13600K', sub:'14C/20T · LGA1700', price:'~Rp4.800.000',
+   specs:{Cores:'14/20', Clock:'3.5–5.1 GHz', TDP:'125W', Cache:'24MB'}, score:78},
+  {id:'r7-7800x3d', type:'cpu', tier:'high', name:'Ryzen 7 7800X3D', sub:'8C/16T · AM5 · 3D V-Cache', price:'~Rp6.800.000',
+   specs:{Cores:'8/16', Clock:'4.2–5.0 GHz', TDP:'120W', Cache:'96MB'}, score:92},
+  {id:'i9-14900k', type:'cpu', tier:'high', name:'Core i9-14900K', sub:'24C/32T · LGA1700', price:'~Rp8.500.000',
+   specs:{Cores:'24/32', Clock:'3.2–6.0 GHz', TDP:'253W', Cache:'36MB'}, score:96},
+];
+
+const GPUS = [
+  {id:'rx6600', type:'gpu', tier:'budget', name:'Radeon RX 6600', sub:'8GB GDDR6', price:'~Rp3.300.000',
+   specs:{VRAM:'8GB', Bus:'128-bit', TGP:'132W', RT:'Terbatas'}, score:48},
+  {id:'rtx3060', type:'gpu', tier:'budget', name:'GeForce RTX 3060', sub:'12GB GDDR6', price:'~Rp4.200.000',
+   specs:{VRAM:'12GB', Bus:'192-bit', TGP:'170W', RT:'Ya'}, score:52},
+  {id:'rtx4060', type:'gpu', tier:'mid', name:'GeForce RTX 4060', sub:'8GB GDDR6', price:'~Rp5.200.000',
+   specs:{VRAM:'8GB', Bus:'128-bit', TGP:'115W', RT:'Ya + DLSS3'}, score:60},
+  {id:'rx7700xt', type:'gpu', tier:'mid', name:'Radeon RX 7700 XT', sub:'12GB GDDR6', price:'~Rp7.500.000',
+   specs:{VRAM:'12GB', Bus:'192-bit', TGP:'245W', RT:'Ya'}, score:72},
+  {id:'rtx4070ti', type:'gpu', tier:'high', name:'GeForce RTX 4070 Ti', sub:'12GB GDDR6X', price:'~Rp12.500.000',
+   specs:{VRAM:'12GB', Bus:'192-bit', TGP:'285W', RT:'Ya + DLSS3'}, score:87},
+  {id:'rtx4090', type:'gpu', tier:'high', name:'GeForce RTX 4090', sub:'24GB GDDR6X', price:'~Rp28.000.000',
+   specs:{VRAM:'24GB', Bus:'384-bit', TGP:'450W', RT:'Ya + DLSS3'}, score:100},
+];
+
+const GAMES = [
+  {name:'Valorant', genre:'FPS Kompetitif', preset:'1080p Rendah', gpuWeight:0.3, cpuWeight:0.7, base:220,
+   reason:'Sangat CPU-bound karena engine ringan dan frame rate tinggi diprioritaskan; CPU dengan clock tinggi jadi penentu utama.'},
+  {name:'Counter-Strike 2', genre:'FPS Kompetitif', preset:'1080p Tinggi', gpuWeight:0.35, cpuWeight:0.65, base:200,
+   reason:'Source 2 engine memanfaatkan single-core performance; cache besar seperti 3D V-Cache memberi lonjakan FPS signifikan.'},
+  {name:'Fortnite', genre:'Battle Royale', preset:'1440p Epic', gpuWeight:0.55, cpuWeight:0.45, base:140,
+   reason:'Beban seimbang antara CPU (banyak pemain & fisika) dan GPU (efek visual Unreal Engine di setting Epic).'},
+  {name:'GTA V', genre:'Open World', preset:'1440p Sangat Tinggi', gpuWeight:0.5, cpuWeight:0.5, base:130,
+   reason:'Engine lama yang teroptimasi baik di kedua sisi; scaling GPU dan CPU cenderung linear dan seimbang.'},
+  {name:'Apex Legends', genre:'Battle Royale', preset:'1440p Tinggi', gpuWeight:0.5, cpuWeight:0.5, base:150,
+   reason:'Source engine modifikasi menuntut GPU untuk efek partikel, namun tetap sensitif terhadap kecepatan CPU saat baku tembak ramai.'},
+  {name:'Cyberpunk 2077', genre:'RPG Open World', preset:'1440p Ultra + RT', gpuWeight:0.85, cpuWeight:0.15, base:75,
+   reason:'Ray tracing dan densitas visual kota membuat beban hampir sepenuhnya di GPU; VRAM besar juga membantu tekstur ultra.'},
+  {name:'Red Dead Redemption 2', genre:'RPG Open World', preset:'1440p Ultra', gpuWeight:0.75, cpuWeight:0.25, base:80,
+   reason:'Rendering lingkungan padat detail dan jarak pandang jauh sangat membebani GPU, terutama pada resolusi tinggi.'},
+  {name:'Elden Ring', genre:'Action RPG', preset:'1440p Maksimal', gpuWeight:0.6, cpuWeight:0.4, base:95,
+   reason:'FPS dibatasi engine di 60, namun stabilitas frame time bergantung pada keseimbangan CPU-GPU saat banyak musuh di layar.'},
+  {name:'Baldur\'s Gate 3', genre:'RPG Turn-based', preset:'1440p Ultra', gpuWeight:0.55, cpuWeight:0.45, base:85,
+   reason:'Adegan pertarungan besar dengan banyak karakter dan mantra membebani CPU untuk kalkulasi, GPU untuk efek visual.'},
+  {name:'Microsoft Flight Simulator', genre:'Simulasi', preset:'1440p Tinggi', gpuWeight:0.55, cpuWeight:0.45, base:60,
+   reason:'Streaming data dunia real-time menuntut CPU kuat, sementara rendering awan dan bayangan volumetrik membebani GPU berat.'},
+  {name:'Alan Wake 2', genre:'Survival Horror', preset:'1440p Tinggi + RT', gpuWeight:0.88, cpuWeight:0.12, base:55,
+   reason:'Path tracing dan pencahayaan volumetrik menjadikan game ini salah satu yang paling GPU-intensive saat ini.'},
+  {name:'Rocket League', genre:'Sport Arcade', preset:'1440p Epic', gpuWeight:0.25, cpuWeight:0.75, base:280,
+   reason:'Engine sangat ringan dan dioptimasi untuk frame rate ekstrem; hampir seluruhnya dibatasi oleh kecepatan CPU.'},
+];
+
+/* ================= STATE ================= */
+let selectedCPU = null;
+let selectedGPU = null;
+let cpuFilter = 'all';
+let gpuFilter = 'all';
+
+/* ================= RENDER COMPONENTS ================= */
+function renderGrid(list, containerId, filter){
+  const el = document.getElementById(containerId);
+  const filtered = filter === 'all' ? list : list.filter(c => c.tier === filter);
+  el.innerHTML = filtered.map(c => {
+    const isSelected = (c.type === 'cpu' && selectedCPU?.id === c.id) || (c.type === 'gpu' && selectedGPU?.id === c.id);
+    const specsHtml = Object.entries(c.specs).map(([k,v]) =>
+      `<div class="spec-item"><span class="spec-k">${k}</span><span class="spec-v">${v}</span></div>`
+    ).join('');
+    return `
+      <div class="comp-card ${isSelected ? 'selected' : ''}" data-id="${c.id}" data-type="${c.type}">
+        <div class="comp-top">
+          <span class="comp-tag ${c.type === 'cpu' ? 'tag-cpu' : 'tag-gpu'}">${c.type}</span>
+          <span class="comp-price">${c.price}</span>
+        </div>
+        <div class="comp-name">${c.name}</div>
+        <div class="comp-sub">${c.sub}</div>
+        <div class="comp-specs">${specsHtml}</div>
+        <div class="comp-score-row">
+          <div class="score-track"><div class="score-fill" style="width:${c.score}%;"></div></div>
+          <span class="score-label">Skor ${c.score}</span>
+        </div>
+      </div>`;
+  }).join('');
+
+  el.querySelectorAll('.comp-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const id = card.dataset.id;
+      const type = card.dataset.type;
+      const source = type === 'cpu' ? CPUS : GPUS;
+      const item = source.find(x => x.id === id);
+      if(type === 'cpu') selectedCPU = (selectedCPU?.id === id) ? null : item;
+      else selectedGPU = (selectedGPU?.id === id) ? null : item;
+      renderAll();
+    });
+  });
+}
+
+/* ================= RENDER BUILD SUMMARY ================= */
+function renderBuildSummary(){
+  const el = document.getElementById('build-summary');
+  if(!selectedCPU && !selectedGPU){
+    el.innerHTML = `<span class="build-empty">Belum ada komponen dipilih. Klik kartu CPU dan GPU di atas.</span>`;
+    return;
+  }
+  let html = '';
+  if(selectedCPU){
+    html += `<div class="build-chip"><span class="dot" style="background:var(--cpu-accent);"></span>${selectedCPU.name}</div>`;
+  } else {
+    html += `<div class="build-chip"><span class="dot" style="background:var(--text-faint);"></span>Pilih CPU</div>`;
+  }
+  if(selectedGPU){
+    html += `<div class="build-chip"><span class="dot" style="background:var(--neon);"></span>${selectedGPU.name}</div>`;
+  } else {
+    html += `<div class="build-chip"><span class="dot" style="background:var(--text-faint);"></span>Pilih GPU</div>`;
+  }
+  el.innerHTML = html;
+}
+
+/* ================= FPS CALC ================= */
+function calcFPS(game, cpu, gpu){
+  const cpuScore = cpu ? cpu.score : 40;
+  const gpuScore = gpu ? gpu.score : 40;
+  const combined = (cpuScore * game.cpuWeight) + (gpuScore * game.gpuWeight);
+  const factor = combined / 70; // normalized around mid-range
+  let fps = Math.round(game.base * factor);
+  fps = Math.max(18, fps);
+  return fps;
+}
+
+function fpsColor(fps){
+  if(fps >= 90) return 'var(--neon)';
+  if(fps >= 50) return 'var(--amber)';
+  return 'var(--red)';
+}
+
+function renderGames(){
+  const el = document.getElementById('game-list');
+  el.innerHTML = GAMES.map(g => {
+    const fps = calcFPS(g, selectedCPU, selectedGPU);
+    const color = fpsColor(fps);
+    const pct = Math.min(100, Math.round((fps / 220) * 100));
+    return `
+      <div class="game-row">
+        <div class="game-info">
+          <span class="game-name">${g.name}</span>
+          <span class="game-genre">${g.genre}</span>
+        </div>
+        <div class="game-preset">${g.preset}</div>
+        <div>
+          <div class="fps-cell"><span class="n" style="color:${color};">${fps}</span><span class="u">FPS</span></div>
+          <div class="fps-track" style="margin-top:6px;"><div class="fps-fill" style="width:${pct}%;background:${color};"></div></div>
+        </div>
+        <div class="reason">${g.reason}</div>
+      </div>`;
+  }).join('');
+}
+
+/* ================= FILTERS ================= */
+document.getElementById('cpu-filters').addEventListener('click', e => {
+  if(!e.target.matches('.filter-btn')) return;
+  document.querySelectorAll('#cpu-filters .filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  cpuFilter = e.target.dataset.filter;
+  renderGrid(CPUS, 'cpu-grid', cpuFilter);
+});
+document.getElementById('gpu-filters').addEventListener('click', e => {
+  if(!e.target.matches('.filter-btn')) return;
+  document.querySelectorAll('#gpu-filters .filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  gpuFilter = e.target.dataset.filter;
+  renderGrid(GPUS, 'gpu-grid', gpuFilter);
+});
+
+/* ================= INIT ================= */
+function renderAll(){
+  renderGrid(CPUS, 'cpu-grid', cpuFilter);
+  renderGrid(GPUS, 'gpu-grid', gpuFilter);
+  renderBuildSummary();
+  renderGames();
+}
+renderAll();
+</script>
 </body>
 </html>
